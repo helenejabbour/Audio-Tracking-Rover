@@ -27,7 +27,7 @@
  * argument signatures on S3 across core versions.
  */
 
-#define MIC_PIN 1                 // ADC1_CH0 on most ESP32-S3 boards - verify for yours
+#define MIC_PIN 4               //  on most ESP32-S3 boards - verify for yours
 const uint32_t SAMPLE_RATE_HZ = 10000;
 
 volatile bool sample_ready = false;
