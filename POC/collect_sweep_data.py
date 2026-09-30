@@ -58,7 +58,7 @@ BAUD_RATE = 921600
 V_REF = 3.3
 ADC_MAX = 4095.0
 MV_PER_COUNT = V_REF / ADC_MAX * 1000.0   # ADC-referred; ESP32 ADC is nonlinear, treat as relative
-ADC_LO, ADC_HI = 150, 3850                # counts outside this = clipping / nonlinear region
+ADC_LO, ADC_HI = 150, 385000                # counts outside this = clipping / nonlinear region
 
 # --- protocol
 N_TRIALS_PER_POINT = 8
@@ -83,7 +83,7 @@ EXC_KIND = "chirp"                        # "chirp" | "tone"
 EXC_F0_HZ, EXC_F1_HZ = 1000.0, 4000.0     # F1 is clamped to 0.42 * ADC fs
 EXC_TONE_HZ = 600.0
 EXC_DURATION_S = 0.10
-EXC_AMPLITUDE = 0.6                       # leave headroom: BT speakers have limiters / DRC
+EXC_AMPLITUDE = 0.2                       # leave headroom: BT speakers have limiters / DRC
 KEEPALIVE_DITHER = 1e-4                   # ~-80 dBFS noise keeps A2DP stream from suspending
 
 # --- analysis
