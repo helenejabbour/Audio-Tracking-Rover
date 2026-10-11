@@ -1,5 +1,5 @@
 """
-Directivity & range POC - sweep collector v4.
+Directivity & range POC - sweep collector v5 (closed-loop level control).
 
 Claim under test: the in-band level received by a fixed MAX4466 + ESP32 ADC changes
 distinguishably and repeatably with speaker angle / distance.
@@ -29,11 +29,28 @@ CHANGES vs v3 (each one fixes a specific failure mode)
      angle/distance, tilt, SNR, d' separability, angle resolution, mirror
      symmetry, 1/r^n fit.
 
+CHANGES v4 -> v5: run-to-run repeatability + clipping protection
+  A. Closed-loop DRIVE-GAIN calibration at the reference point (first sweep point): the
+     digital drive is searched until the raw received peak = TARGET_PEAK_FRAC of the usable
+     ADC half-range. Loud run or quiet run, every run starts at the same operating point,
+     with fixed headroom (default -8 dB re rail). Speaker/OS volume, BT state and mic gain
+     differences are absorbed by the gain, not by the ADC.
+  B. Safety net: a trial that clips or exceeds PEAK_FRAC_MAX is re-run at lower gain
+     (every attempt is logged; only the final attempt enters statistics).
+  C. All levels are reported DRIVE-NORMALISED: S = L - 20 log10(gain), dB re 1 mV rms per
+     unit digital drive. Valid because the chain is checked for linearity. Gain changes
+     (within a run or between runs) therefore cancel out of dL(theta), tilt and 1/r fits.
+  D. What software cannot normalise is chain sensitivity itself (speaker volume, mic
+     trimmer, geometry, horn). It is measured at the reference point at the start (S_start),
+     compared against the last run with the same CONFIG_TAG in run_registry.csv, and
+     re-measured after the sweep (closure check: S_end - S_start = drift + repositioning).
+     Bracket a horn experiment as bare -> horn -> bare to separate horn gain from drift.
+
 Firmware: plain "adc\\n" lines work; "t_us,adc\\n" lines (micros() timestamp) are
 also accepted and give an exact sample rate + dropped-sample detection.
 
-Run:  python directivity_poc_v4.py               (hardware)
-      python directivity_poc_v4.py --simulate    (synthetic rig, no hardware)
+Run:  python directivity_poc_v5.py --config bare   (hardware; tag the hardware configuration)
+      python directivity_poc_v5.py --simulate    (synthetic rig, no hardware)
 """
 
 import argparse
@@ -58,7 +75,8 @@ BAUD_RATE = 921600
 V_REF = 3.3
 ADC_MAX = 4095.0
 MV_PER_COUNT = V_REF / ADC_MAX * 1000.0   # ADC-referred; ESP32 ADC is nonlinear, treat as relative
-ADC_LO, ADC_HI = 150, 385000                # counts outside this = clipping / nonlinear region
+ADC_LO = 150
+ADC_HI = int(ADC_MAX - ADC_LO)               # counts outside [ADC_LO, ADC_HI] = clipping / nonlinear region
 
 # --- protocol
 N_TRIALS_PER_POINT = 8
@@ -69,8 +87,24 @@ CAPTURE_AFTER_S = 0.90                    # must exceed BT latency + burst + rin
 INTER_TRIAL_DELAY_S = 0.30
 LINEARITY_CHECK = True
 
+# --- level control (see CHANGES v4 -> v5)
+AUTO_LEVEL = False        # do not re-tune the drive
+GAIN_INIT = 0.07987                          # initial digital drive (unit-peak chirp x gain)
+GAIN_MIN, GAIN_MAX = 0.005, 0.5           # BT limiters/DRC make high digital drive nonlinear
+TARGET_PEAK_FRAC = 0.40                   # raw peak at reference point / usable half-range (-8 dB re rail)
+PEAK_FRAC_MAX = 0.85                      # above this a trial counts as CLIPPED and is re-run at lower gain
+CAL_TOL_DB = 1.0
+CAL_MAX_ITER = 6
+MAX_ATTEMPTS = 3                          # re-runs of a clipped trial
+CONFIG_TAG = "bare"                       # hardware configuration label, e.g. "bare" | "horn"
+REGISTRY_PATH = "run_registry.csv"        # one row per run: sensitivity at the reference point
+SENS_WARN_DB = 1.0                        # sensitivity change vs last run with the same CONFIG_TAG
+CLOSURE_CHECK = True                      # re-measure reference point after the sweep
+CLOSURE_TRIALS = 4
+DRIFT_WARN_DB = 0.5
+
 SWEEP_MODE = "angle"                      # "angle" | "distance"
-SESSION_TAG = "session1"
+SESSION_TAG = "bare1"  
 FIXED_DISTANCE_CM = 30.0
 FIXED_ANGLE_DEG = 0.0
 ANGLE_SWEEP_POINTS = [0, 45, 90, 135, 180, 225, 270, 315]
@@ -83,7 +117,6 @@ EXC_KIND = "chirp"                        # "chirp" | "tone"
 EXC_F0_HZ, EXC_F1_HZ = 1000.0, 4000.0     # F1 is clamped to 0.42 * ADC fs
 EXC_TONE_HZ = 600.0
 EXC_DURATION_S = 0.10
-EXC_AMPLITUDE = 0.2                       # leave headroom: BT speakers have limiters / DRC
 KEEPALIVE_DITHER = 1e-4                   # ~-80 dBFS noise keeps A2DP stream from suspending
 
 # --- analysis
@@ -101,17 +134,18 @@ FS_TOL = 0.10                             # |fs_trial/fs_global - 1| above this 
 MIN_OK_TRIALS = 3                         # scored OK trials needed for a point to count
 SIGMA_FLOOR_DB = 0.25                     # resolution floor when computing d'
 
-TRIALS_LOG_PATH = "sweep_trials_v4.csv"
+TRIALS_LOG_PATH = "sweep_trials_v5.csv"
 PLOTS_DIR = "sweep_plots"
 
 # --- simulation only
-SIM_FS, SIM_NOISE, SIM_SCALE = 10000.0, 6.0, 500.0
+SIM_FS, SIM_NOISE, SIM_SCALE = 10000.0, 6.0, 2000.0   # SIM_SCALE: counts of amplitude per unit drive at 30 cm on-axis
 
 # runtime state (set in main)
 SIMULATE = False
 SRC = EMIT = WAVE = None
 FS_GLOBAL = None
 SUBBAND_EDGES = None
+GAIN = GAIN_INIT                          # current digital drive (unit-peak chirp x GAIN)
 
 
 # ============================================================
@@ -125,7 +159,7 @@ def make_excitation(f0, f1):
     else:
         w = np.sin(2 * np.pi * EXC_TONE_HZ * t)
     w = w * signal.windows.tukey(n, 0.25)
-    return (EXC_AMPLITUDE * w / np.max(np.abs(w))).astype(np.float32)
+    return (w / np.max(np.abs(w))).astype(np.float32)      # unit peak; drive level = GAIN
 
 
 # ============================================================
@@ -141,6 +175,14 @@ class Emitter:
             raise SystemExit("pip install sounddevice  (needed for the persistent BT stream)")
         self._buf, self._pos = None, 0
         self._rng = np.random.default_rng()
+        try:
+            name = sd.query_devices(kind="output")["name"]
+            print(f"Audio output: {name}")
+            if any(k in name.lower() for k in ("hands-free", "handsfree", "hfp", "headset")):
+                print("  [WARN] output looks like the Bluetooth Hands-Free profile (8-16 kHz, different level). "
+                      "Select the A2DP 'Stereo' endpoint.")
+        except Exception:
+            pass
         self.stream = sd.OutputStream(samplerate=AUDIO_FS, channels=1, dtype="float32",
                                       callback=self._cb)
         self.stream.start()
@@ -157,7 +199,7 @@ class Emitter:
 
     def fire(self, wave, gain=1.0, ctx=None):
         self._pos = 0
-        self._buf = (wave * gain).astype(np.float32)
+        self._buf = np.clip(wave * gain, -1.0, 1.0).astype(np.float32)
 
     def close(self):
         self.stream.stop()
@@ -213,8 +255,8 @@ class SimSource:
     """Synthetic ESP32 stream: Gaussian noise + 50 Hz hum + rare glitches + delayed
     copies of the fired excitation shaped by a frequency-dependent directivity and 1/r."""
 
-    def __init__(self, fs=SIM_FS, seed=0):
-        self.fs, self.rng = fs, np.random.default_rng(seed)
+    def __init__(self, fs=SIM_FS, seed=0, volume_db=0.0):
+        self.fs, self.rng, self.volume_db = fs, np.random.default_rng(seed), volume_db   # volume_db: chain gain offset
         self.t0, self.n_gen, self.events = time.perf_counter(), 0, []
 
     def schedule(self, wave, gain, theta_deg, dist_cm):
@@ -225,7 +267,7 @@ class SimSource:
         f = np.fft.rfftfreq(nfft, 1 / self.fs)
         p = np.maximum(f / 1500.0, 0.3)                          # narrower beam at HF
         D = np.maximum(((1 + np.cos(np.radians(theta_deg))) / 2) ** p, 0.03)
-        H = D * (30.0 / dist_cm) * SIM_SCALE
+        H = D * (30.0 / dist_cm) * SIM_SCALE * 10 ** (self.volume_db / 20)
         y = np.fft.irfft(np.fft.rfft(x, nfft) * H, nfft)[:n + n // 2] * gain
         t_start = time.perf_counter() + 0.22 + 0.01 * self.rng.standard_normal() + dist_cm / 34300.0
         self.events.append((t_start, y))
@@ -369,6 +411,10 @@ def analyze_trial(adc, fs, n_pre):
                 bands[j] = 20 * np.log10(np.sqrt(pw - pn))
     tilt_db = bands[-1] - bands[0] if len(bands) > 1 else np.nan   # HF - LF
 
+    med0 = float(np.median(adc[:n_pre]))                        # headroom: raw peak in window / usable half-range
+    half = max(min(med0 - ADC_LO, ADC_HI - med0), 1.0)
+    peak_frac = float(np.max(np.abs(ac_mv[k:k + L])) / (half * MV_PER_COUNT))
+
     env_s = uniform_filter1d(env, max(1, int(0.002 * fs)))
     return dict(
         N=N, k=k, L=L, n_pre=n_pre, guard=guard, peak_idx=k + pk,
@@ -376,7 +422,7 @@ def analyze_trial(adc, fs, n_pre):
         env_db=20 * np.log10(np.maximum(env_s, 1e-6) / sigma_n),
         snr_db=float(snr_db), level_db=float(level_db), rms_mv=rms_mv, peak_mv=peak_mv,
         crest_db=crest_db, spike_db=spike_db, glitch=glitch, persist=persist, detected=detected, dirty_ratio=dirty_ratio,
-        noise_rms_mv=float(sigma_n), raw_noise_mv=float(np.std(ac_mv[pre])),
+        peak_frac=peak_frac, noise_rms_mv=float(sigma_n), raw_noise_mv=float(np.std(ac_mv[pre])),
         bands=bands, tilt_db=float(tilt_db), latency_ms=float(latency_ms),
         clip_count=int(np.sum((adc <= ADC_LO) | (adc >= ADC_HI))),
     )
@@ -389,8 +435,8 @@ def classify(a, fire, sparse):
         return "FALSE_ALARM" if a["detected"] else "NULL"
     if a["dirty_ratio"] > PRE_DIRTY_RATIO:
         return "PRE_DIRTY"
-    if a["clip_count"] >= 2:
-        return "CLIPPED"
+    if a["clip_count"] >= 2 or a["peak_frac"] > PEAK_FRAC_MAX:
+        return "CLIPPED"                 # clipped, or inside the compression zone of the ADC
     if not a["detected"]:
         return "NOISE"
     if a["glitch"]:
@@ -400,7 +446,8 @@ def classify(a, fire, sparse):
     return "OK"
 
 
-def run_single_trial(theta, dist, gain=1.0, fire=True):
+def run_single_trial(theta, dist, gain=None, fire=True):
+    gain = GAIN if gain is None else gain
     SRC.flush()                                   # never let stale samples into the window
     t0, rec = time.perf_counter(), []
     capture(CAPTURE_BEFORE_S, rec)
@@ -418,32 +465,219 @@ def run_single_trial(theta, dist, gain=1.0, fire=True):
     if a is None:
         return None
     fs_dev = fs / FS_GLOBAL - 1.0
-    a.update(fire=fire, theta=theta, dist=dist, gain=gain, fs=fs, fs_dev=fs_dev)
+    a.update(fire=fire, theta=theta, dist=dist, gain=gain, fs=fs, fs_dev=fs_dev,
+             level_norm_db=a["level_db"] - 20 * np.log10(gain))
     a["status"] = classify(a, fire, gap or abs(fs_dev) > FS_TOL)
     return a
 
 
 def linearity_check(theta, dist):
-    """Drive amplitude x2 must give +6.02 dB. Slope != 1 -> BT limiter/DRC or ADC compression."""
-    gains = [0.25, 0.5, 1.0]
+    """Drive x2 must give +6.02 dB. Run at <= the calibrated gain (never above), so it cannot clip."""
+    mults = [0.25, 0.5, 1.0]
     lv = []
-    for g in gains:
+    for m in mults:
         vals = []
         for _ in range(3):
-            r = run_single_trial(theta, dist, gain=g)
+            r = run_single_trial(theta, dist, gain=GAIN * m)
             if r and r["status"] == "OK":
                 vals.append(r["level_db"])
             time.sleep(INTER_TRIAL_DELAY_S)
         lv.append(np.mean(vals) if vals else np.nan)
-    x, y = 20 * np.log10(gains), np.array(lv)
-    m = np.isfinite(y)
-    if m.sum() < 2:
+    x, y = 20 * np.log10(mults), np.array(lv)
+    ok = np.isfinite(y)
+    if ok.sum() < 2:
         print("  [linearity] not enough valid trials - check SNR / clipping.")
         return
-    slope = np.polyfit(x[m], y[m], 1)[0]
-    verdict = "PASS" if 0.9 <= slope <= 1.1 else "FAIL - amplitude comparisons unreliable"
-    print(f"  [linearity] levels @ gains {gains}: " + ", ".join(f"{v:.1f}" for v in lv) +
+    slope = np.polyfit(x[ok], y[ok], 1)[0]
+    verdict = "PASS" if 0.9 <= slope <= 1.1 else "FAIL - drive-normalised levels unreliable"
+    print(f"  [linearity] levels @ {mults} x gain: " + ", ".join(f"{v:.1f}" for v in lv) +
           f" dB  -> slope {slope:.2f} (ideal 1.00)  {verdict}")
+
+
+# ============================================================
+# Level control (closed loop): run-to-run repeatability + clipping protection
+# ============================================================
+REG_FIELDS = ["timestamp", "session", "config", "mode", "ref_point", "stage", "gain",
+              "s_ref_db", "s_std_db", "noise_mv", "peak_frac", "n_ok", "drift_db"]
+
+
+def _clamp_gain(g):
+    return float(np.clip(g, GAIN_MIN, GAIN_MAX))
+
+
+def _pos(pv, variable):
+    return (pv, FIXED_DISTANCE_CM) if variable == "theta_deg" else (FIXED_ANGLE_DEG, pv)
+
+
+def run_trial_safe(theta, dist, fire, i, variable, t_start):
+    """One planned trial. If it clips / exceeds headroom, cut the drive gain and re-run.
+    Every attempt is logged; only the last attempt enters the statistics."""
+    global GAIN
+    r = None
+    for attempt in range(MAX_ATTEMPTS):
+        r = run_single_trial(theta, dist, gain=GAIN, fire=fire)
+        if r is None:
+            print("SKIPPED")
+            return None
+        r["attempt"], r["is_warmup"] = attempt, bool(fire and i < N_WARMUP_TRIALS_TO_DISCARD)
+        print(f"{r['status']:<11} SNR={r['snr_db']:5.1f} dB  S={r['level_norm_db']:6.1f} dB  "
+              f"tilt={r['tilt_db']:+5.1f}  lat={r['latency_ms']:5.0f} ms  gain={GAIN:.3f}  "
+              f"peak={r['peak_frac']:.2f}" + ("  (warm-up)" if r["is_warmup"] else ""))
+        log_trial(r, i, variable, t_start)
+        if not (fire and AUTO_LEVEL and r["status"] == "CLIPPED") or attempt == MAX_ATTEMPTS - 1:
+            return r
+        new = GAIN                                   # clipped outside the burst window (glitch): retry as is
+        if r["peak_frac"] > PEAK_FRAC_MAX:
+            new = _clamp_gain(min(GAIN * TARGET_PEAK_FRAC / r["peak_frac"], GAIN * 0.5))
+        print(f"      [auto-level] clipped/hot (peak {r['peak_frac']:.2f} of range): gain {GAIN:.3f} -> "
+              f"{new:.3f} ({20 * np.log10(new / GAIN):+.1f} dB), re-running ...", end=" ", flush=True)
+        GAIN = new
+        time.sleep(INTER_TRIAL_DELAY_S)
+    return r
+
+
+def calibrate_level(theta, dist, variable, t_start):
+    """Search the digital drive until the raw received peak = TARGET_PEAK_FRAC of the usable ADC range.
+    The chain is linear (checked later), so the update is a plain ratio; converges in 1-3 iterations."""
+    global GAIN
+    g = _clamp_gain(GAIN_INIT)
+    print(f"  [auto-level] driving the reference point until raw peak = {TARGET_PEAK_FRAC:.0%} of usable ADC range ...")
+    run_single_trial(theta, dist, gain=g)            # throw-away: wakes the BT link, primes buffers
+    time.sleep(INTER_TRIAL_DELAY_S)
+    converged = False
+    for it in range(CAL_MAX_ITER):
+        rs = []
+        for _ in range(2):
+            r = run_single_trial(theta, dist, gain=g)
+            if r:
+                r["kind"], r["attempt"], r["is_warmup"] = "cal", it, False
+                log_trial(r, -1, variable, t_start)
+                rs.append(r)
+            time.sleep(INTER_TRIAL_DELAY_S)
+        det = [r for r in rs if r["detected"]]
+        if not det:
+            new = _clamp_gain(g * 4.0)
+            snr = max((r["snr_db"] for r in rs), default=np.nan)
+            print(f"    it {it + 1}: gain {g:.3f}  no burst detected (best SNR {snr:.1f} dB) -> gain {new:.3f}")
+            if new == g:
+                break
+            g = new
+            continue
+        pf = float(np.median([r["peak_frac"] for r in det]))
+        clipped = any(r["clip_count"] >= 2 for r in det)
+        err = 20 * np.log10(pf / TARGET_PEAK_FRAC)
+        print(f"    it {it + 1}: gain {g:.3f}  raw peak {pf:.2f} of range ({err:+.1f} dB vs target)"
+              + ("  CLIPPED" if clipped else ""))
+        if abs(err) <= CAL_TOL_DB and not clipped:
+            converged = True
+            break
+        step = float(np.clip(TARGET_PEAK_FRAC / pf, 1 / 8, 8))
+        if clipped:
+            step = min(step, 0.5)
+        new = _clamp_gain(g * step)
+        if new == g:
+            break
+        g = new
+    GAIN = g
+    if converged:
+        print(f"  [auto-level] locked: gain = {GAIN:.4f} ({20 * np.log10(GAIN):.1f} dBFS)")
+    else:
+        print(f"  [auto-level] WARNING: not converged (gain {GAIN:.4f}, limits {GAIN_MIN}-{GAIN_MAX}). "
+              "At a limit: adjust speaker/OS volume or the MAX4466 trimmer, then re-run.")
+
+
+def measure_reference(theta, dist, n, variable, t_start, kind):
+    """n trials at the current GAIN -> sensitivity S (dB re 1 mV rms per unit drive) and noise floor."""
+    s, noise, pf = [], [], []
+    for _ in range(n):
+        r = run_single_trial(theta, dist, gain=GAIN)
+        if r:
+            r["kind"], r["attempt"], r["is_warmup"] = kind, 0, False
+            log_trial(r, -1, variable, t_start)
+            if r["status"] == "OK":
+                s.append(r["level_norm_db"])
+                noise.append(r["noise_rms_mv"])
+                pf.append(r["peak_frac"])
+        time.sleep(INTER_TRIAL_DELAY_S)
+    if not s:
+        return dict(s=np.nan, s_std=np.nan, noise=np.nan, peak_frac=np.nan, n=0)
+    return dict(s=float(np.mean(s)), s_std=float(np.std(s, ddof=1)) if len(s) > 1 else np.nan,
+                noise=float(np.median(noise)), peak_frac=float(np.median(pf)), n=len(s))
+
+
+def registry_read():
+    if not os.path.exists(REGISTRY_PATH):
+        return []
+    with open(REGISTRY_PATH, newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def registry_append(**kw):
+    new = not os.path.exists(REGISTRY_PATH)
+    with open(REGISTRY_PATH, "a", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=REG_FIELDS)
+        if new:
+            w.writeheader()
+        w.writerow({k: kw.get(k, "") for k in REG_FIELDS})
+
+
+def _reg_row(stage, ref_point, variable, ref, drift=""):
+    registry_append(timestamp=time.strftime("%Y-%m-%d %H:%M:%S"), session=SESSION_TAG, config=CONFIG_TAG,
+                    mode=variable, ref_point=f"{ref_point:g}", stage=stage, gain=f"{GAIN:.5f}",
+                    s_ref_db=f"{ref['s']:.3f}", s_std_db=f"{ref['s_std']:.3f}", noise_mv=f"{ref['noise']:.3f}",
+                    peak_frac=f"{ref['peak_frac']:.3f}", n_ok=ref["n"], drift_db=drift)
+
+
+def registry_check(ref, variable, ref_point):
+    rows = [r for r in registry_read() if r["stage"] == "start" and r["mode"] == variable
+            and r["ref_point"] == f"{ref_point:g}"]
+    same = [r for r in rows if r["config"] == CONFIG_TAG]
+    other = [r for r in rows if r["config"] != CONFIG_TAG]
+    if same:
+        p = same[-1]
+        d = ref["s"] - float(p["s_ref_db"])
+        dn = 20 * np.log10(ref["noise"] / float(p["noise_mv"])) if float(p["noise_mv"]) > 0 else np.nan
+        flag = "OK" if abs(d) <= SENS_WARN_DB else ("n/a" if not np.isfinite(d) else
+               "WARN - chain changed (speaker/OS volume, BT, mic trimmer, geometry). Restore settings, "
+               "or treat cross-run ABSOLUTE levels as offset (dL and tilt are unaffected)")
+        print(f"  [repeatability] sensitivity vs last '{CONFIG_TAG}' run ({p['session']}, {p['timestamp']}): "
+              f"{d:+.2f} dB, noise {dn:+.1f} dB  {flag}")
+    else:
+        print(f"  [repeatability] no earlier '{CONFIG_TAG}' run in {REGISTRY_PATH}: this run is the baseline.")
+    if other:
+        p = other[-1]
+        print(f"  [repeatability] vs last '{p['config']}' run: {ref['s'] - float(p['s_ref_db']):+.2f} dB "
+              "(= configuration effect + chain drift; verify with a bare-horn-bare bracket)")
+
+
+def level_setup(theta, dist, variable, t_start, ref_point):
+    global GAIN
+    if AUTO_LEVEL:
+        calibrate_level(theta, dist, variable, t_start)
+    else:
+        GAIN = _clamp_gain(GAIN_INIT)
+    ref = measure_reference(theta, dist, 3, variable, t_start, "ref_start")
+    print(f"  [reference] S = {ref['s']:.2f} ± {ref['s_std']:.2f} dB re 1 mV/unit drive | gain {GAIN:.3f} | "
+          f"raw peak {ref['peak_frac']:.2f} of range | noise σ {ref['noise']:.2f} mV | n_ok {ref['n']}")
+    registry_check(ref, variable, ref_point)
+    _reg_row("start", ref_point, variable, ref)
+    if LINEARITY_CHECK:
+        linearity_check(theta, dist)
+    return ref
+
+
+def closure_check(theta, dist, variable, t_start, ref_start, ref_point):
+    """Back to the reference point: S_end - S_start = chain drift + repositioning error of that point."""
+    if not SIMULATE:
+        input(f"\n>>> Closure check: return to the REFERENCE position (θ={theta}°, d={dist} cm), "
+              "press ENTER...")
+    end = measure_reference(theta, dist, CLOSURE_TRIALS, variable, t_start, "ref_end")
+    drift = end["s"] - ref_start["s"]
+    verdict = "OK" if abs(drift) <= DRIFT_WARN_DB else (
+        "n/a" if not np.isfinite(drift) else
+        "WARN - level drifted / repositioning error; absolute levels carry this uncertainty")
+    print(f"\n[closure] S_end - S_start = {drift:+.2f} dB  (gain {GAIN:.3f}, n_ok {end['n']})  {verdict}")
+    _reg_row("end", ref_point, variable, end, drift=f"{drift:.3f}")
 
 
 # ============================================================
@@ -462,14 +696,16 @@ def aggregate_point(theta, dist, results):
     ok = [r for r in scored if r["status"] == "OK"]
     nulls = [r for r in results if not r["fire"]]
     nb = len(SUBBAND_EDGES) - 1
-    lv_m, lv_s = mean_std([r["level_db"] for r in ok])
+    lv_m, lv_s = mean_std([r["level_norm_db"] for r in ok])        # S: drive-normalised level
     tl_m, tl_s = mean_std([r["tilt_db"] for r in ok], MIN_OK_TRIALS)
     lat_m, lat_s = mean_std([r["latency_ms"] for r in scored if r["detected"]])
     return dict(
         theta=theta, dist=dist, n_scored=len(scored), n_ok=len(ok),
+        gain_lo=min((r["gain"] for r in scored), default=np.nan),
+        gain_hi=max((r["gain"] for r in scored), default=np.nan),
         status=Counter(r["status"] for r in scored),
         level_mean=lv_m, level_std=lv_s,
-        bands=[mean_std([r["bands"][j] for r in ok], MIN_OK_TRIALS) for j in range(nb)],
+        bands=[mean_std([r["bands"][j] - 20 * np.log10(r["gain"]) for r in ok], MIN_OK_TRIALS) for j in range(nb)],
         tilt_mean=tl_m, tilt_std=tl_s, lat_mean=lat_m, lat_std=lat_s,
         snr_med=float(np.median([r["snr_db"] for r in scored])) if scored else np.nan,
         null_snr_max=max((r["snr_db"] for r in nulls), default=np.nan),
@@ -552,7 +788,8 @@ def plot_point(point_value, variable, results, agg):
         title = f"Distance sweep - d = {point_value} cm (angle {FIXED_ANGLE_DEG}°)"
         fname = f"dist_{int(point_value):03d}cm.png"
     sub = (f"{agg['verdict']} | OK {agg['n_ok']}/{agg['n_scored']} scored {dict(agg['status'])} | "
-           f"L = {agg['level_mean']:.1f} ± {agg['level_std']:.1f} dB re 1 mV | "
+           f"S = {agg['level_mean']:.1f} ± {agg['level_std']:.1f} dB re 1 mV/unit drive | "
+           f"gain {agg['gain_lo']:.3f}-{agg['gain_hi']:.3f} | "
            f"median SNR {agg['snr_med']:.1f} dB | null max {agg['null_snr_max']:.1f} dB | "
            f"latency {agg['lat_mean']:.0f} ± {agg['lat_std']:.0f} ms")
     fig.suptitle(f"{title}\n{sub}", fontsize=9.5, color="k" if agg["verdict"] == "OK" else "firebrick")
@@ -652,7 +889,7 @@ def plot_summary_distance(aggs, fit):
                  label=f"fit: n = {fit['n']:.2f}, R² = {fit['r2']:.3f}")
     ax1.set_xscale("log")
     ax1.set_xlabel("distance (cm)")
-    ax1.set_ylabel("L (dB re 1 mV rms)")
+    ax1.set_ylabel("S (dB re 1 mV rms per unit drive)")
     ax1.legend(fontsize=7)
     ax1.grid(alpha=0.3, which="both")
     ax2.errorbar(r, [a["tilt_mean"] for a in aggs], yerr=[a["tilt_std"] for a in aggs],
@@ -714,7 +951,7 @@ def summarize(aggs, variable):
     print("\n" + "=" * 96)
     print(f"SUMMARY ({variable})   d' = separation to NEXT point in units of single-trial σ "
           f"(>= 2 distinguishable)")
-    hdr = f"{'point':>7} {'verdict':>13} {'nOK':>4} {'SNR':>6} {'L(dB)':>7} {'σL':>5} " \
+    hdr = f"{'point':>7} {'verdict':>13} {'nOK':>4} {'SNR':>6} {'S(dB)':>7} {'σL':>5} " \
           f"{'ΔL':>7} {'tilt':>7} {'σtilt':>6} {'d\'_L':>6} {'d\'_tilt':>7} {'σθ(deg)':>8}"
     print(hdr)
     for r in rows:
@@ -746,7 +983,7 @@ def summarize(aggs, variable):
             res = y - (slope * lx + icpt)
             r2 = 1 - res.var() / y.var() if y.var() > 0 else np.nan
             fit = dict(slope=slope, icpt=icpt, n=-slope / 20, r2=r2)
-            print(f"\nPropagation fit L = a - 20·n·log10(r):  n = {fit['n']:.2f}  R² = {r2:.3f}  "
+            print(f"\nPropagation fit S = a - 20·n·log10(r):  n = {fit['n']:.2f}  R² = {r2:.3f}  "
                   f"(free field n = 1; n -> 0 in the reverberant field)")
 
     os.makedirs(PLOTS_DIR, exist_ok=True)
@@ -766,8 +1003,9 @@ def summarize(aggs, variable):
 # Logging + sweep
 # ============================================================
 def csv_fields():
-    return (["session", "mode", "trial_in_point", "kind", "is_warmup", "theta_deg", "distance_cm",
-             "status", "snr_db", "level_db", "rms_mv", "peak_mv", "crest_db", "spike_db", "persist", "tilt_db"]
+    return (["session", "config", "mode", "trial_in_point", "attempt", "kind", "is_warmup", "theta_deg",
+             "distance_cm", "gain", "status", "snr_db", "level_db", "level_norm_db", "peak_frac", "rms_mv",
+             "peak_mv", "crest_db", "spike_db", "persist", "tilt_db"]
             + [f"band{j}_db" for j in range(len(SUBBAND_EDGES) - 1)]
             + ["latency_ms", "noise_rms_mv", "fs_hz", "fs_dev_pct", "clip_count", "dirty_ratio", "wall_time_s"])
 
@@ -783,17 +1021,19 @@ def ensure_csv_header(path, fields):
 
 
 def log_trial(r, i, variable, t_start):
-    row = {"session": SESSION_TAG, "mode": variable, "trial_in_point": i,
-           "kind": "signal" if r["fire"] else "null", "is_warmup": int(r["is_warmup"]),
-           "theta_deg": r["theta"], "distance_cm": r["dist"], "status": r["status"],
-           "snr_db": r["snr_db"], "level_db": r["level_db"], "rms_mv": r["rms_mv"],
+    """kind: signal | null | cal | ref_start | ref_end  (filter kind == 'signal' for sweep analysis)."""
+    row = {"session": SESSION_TAG, "config": CONFIG_TAG, "mode": variable, "trial_in_point": i,
+           "attempt": r.get("attempt", 0), "kind": r.get("kind") or ("signal" if r["fire"] else "null"),
+           "is_warmup": int(r["is_warmup"]), "theta_deg": r["theta"], "distance_cm": r["dist"],
+           "gain": r["gain"], "status": r["status"], "snr_db": r["snr_db"], "level_db": r["level_db"],
+           "level_norm_db": r["level_norm_db"], "peak_frac": r["peak_frac"], "rms_mv": r["rms_mv"],
            "peak_mv": r["peak_mv"], "crest_db": r["crest_db"], "spike_db": r["spike_db"],
-           "persist": r["persist"],
-           "tilt_db": r["tilt_db"], "latency_ms": r["latency_ms"], "noise_rms_mv": r["noise_rms_mv"],
-           "fs_hz": r["fs"], "fs_dev_pct": 100 * r["fs_dev"], "clip_count": r["clip_count"],
-           "dirty_ratio": r["dirty_ratio"], "wall_time_s": time.perf_counter() - t_start}
-    for j, b in enumerate(r["bands"]):
-        row[f"band{j}_db"] = b
+           "persist": r["persist"], "tilt_db": r["tilt_db"], "latency_ms": r["latency_ms"],
+           "noise_rms_mv": r["noise_rms_mv"], "fs_hz": r["fs"], "fs_dev_pct": 100 * r["fs_dev"],
+           "clip_count": r["clip_count"], "dirty_ratio": r["dirty_ratio"],
+           "wall_time_s": time.perf_counter() - t_start}
+    for j, b_ in enumerate(r["bands"]):
+        row[f"band{j}_db"] = b_
     row = {k: (f"{v:.4f}" if isinstance(v, float) else v) for k, v in row.items()}
     with open(TRIALS_LOG_PATH, "a", newline="") as f:
         csv.DictWriter(f, fieldnames=csv_fields()).writerow(row)
@@ -801,9 +1041,13 @@ def log_trial(r, i, variable, t_start):
 
 def run_sweep(points, variable):
     ensure_csv_header(TRIALS_LOG_PATH, csv_fields())
-    t_start, aggs, first = time.perf_counter(), [], True
-    for pv in points:
-        theta, dist = (pv, FIXED_DISTANCE_CM) if variable == "theta_deg" else (FIXED_ANGLE_DEG, pv)
+    t_start, aggs, ref0 = time.perf_counter(), [], None
+    ref_theta, ref_dist = _pos(points[0], variable)
+    if variable == "theta_deg" and points[0] != REF_ANGLE_DEG:
+        print(f"[WARN] first sweep point ({points[0]}°) != REF_ANGLE_DEG ({REF_ANGLE_DEG}°): level control and "
+              "closure use the FIRST point (put the loudest point first); dL uses REF_ANGLE_DEG.")
+    for idx, pv in enumerate(points):
+        theta, dist = _pos(pv, variable)
         msg = f"Set mic angle to {theta} deg (distance {dist} cm)" if variable == "theta_deg" \
             else f"Set distance to {dist} cm (angle {theta} deg)"
         if not SIMULATE:
@@ -811,12 +1055,8 @@ def run_sweep(points, variable):
         else:
             print(f"\n>>> [sim] {msg}")
 
-        if first:
-            run_single_trial(theta, dist)                   # settle: wake BT link, prime buffers
-            time.sleep(INTER_TRIAL_DELAY_S)
-            if LINEARITY_CHECK:
-                linearity_check(theta, dist)
-            first = False
+        if idx == 0:
+            ref0 = level_setup(theta, dist, variable, t_start, points[0])
 
         results = []
         plan = [(True, i) for i in range(N_TRIALS_PER_POINT)] + \
@@ -824,44 +1064,42 @@ def run_sweep(points, variable):
         for fire, i in plan:
             tag = f"trial {i + 1}" if fire else "null "
             print(f"  {tag} @ θ={theta}, d={dist} ...", end=" ", flush=True)
-            r = run_single_trial(theta, dist, fire=fire)
-            if r is None:
-                print("SKIPPED")
-            else:
-                r["is_warmup"] = fire and i < N_WARMUP_TRIALS_TO_DISCARD
-                print(f"{r['status']:<11} SNR={r['snr_db']:5.1f} dB  L={r['level_db']:6.1f} dB  "
-                      f"tilt={r['tilt_db']:+5.1f}  lat={r['latency_ms']:5.0f} ms"
-                      + ("  (warm-up)" if r["is_warmup"] else ""))
+            r = run_trial_safe(theta, dist, fire, i, variable, t_start)
+            if r is not None:
                 results.append(r)
-                log_trial(r, i, variable, t_start)
             time.sleep(INTER_TRIAL_DELAY_S)
 
         agg = aggregate_point(theta, dist, results)
         print(f"  --> {agg['verdict']}: OK {agg['n_ok']}/{agg['n_scored']}  "
-              f"L = {agg['level_mean']:.1f} ± {agg['level_std']:.1f} dB  "
+              f"S = {agg['level_mean']:.1f} ± {agg['level_std']:.1f} dB  "
               f"null max SNR = {agg['null_snr_max']:.1f} dB  statuses {dict(agg['status'])}")
         plot_point(pv, variable, results, agg)
         aggs.append(agg)
 
     print(f"\nSweep complete. Trials -> {os.path.abspath(TRIALS_LOG_PATH)}")
+    if CLOSURE_CHECK and ref0 is not None:
+        closure_check(ref_theta, ref_dist, variable, t_start, ref0, points[0])
     summarize(aggs, variable)
 
 
 def main(argv=None):
-    global SIMULATE, SRC, EMIT, WAVE, FS_GLOBAL, SUBBAND_EDGES, SWEEP_MODE, SESSION_TAG, PORT
+    global SIMULATE, SRC, EMIT, WAVE, FS_GLOBAL, SUBBAND_EDGES, SWEEP_MODE, SESSION_TAG, PORT, CONFIG_TAG
     ap = argparse.ArgumentParser()
     ap.add_argument("--simulate", action="store_true")
     ap.add_argument("--mode", choices=["angle", "distance"])
     ap.add_argument("--session")
     ap.add_argument("--port")
+    ap.add_argument("--config", help="hardware configuration label, e.g. bare | horn")
+    ap.add_argument("--sim-volume-db", type=float, default=0.0, help="simulate a louder/quieter chain")
     args = ap.parse_args(argv)
     SIMULATE = SIMULATE or args.simulate
     SWEEP_MODE = args.mode or SWEEP_MODE
     SESSION_TAG = args.session or SESSION_TAG
     PORT = args.port or PORT
+    CONFIG_TAG = args.config or CONFIG_TAG
 
     if SIMULATE:
-        SRC = SimSource()
+        SRC = SimSource(volume_db=args.sim_volume_db)
         EMIT = SimEmitter(SRC)
     else:
         SRC = SerialSource(PORT, BAUD_RATE)
@@ -880,7 +1118,9 @@ def main(argv=None):
             SUBBAND_EDGES = np.array([0.8 * EXC_TONE_HZ, 1.25 * EXC_TONE_HZ])
             WAVE = make_excitation(0, 0)
             print(f"Excitation: {EXC_TONE_HZ:.0f} Hz tone (near-omnidirectional for small drivers)")
-        print(f"Mode: {SWEEP_MODE}  Session: {SESSION_TAG}\n")
+        print(f"Mode: {SWEEP_MODE}  Session: {SESSION_TAG}  Config: {CONFIG_TAG}")
+        print("Lock the chain before EVERY run: same OS + speaker volume, Windows audio enhancements / loudness "
+              "equalization OFF, same MAX4466 trimmer, speaker on A2DP (not Hands-Free).\n")
         if SWEEP_MODE == "angle":
             run_sweep(ANGLE_SWEEP_POINTS, "theta_deg")
         else:
