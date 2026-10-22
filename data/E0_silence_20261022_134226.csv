@@ -1,0 +1,3 @@
+t_pi,seq,t_ms,dt_pair_ms,phi_c,dlt,A_m,A_p,Aref_m,Aref_p,pp_m,pp_p,flags,valid,clip,late,rho_true,beta_true,label
+1792665756.860216,0,10245,6420,0.0,80.0,0.449,0.336,3.693,0.255,1879,92,0,0,0,0,1.0,0.0,E0_silence
+1792665769.7401426,1,23125,6420,0.0,80.0,1.116,0.621,0.441,0.109,486,79,0,0,0,0,1.0,0.0,E0_silence

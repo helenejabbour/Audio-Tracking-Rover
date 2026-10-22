@@ -1,0 +1,20 @@
+{
+ "args": {
+  "port": "COM6",
+  "baud": 115200,
+  "label": "E0_silence",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0.0,
+  "delta": null,
+  "settle": null,
+  "duration": 30.0,
+  "outdir": "data",
+  "notes": ""
+ },
+ "firmware_config": "C,16000,512,4000,3000,40,40",
+ "summary": {
+  "n": 2,
+  "bad_lines": 0
+ }
+}

@@ -70,9 +70,9 @@ from scipy.ndimage import median_filter, uniform_filter1d
 # ============================================================
 # CONFIGURATION
 # ============================================================
-PORT = "COM4"
-BAUD_RATE = 921600
-V_REF = 3.3
+PORT = "COM6"
+BAUD_RATE = 115200
+V_REF = 5.0
 ADC_MAX = 4095.0
 MV_PER_COUNT = V_REF / ADC_MAX * 1000.0   # ADC-referred; ESP32 ADC is nonlinear, treat as relative
 ADC_LO = 150
