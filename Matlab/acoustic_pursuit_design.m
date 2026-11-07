@@ -13,7 +13,7 @@
 %
 % WHAT THE FILE DOES (follows the class method)
 %   1. Identify the system: nonlinear -> LTI design model, MIMO/SISO, poles, transfer matrix, decoupling.
-%   2. Controllability / observability: Kalman rank tests, PBH tests, state transformation to the Kalman canonical form
+%   2. Controllability / observability: Kalman rank tests, state transformation to the Kalman canonical form
 %      (co, c-no, nc-o, nc-no parts), stabilizability / detectability verdicts and how each part is treated.
 %      Done for (i) the plant, (ii) the degenerate case v0 -> 0, (iii) the plant + target-disturbance states.
 %   3. Design decisions: state feedback with integral action (controller), observer (estimator) incl. disturbance states.
@@ -31,7 +31,6 @@
 
 function R = acoustic_pursuit_design(opt)
 if nargin < 1, opt = struct(); end
-if exist('OCTAVE_VERSION','builtin'), pkg load control; end
 P = user_settings();
 if isfield(opt,'P'), fn = fieldnames(opt.P); for i = 1:numel(fn), P.(fn{i}) = opt.P.(fn{i}); end, end
 ctype = getopt(opt,'controller','lqr');   otype = getopt(opt,'observer','kalman');   dist = getopt(opt,'dist_states',true);
@@ -77,7 +76,7 @@ fprintf('     with eps as a hidden state and a zero at s = -a). A block-diagonal
 %% ===================================================================================================================
 %% 2. CONTROLLABILITY / OBSERVABILITY (class method)
 %% ===================================================================================================================
-hdr('2. Structural analysis: Kalman rank tests, PBH tests, Kalman canonical form');
+hdr('2. Structural analysis: Kalman rank tests, Kalman canonical form');
 AN.plant = report_structure('(i) plant, nominal a', A, B, C);
 AN.zero  = report_structure('(ii) degenerate case v0 -> 0 (a = 0): shows what hidden parts look like', zeros(3), B, C);
 Ao5 = [A E; zeros(2,5)];  Bo5 = [B; zeros(2,2)];  Co5 = [C zeros(2,2)];
@@ -392,7 +391,7 @@ end
 %% STRUCTURAL ANALYSIS (class method)
 %% =====================================================================================================================
 function info = report_structure(name, A, B, C)
-% Kalman rank tests, PBH tests, Kalman decomposition, stabilizability / detectability.
+% Kalman rank tests, Kalman decomposition, stabilizability / detectability.
 n = size(A,1);  tol = 1e-9;
 rc = rank(ctrb(A,B), tol);  ro = rank(obsv(A,C), tol);
 fprintf('\n  %s\n', name);
@@ -401,7 +400,7 @@ fprintf('    n = %d, inputs = %d, outputs = %d (%s).  rank(ctrb) = %d, rank(obsv
 lam = unique(round(eig(A)*1e6)/1e6);
 for i = 1:numel(lam)
     pc = rank([lam(i)*eye(n) - A, B], tol);  po = rank([lam(i)*eye(n) - A; C], tol);
-    fprintf('    PBH at lambda = %+.3g: rank[lI-A, B] = %d (%s), rank[lI-A; C] = %d (%s)\n', real(lam(i)), pc, ...
+    fprintf('    At lambda = %+.3g: rank[lI-A, B] = %d (%s), rank[lI-A; C] = %d (%s)\n', real(lam(i)), pc, ...
             ifelse_(pc==n, 'controllable mode', 'UNCONTROLLABLE mode'), po, ifelse_(po==n, 'observable mode', 'UNOBSERVABLE mode'));
 end
 Kd_ = kalman_decomp(A, B, C);
