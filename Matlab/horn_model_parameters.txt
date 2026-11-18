@@ -1,111 +1,45 @@
 HORN / SENSOR MODEL PARAMETERS FOR SIMULATION
-Audio-Tracking-Rover, bench experiments Oct 28 - Nov 3 2026 (E0-E4). Generated Nov 18 2026.
 
-Angles: + = left (horn turns CCW seen from above), 0 = horn straight ahead.
-Amplitudes: Goertzel peak amplitude in ADC counts (12-bit), as logged by esp_logger.py.
-Angles in the fits are the commanded servo angle phi_c (not checked with a protractor).
-
-======================================================================================================
-1. BEAM MODELS  (fitted in ln-amplitude; one run = 15 s at each angle, speaker at 1.00 m, delta = 1 deg)
-======================================================================================================
+Model options: (formulas of each model)
 
   Gaussian:          A(phi) = A0 * exp( -(phi - c)^2 / (2 sigma^2) )
 
   Clipped Gaussian   A(phi) = A0 * exp( -max(|phi - c| - w, 0)^2 / (2 sigma^2) )
-  (flat top):        i.e. flat within +-w of the centre c, Gaussian roll-off outside it.
+                      i.e. flat within +-w of the centre c, Gaussian roll-off outside it.
 
-  Data: two clean sweeps, -80..+80 deg in 10 deg steps.
-    outdoor_nov3 = Tools/data/Experiments 1/Experiment1_out2 (open ground; drift +9 % removed linearly; +60 deg run dropped: servo hunting)
-    indoor_nov2  = Tools/data/Experiments 1/Experiment1_4    (indoors, a chair beside the setup bent the right-hand side)
-  Reproduce the curves with:  python Tools/plot_directivity.py "Tools/data/Experiments 1/Experiment1_out2" --fit
-  Uncertainties are 1 standard error from the fit.
 
-                       centre c [deg]   sigma [deg]       w [deg]        misfit (dB)       AICc
-  ---------------------------------------------------------------------------------------------------
-  OUTDOOR (Nov 3)
-    Gaussian           -4.2 +- 2.4      75.1 +- 4.0        -             0.64 rms / 1.42 max   -75.2
-    Clipped Gaussian   -2.2 +- 1.8      51.9 +- 9.0      24.9 +- 9.1     0.55 rms / 1.11 max   -76.7
-  INDOOR (Nov 2)
-    Gaussian          +12.8 +- 2.3      78.5 +- 3.6        -             0.51 rms / 1.11 max   -88.7
-    Clipped Gaussian  +12.7 +- 2.5      76.6 +- 12.1      2.2 +- 13.5    0.51 rms / 1.10 max   -85.3
-  JOINT (both sweeps: shared shape, own centre and level per sweep)
-    Gaussian          (-4.3 / +12.3)    76.8 +- 2.7        -             0.58 rms / 1.54 max
-    Clipped Gaussian  (-3.2 / +10.7)    62.3 +- 7.1      15.8 +- 7.3     0.56 rms / 1.30 max
+Parameters for simulation:
 
-  Reading the fits
-  - The width is solid: sigma = 75-79 deg for the Gaussian in both sweeps.
-  - The flat top only shows outdoors (w = 25 +- 9 deg). Indoors the clipped fit collapses to a Gaussian (w = 2 deg).
-    The AICc difference is small (1.5 outdoors), so the data do not clearly prefer either model.
-  - Both models miss individual points by up to 1-1.5 dB. That is 5-10x the run-to-run repeatability (about 0.1-0.2 dB),
-    so the leftover is real beam shape / reflections, not noise. Treat it as model error (sb_floor below).
-  - The centre c is the alignment error of each setup (-4 deg outdoors, +13 deg indoors), NOT a property of the horn.
-    Simulate it as a random offset of +-10 deg, or calibrate it away (0-deg run at the start of each session).
+    Gaussian:          sigma = 77 deg (1.34 rad), c = 0 deg                   
+    Clipped Gaussian:  w = 25 deg (0.44 rad), sigma = 52 deg (0.91 rad)
+    Safe to go for Gaussian, good enough
 
-  Recommended for the simulation
-    Gaussian:          sigma = 77 deg (1.34 rad)                       [joint fit]
-    Clipped Gaussian:  w = 25 deg (0.44 rad), sigma = 52 deg (0.91 rad) [outdoor fit, the cleanest sweep]
-                       or the joint values w = 16 deg, sigma = 62 deg as a middle case
-    Boresight offset:  0 nominal; +-10 deg as an uncertainty to test
 
-  Estimators that match each model (dither +-delta about phi_c, beta measured from phi_c, both captures outside the flat top):
+  Estimators formulas:
     Gaussian:    beta_hat = sigma^2 / (2 delta)       * ln(A+/A-)
                  rho_hat  = K / sqrt(A+ A-) * exp( -(delta^2 + beta^2) / (2 sigma^2) )
+
     Clipped:     beta_hat = sigma^2 / (2 (delta - w)) * ln(A+/A-)            valid for |beta| <= delta - w
                  rho_hat  = K / sqrt(A+ A-) * exp( -((delta - w)^2 + beta^2) / (2 sigma^2) )
-    (The clipped model behaves like the Gaussian with an effective dither delta - w; inside the flat top the
-     ratio carries no bearing information.)
-    Bearing gain at delta = 50 deg: Gaussian 59 deg per unit ln-ratio; clipped (w 25, sigma 52) 54 deg per unit ln-ratio.
+    
 
-======================================================================================================
-2. OTHER MEASURED PARAMETERS   (MATLAB names from Matlab/acoustic_pursuit_design.m, user_settings)
-======================================================================================================
+OTHER MEASURED PARAMETERS (for simulation as well as model)
 
-  P.K      = 84 counts*m       E2, outdoors, horn fixed at 0 deg, 0.27-2.03 m. Fit A = K/rho (free power-law slope -0.99).
-                                Valid ONLY for 30 % laptop volume and the current gain-screw position. Other sessions gave
-                                130-140 counts at 1 m, so recalibrate K at 1 m at the start of every session.
-                                (Equivalent dithered definition used in the code: K = A_geo*rho*exp(dlt^2/(2 sig^2)).)
-  P.Kerr   = 1.0 nominal; test 0.8 and 1.2   E2: +-20 % scatter of A*rho between positions 3 cm apart (interference)
-  P.sig    = deg2rad(77)       Gaussian joint fit (section 1)
-  P.dlt    = deg2rad(50)       chosen in E4 (precision vs field of view); bearing window +-(80 - delta) = +-30 deg
-  P.phi_max= deg2rad(80)       servo limit
+  P.K = 84 counts*m     (Valid ONLY for 30 % laptop volume and current gain screw position)
+  P.Kerr = 1.0 nominal; 
+  P.sig (beam width) = 77 deg 
+  P.dlt (dither) = 50 deg      
+  bearing window = +-(80 - delta) = +-30 deg
+  P.phi_max= 80 deg due to servo limit
   P.sn     = 0.7 counts indoors, 7 counts outdoors
-                                per-quadrature noise std = Aref / 1.2533 (logger s_n_est); Aref ~ 0.4-0.9 indoors, ~9 outdoors
   P.A_thr  = 3.5 counts indoors, 36 counts outdoors
-                                firmware validity rule: A >= 3 counts AND A >= 4*Aref, so effectively max(3, 5.0*sn)
-  P.Tm     = 0.48 s            E4: Tm = 0.144 s + 6.67 ms/deg * delta (settle 40 ms, servo assumed 300 deg/s), exact fit
-  P.Tdw    = 0.405 s           E4: time between the two captures = 0.072 s + 2*delta/(300 deg/s)
-  P.Td     = NOT MEASURED      needs the Pi. Lower bound from the measurement itself: ~0.2 s (half of Tdw).
-                                Bluetooth (wireless firmware) will add latency on top.
-  P.sr_floor = 0.20 * rho      E2: range error ~20 % (steady runs), 34 % including all runs. The code uses metres:
-                                at d* this is 0.2*P.d.
-  P.sb_floor = deg2rad(15 to 20)  E3 (provisional, setup next to a bench): bearing error 15-20 deg rms with the sign right
-                                in 6 of 7 positions; one position reported the wrong side (error -57 deg).
-  Random bearing scatter per measurement: 2-3 deg at delta = 50 deg (E4), ln(A+/A-) std 0.03-0.06 per packet outdoors.
-  Reflections (P.refl_p, P.refl_g): no direct measurement. E2's +-20 % level scatter corresponds to an echo of about
-                                0.25 of the direct amplitude; the E3 wrong-side case needs about 1. Note the real errors are
-                                position-dependent and persistent, not new random draws every capture, so random per-capture
-                                echoes are optimistic (the filter averages them out).
+  P.Tm     = 0.5 s            
+  P.Tdw    = 0.4 s           
+  P.sr_floor = 0.20 * rho (error on RANGE estimate)   
+  P.sb_floor = 15 to 20 deg (error on BEARING estimate)
 
-======================================================================================================
-3. FIXED DESIGN VALUES AND HARDWARE NOTES
-======================================================================================================
-  f0 = 4000 Hz, fs = 16 kHz, N = 512 (32 ms per capture), noise reference bin 3000 Hz
-  Servo: SG90, settle 40 ms, hunts (buzzes) when parked at exactly +60 deg; avoid delta = 60 deg
-  Distance law checked 0.27-2.03 m only. The code's d* = 0.1 m is outside the measured range.
 
-======================================================================================================
-4. NOT MEASURED YET (need the rovers)
-======================================================================================================
-  v0, wheelbase L, steering limit ds_max, v_max, speed and yaw lags tau_v / tau_w, latency Td
 
-======================================================================================================
-MATLAB snippet (paste into user_settings; Gaussian model, outdoor noise)
-======================================================================================================
-P.K = 84;  P.Kerr = 1.0;
-P.sig = d2r_(77);  P.dlt = d2r_(50);
-P.sn = 7;  P.A_thr = 36;              % indoors: P.sn = 0.7;  P.A_thr = 3.5;
-P.phi_max = d2r_(80);
-P.sr_floor = 0.20*P.d;  P.sb_floor = d2r_(15);
-P.Tm = 0.50;  P.Tdw = 0.40;           % measured 0.48 / 0.405, rounded to multiples of Ts = 0.05 as the code requires
-                                      % P.Td still to be measured (keep >= 0.2)
-% Clipped-Gaussian alternative: w = d2r_(25), sigma = d2r_(52) (needs the amp_ model and estimator changed, section 1)
+NOT MEASURED YET (need the rovers)
+v0, wheelbase L, steering limit ds_max, v_max, speed and yaw lags tau_v / tau_w, latency Td
+
