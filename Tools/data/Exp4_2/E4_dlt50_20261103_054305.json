@@ -1,0 +1,40 @@
+{
+ "args": {
+  "port": "COM17",
+  "baud": 115200,
+  "label": "E4_dlt50",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0.0,
+  "delta": 50.0,
+  "settle": 40,
+  "duration": 30.0,
+  "outdir": "data",
+  "notes": "E4 timing"
+ },
+ "firmware_config": "C,16000,512,4000,3000,40,40,0.0,50.0",
+ "summary": {
+  "n": 62,
+  "T_m_median_s": 0.477,
+  "dropped": 0,
+  "resets": 0,
+  "valid_pct": 98.38709677419355,
+  "clip_pct": 1.6129032258064515,
+  "late_pct": 0.0,
+  "Aref_mean_all": 8.233790322580646,
+  "s_n_est": 6.5696141752751425,
+  "A_m_mean": 152.41459016393443,
+  "A_m_std": 11.369447193211943,
+  "A_p_mean": 147.58639344262295,
+  "A_p_std": 7.598667818064533,
+  "snr_db": 25.214569337905868,
+  "ln_ratio_mean": -0.030871997475914556,
+  "ln_ratio_std": 0.05934299931922963,
+  "A_geo_mean": 149.91418666684,
+  "A_geo_x_rho": 149.91418666684,
+  "ln_ratio_mean_mfirst": -0.03296864003811869,
+  "ln_ratio_mean_pfirst": -0.02884298854474927,
+  "bad_lines": 0,
+  "skipped_stale": 1
+ }
+}

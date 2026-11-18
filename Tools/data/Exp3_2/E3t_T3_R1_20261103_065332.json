@@ -1,0 +1,29 @@
+{
+ "args": {
+  "port": "COM17",
+  "baud": 115200,
+  "label": "E3t_T3_R1",
+  "rho": 1.945,
+  "beta": -18.43,
+  "phi": 0.0,
+  "delta": 50.0,
+  "settle": 40,
+  "duration": 30.0,
+  "outdir": "data",
+  "notes": "E3 tile grid, tile pitch 0.615 m"
+ },
+ "firmware_config": "C,16000,512,4000,3000,40,40,0.0,50.0",
+ "summary": {
+  "n": 62,
+  "T_m_median_s": 0.477,
+  "dropped": 0,
+  "resets": 0,
+  "valid_pct": 0.0,
+  "clip_pct": 0.0,
+  "late_pct": 0.0,
+  "Aref_mean_all": 10.1155,
+  "s_n_est": 8.071001274801386,
+  "bad_lines": 0,
+  "skipped_stale": 1
+ }
+}
