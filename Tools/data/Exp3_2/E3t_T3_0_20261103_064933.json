@@ -1,0 +1,40 @@
+{
+ "args": {
+  "port": "COM17",
+  "baud": 115200,
+  "label": "E3t_T3_0",
+  "rho": 1.845,
+  "beta": 0.0,
+  "phi": 0.0,
+  "delta": 50.0,
+  "settle": 40,
+  "duration": 30.0,
+  "outdir": "data",
+  "notes": "E3 tile grid, tile pitch 0.615 m"
+ },
+ "firmware_config": "C,16000,512,4000,3000,40,40,0.0,50.0",
+ "summary": {
+  "n": 62,
+  "T_m_median_s": 0.477,
+  "dropped": 0,
+  "resets": 0,
+  "valid_pct": 75.80645161290323,
+  "clip_pct": 12.903225806451612,
+  "late_pct": 0.0,
+  "Aref_mean_all": 10.044443548387097,
+  "s_n_est": 8.014306429114015,
+  "A_m_mean": 59.53414893617021,
+  "A_m_std": 5.416782841032213,
+  "A_p_mean": 54.544340425531914,
+  "A_p_std": 5.684014408376759,
+  "snr_db": 15.265674356628816,
+  "ln_ratio_mean": -0.0888294561667261,
+  "ln_ratio_std": 0.07806537015647222,
+  "A_geo_mean": 56.94201648282636,
+  "A_geo_x_rho": 105.05802041081463,
+  "ln_ratio_mean_mfirst": -0.07778119230874773,
+  "ln_ratio_mean_pfirst": -0.09941737569728872,
+  "bad_lines": 0,
+  "skipped_stale": 1
+ }
+}

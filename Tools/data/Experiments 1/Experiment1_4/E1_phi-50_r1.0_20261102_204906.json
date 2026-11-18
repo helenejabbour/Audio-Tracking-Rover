@@ -1,0 +1,40 @@
+{
+ "args": {
+  "port": "COM17",
+  "baud": 115200,
+  "label": "E1_phi-50_r1.0",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": -50.0,
+  "delta": 1.0,
+  "settle": 40,
+  "duration": 15.0,
+  "outdir": "data",
+  "notes": "E1 directivity, house noisy"
+ },
+ "firmware_config": "C,16000,512,4000,3000,40,40,-50.0,1.0",
+ "summary": {
+  "n": 99,
+  "T_m_median_s": 0.151,
+  "dropped": 0,
+  "resets": 0,
+  "valid_pct": 98.98989898989899,
+  "clip_pct": 1.0101010101010102,
+  "late_pct": 0.0,
+  "Aref_mean_all": 0.4540050505050505,
+  "s_n_est": 0.36224362032450497,
+  "A_m_mean": 110.3950918367347,
+  "A_m_std": 2.4885117487039983,
+  "A_p_mean": 110.42718367346939,
+  "A_p_std": 2.4955474095141446,
+  "snr_db": 47.73197968479031,
+  "ln_ratio_mean": 0.00028860759865929057,
+  "ln_ratio_std": 0.01541632482096975,
+  "A_geo_mean": 110.40794970354155,
+  "A_geo_x_rho": 110.40794970354155,
+  "ln_ratio_mean_mfirst": 0.0009142553893311502,
+  "ln_ratio_mean_pfirst": -0.0003631088499572298,
+  "bad_lines": 0,
+  "skipped_stale": 1
+ }
+}

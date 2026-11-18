@@ -1,0 +1,40 @@
+{
+ "args": {
+  "port": "COM17",
+  "baud": 115200,
+  "label": "E2_r1.03",
+  "rho": 1.03,
+  "beta": 0.0,
+  "phi": 0.0,
+  "delta": 1.0,
+  "settle": 40,
+  "duration": 15.0,
+  "outdir": "data",
+  "notes": "E2 distance, outdoor"
+ },
+ "firmware_config": "C,16000,512,4000,3000,40,40,0.0,1.0",
+ "summary": {
+  "n": 99,
+  "T_m_median_s": 0.151,
+  "dropped": 0,
+  "resets": 0,
+  "valid_pct": 92.92929292929293,
+  "clip_pct": 7.070707070707071,
+  "late_pct": 0.0,
+  "Aref_mean_all": 9.242606060606061,
+  "s_n_est": 7.374532677340569,
+  "A_m_mean": 86.21355434782609,
+  "A_m_std": 6.48361890597319,
+  "A_p_mean": 86.50392391304348,
+  "A_p_std": 6.906594856413012,
+  "snr_db": 19.46461924919896,
+  "ln_ratio_mean": 0.002995810315647811,
+  "ln_ratio_std": 0.037864160398934144,
+  "A_geo_mean": 86.3430979664839,
+  "A_geo_x_rho": 88.93339090547842,
+  "ln_ratio_mean_mfirst": 0.0047860844077143895,
+  "ln_ratio_mean_pfirst": 0.0011259684861560514,
+  "bad_lines": 0,
+  "skipped_stale": 1
+ }
+}
