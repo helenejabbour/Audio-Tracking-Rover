@@ -1,0 +1,40 @@
+{
+ "args": {
+  "port": "COM17",
+  "baud": 115200,
+  "label": "E3r_L2x1",
+  "rho": 1.375,
+  "beta": 26.57,
+  "phi": 0.0,
+  "delta": 50.0,
+  "settle": 40,
+  "duration": 30.0,
+  "outdir": "data",
+  "notes": "E3 tile repeat, right then left"
+ },
+ "firmware_config": "C,16000,512,4000,3000,40,40,0.0,50.0",
+ "summary": {
+  "n": 61,
+  "T_m_median_s": 0.477,
+  "dropped": 0,
+  "resets": 0,
+  "valid_pct": 86.88524590163935,
+  "clip_pct": 0.0,
+  "late_pct": 0.0,
+  "Aref_mean_all": 9.256934426229508,
+  "s_n_est": 7.385965059053056,
+  "A_m_mean": 72.75254716981132,
+  "A_m_std": 6.431651787377669,
+  "A_p_mean": 49.427528301886795,
+  "A_p_std": 7.370611363338588,
+  "snr_db": 16.42727976415873,
+  "ln_ratio_mean": -0.3939948788428554,
+  "ln_ratio_std": 0.14784629812092578,
+  "A_geo_mean": 59.80977315633357,
+  "A_geo_x_rho": 82.23843808995866,
+  "ln_ratio_mean_mfirst": -0.38105730133078214,
+  "ln_ratio_mean_pfirst": -0.4064532868174444,
+  "bad_lines": 0,
+  "skipped_stale": 2
+ }
+}

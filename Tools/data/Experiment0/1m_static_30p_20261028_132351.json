@@ -1,0 +1,40 @@
+{
+ "args": {
+  "port": "COM17",
+  "baud": 115200,
+  "label": "1m_static_30p",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0.0,
+  "delta": 1.0,
+  "settle": 40,
+  "duration": 30.0,
+  "outdir": "data",
+  "notes": "horn+back panel, nour laptop vol 30"
+ },
+ "firmware_config": "C,16000,512,4000,3000,40,40,0.0,1.0",
+ "summary": {
+  "n": 198,
+  "T_m_median_s": 0.151,
+  "dropped": 0,
+  "resets": 0,
+  "valid_pct": 96.96969696969697,
+  "clip_pct": 1.0101010101010102,
+  "late_pct": 0.0,
+  "Aref_mean_all": 1.153330808080808,
+  "s_n_est": 0.9202248452659694,
+  "A_m_mean": 32.78633333333333,
+  "A_m_std": 13.300393793458975,
+  "A_p_mean": 33.01371354166667,
+  "A_p_std": 13.380327283197152,
+  "snr_db": 29.464689058714267,
+  "ln_ratio_mean": 0.00659707232940534,
+  "ln_ratio_std": 0.31286596682299805,
+  "A_geo_mean": 32.61197912074316,
+  "A_geo_x_rho": 32.61197912074316,
+  "ln_ratio_mean_mfirst": 0.015392373551932365,
+  "ln_ratio_mean_pfirst": -0.0021982288931216873,
+  "bad_lines": 0,
+  "skipped_stale": 1
+ }
+}

@@ -1,0 +1,45 @@
+HORN / SENSOR MODEL PARAMETERS FOR SIMULATION
+
+Model options: (formulas of each model)
+
+  Gaussian:          A(phi) = A0 * exp( -(phi - c)^2 / (2 sigma^2) )
+
+  Clipped Gaussian   A(phi) = A0 * exp( -max(|phi - c| - w, 0)^2 / (2 sigma^2) )
+                      i.e. flat within +-w of the centre c, Gaussian roll-off outside it.
+
+
+Parameters for simulation:
+
+    Gaussian:          sigma = 77 deg (1.34 rad), c = 0 deg                   
+    Clipped Gaussian:  w = 25 deg (0.44 rad), sigma = 52 deg (0.91 rad)
+    Safe to go for Gaussian, good enough
+
+
+  Estimators formulas:
+    Gaussian:    beta_hat = sigma^2 / (2 delta)       * ln(A+/A-)
+                 rho_hat  = K / sqrt(A+ A-) * exp( -(delta^2 + beta^2) / (2 sigma^2) )
+
+    Clipped:     beta_hat = sigma^2 / (2 (delta - w)) * ln(A+/A-)            valid for |beta| <= delta - w
+                 rho_hat  = K / sqrt(A+ A-) * exp( -((delta - w)^2 + beta^2) / (2 sigma^2) )
+    
+
+OTHER MEASURED PARAMETERS (for simulation as well as model)
+
+  P.K = 84 counts*m     (Valid ONLY for 30 % laptop volume and current gain screw position)
+  P.Kerr = 1.0 nominal; 
+  P.sig (beam width) = 77 deg 
+  P.dlt (dither) = 50 deg      
+  bearing window = +-(80 - delta) = +-30 deg
+  P.phi_max= 80 deg due to servo limit
+  P.sn     = 0.7 counts indoors, 7 counts outdoors
+  P.A_thr  = 3.5 counts indoors, 36 counts outdoors
+  P.Tm     = 0.5 s            
+  P.Tdw    = 0.4 s           
+  P.sr_floor = 0.20 * rho (error on RANGE estimate)   
+  P.sb_floor = 15 to 20 deg (error on BEARING estimate)
+
+
+
+NOT MEASURED YET (need the rovers)
+v0, wheelbase L, steering limit ds_max, v_max, speed and yaw lags tau_v / tau_w, latency Td
+

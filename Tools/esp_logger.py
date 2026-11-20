@@ -9,6 +9,10 @@ esp_logger.py - log ESP32 acoustic packets to CSV, with ground truth passed on t
 Writes data/<label>_<timestamp>.csv (+ .json with args, firmware config, summary) and prints a quick look:
 packet period (~T_m), valid/clip/late rates, noise estimate s_n, ln(A+/A-) stats, A_bar*rho.
 Close the Arduino Serial Monitor first (the port is exclusive).
+
+Packets measured before the firmware confirms the commanded settings (its 'C' reply to '?') are skipped,
+so the first rows of a run never use the previous run's dither or arm angle. Ctrl+C stops early and still saves.
+Needs esp32_acoustic_frontend v2 (Oct 28) for the settings check and the capture-order column 'pfirst'.
 """
 import argparse, csv, json, math, os, statistics as st, time
 import serial
@@ -50,9 +54,14 @@ def summarize(rows, rho):
         lr = [math.log(r["A_p"] / r["A_m"]) for r in good]
         geo = [math.sqrt(r["A_m"] * r["A_p"]) for r in good]
         s.update({"A_m_mean": st.mean(Am), "A_m_std": sd(Am), "A_p_mean": st.mean(Ap), "A_p_std": sd(Ap),
-                  "snr_db": 20 * math.log10(st.mean(geo) / st.mean(ref)),
+                  "snr_db": 20 * math.log10(st.mean(geo) / max(st.mean(ref), 1e-9)),
                   "ln_ratio_mean": st.mean(lr), "ln_ratio_std": sd(lr), "A_geo_mean": st.mean(geo),
                   "A_geo_x_rho": st.mean(geo) * rho})
+        # Same ratio split by capture order: if the two means differ, the capture order biases the bearing.
+        for name, pf in (("mfirst", 0), ("pfirst", 1)):
+            sub = [math.log(r["A_p"] / r["A_m"]) for r in good if r["pfirst"] == pf]
+            if sub:
+                s[f"ln_ratio_mean_{name}"] = st.mean(sub)
     return s
 
 
@@ -82,9 +91,20 @@ def main():
         ser.write((c + "\n").encode())
         time.sleep(0.05)
 
-    cfg, rows, bad = None, [], 0
-    t_end, t_stat = time.monotonic() + a.duration, 0.0
-    cols = RAW + ["valid", "clip", "late", "rho_true", "beta_true", "label"]
+    # What the firmware should report once our commands are in force (it clamps them the same way).
+    want = {"phi": max(-80.0, min(80.0, a.phi)),
+            "dlt": None if a.delta is None else max(1.0, min(60.0, a.delta)),
+            "settle": None if a.settle is None else max(20, min(1000, a.settle))}
+
+    def matches(c):                      # c = fields of a v2 'C' line
+        return (abs(float(c[7]) - want["phi"]) < 0.05
+                and (want["dlt"] is None or abs(float(c[8]) - want["dlt"]) < 0.05)
+                and (want["settle"] is None or int(c[5]) == want["settle"]))
+
+    cfg, rows, bad, skipped, ready, n_cfg = None, [], 0, 0, False, 0
+    t_cmd = time.monotonic()
+    t_end, t_stat = t_cmd + a.duration, 0.0
+    cols = RAW + ["valid", "clip", "late", "pfirst", "rho_true", "beta_true", "label"]
     try:
         with open(base + ".csv", "w", newline="") as fh:
             w = csv.writer(fh)
@@ -92,16 +112,35 @@ def main():
             while time.monotonic() < t_end:
                 raw = ser.readline().decode("ascii", errors="ignore")
                 if raw.startswith("C,"):
-                    cfg = raw.strip(); print("\n" + cfg); continue
+                    cfg, n_cfg = raw.strip(), n_cfg + 1
+                    print("\n" + cfg)
+                    c = cfg.split(",")
+                    if not ready:
+                        if len(c) < 9:
+                            print("# old firmware (no settings echo): cannot confirm settings, logging from here on")
+                            ready = True
+                        elif matches(c):
+                            ready = True
+                        elif n_cfg >= 2:         # the reply to '?' always comes after P/D/S were applied
+                            print(f"# WARN firmware runs phi_c={c[7]} dlt={c[8]} settle={c[5]}, not what was asked")
+                            ready = True
+                    continue
                 if raw.startswith("#"):
                     print("\n" + raw.strip()); continue
                 p = parse(raw)
                 if p is None:
                     bad += raw.startswith("M"); continue
+                if not ready:
+                    if time.monotonic() - t_cmd < 10.0:
+                        skipped += 1; continue
+                    print("\n# WARN no settings confirmation after 10 s, logging anyway")
+                    ready = True
                 fl = p[11]
                 row = dict(zip(RAW, [time.time()] + p), valid=int((fl & 7) == 1), clip=(fl >> 1) & 1, late=(fl >> 2) & 1)
                 rows.append(row)
-                w.writerow([row[k] for k in RAW] + [row["valid"], row["clip"], row["late"], a.rho, a.beta, a.label])
+                w.writerow([row[k] for k in RAW] + [row["valid"], row["clip"], row["late"], row["pfirst"],
+                                                    a.rho, a.beta, a.label])
+                fh.flush()
                 if time.monotonic() - t_stat > 1.0:
                     t_stat = time.monotonic()
                     print(f"\rn={len(rows):4d} valid={100*sum(r['valid'] for r in rows)/len(rows):3.0f}% "
@@ -114,6 +153,7 @@ def main():
 
     s = summarize(rows, a.rho)
     s["bad_lines"] = bad
+    s["skipped_stale"] = skipped
     print("\n\n--- summary ---")
     for k, v in s.items():
         print(f"{k:16s} {v:.4g}" if isinstance(v, float) else f"{k:16s} {v}")
