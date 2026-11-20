@@ -1,0 +1,6 @@
+seq,time_s,accepted,reason,mode,speed_mps,steering_rad
+0,0.0,False,firmware_quality,ACQUIRE,0.0,0.0
+1,12.900000000000048,False,firmware_quality,ACQUIRE,0.0,0.0
+2,25.75000000000023,False,firmware_quality,ACQUIRE,0.0,0.0
+3,38.599999999999945,False,firmware_quality,ACQUIRE,0.0,0.0
+4,51.449999999999214,False,firmware_quality,ACQUIRE,0.0,0.0

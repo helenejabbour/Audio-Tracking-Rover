@@ -1,0 +1,25 @@
+{
+  "date_utc": "2026-11-15",
+  "root_file": "main.tex",
+  "attempts": [
+    {
+      "compiler": "Tectonic 0.17.0+20260731",
+      "command": "tectonic -X compile --outdir build/2026-11-15 --outfmt pdf --print --untrusted main.tex",
+      "exit_code": 101,
+      "stage": "bundle initialization, before TeX processing",
+      "observed_error": "this bundle isn't cached, and we couldn't get it from the internet; error sending request for https://relay.fullyjustified.net/default_bundle_v33.tar.index.gz",
+      "pdf_created": false
+    },
+    {
+      "compiler": "MiKTeX pdflatex",
+      "command": "pdflatex --version",
+      "exit_code": 1,
+      "stage": "toolchain initialization check",
+      "observed_error": "RegOpenKeyExW: Access is denied; It seems that this is a fresh TeX installation. Please finish the setup before proceeding.",
+      "pdf_created": false
+    }
+  ],
+  "source_checks": "source_checks.json",
+  "compiled": false,
+  "visual_layout_verified": false
+}

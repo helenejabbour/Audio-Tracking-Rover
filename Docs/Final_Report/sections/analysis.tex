@@ -1,0 +1,62 @@
+\section{State-Space Analysis}
+\label{sec:analysis}
+\subsection{Realizations, Trajectories, and Stability}
+For the retained local model, $a=v_0/d^\ast$ has units $\mathrm{s^{-1}}$ and $A^2=0$. Its state transition and constant-forcing response are
+\begin{equation}
+\begin{aligned}
+\Phi(t,0)&=I+At,\\
+\mathbf x(t)&=(I+At)\mathbf x(0)+\left(tI+\tfrac12t^2A\right)\mathbf f,
+\end{aligned}
+\label{eq:forced}
+\end{equation}
+where $\mathbf f=B\mathbf u+E\mathbf w$ is constant. With zero initial state, the input--output transfer matrix is
+\begin{equation}
+G(s)=C(sI-A)^{-1}B=
+\begin{bmatrix}-1/s&0\\0&-(s+a)/s^2\end{bmatrix}.
+\end{equation}
+The range and bearing channels decouple in this local realization, although the nonlinear plant couples them. All open-loop eigenvalues are zero. For $a>0$, however, $\beta(t)=\beta(0)+at\varepsilon(0)$ under zero input. The nontrivial nilpotent Jordan block makes the equilibrium Lyapunov unstable. The transfer matrix is also not bounded-input bounded-output stable. Describing these poles as merely ``marginally stable'' would omit the Jordan structure.
+
+State-space coordinates are not unique. For nonsingular $T$ and $\mathbf x=T\mathbf z$, the realization becomes $(T^{-1}AT,T^{-1}B,CT)$ without changing $G(s)$. For the bearing subsystem $[\beta,\varepsilon]^\top=T_b\mathbf z_b$, choose
+\begin{equation}
+T_b=\begin{bmatrix}-a&-1\\0&-1\end{bmatrix},\quad
+A_c=\begin{bmatrix}0&1\\0&0\end{bmatrix},\quad
+B_c=\begin{bmatrix}0\\1\end{bmatrix},\quad C_c=\begin{bmatrix}-a&-1\end{bmatrix}.
+\end{equation}
+This controllable canonical form is valid for $a>0$; its dual gives an observable canonical realization of the same scalar transfer function. The transformed coordinates carry the corresponding physical scaling. A diagonal eigenvector realization does not exist for the defective bearing block.
+
+For the scheduled family $A(t)=a(t)N$, where $N_{23}=1$ and all other entries vanish, $N^2=0$ and the matrices commute. Consequently,
+\begin{equation}
+\Phi(t,s)=I+N\int_s^t a(\tau)\,\mathrm d\tau,
+\end{equation}
+\begin{equation}
+\mathbf x(t)=\Phi(t,s)\mathbf x(s)+\int_s^t\Phi(t,\tau)\mathbf f(\tau)\,\mathrm d\tau.
+\end{equation}
+This is a specific linear time-varying (LTV) reference model. A varying nominal trajectory can introduce additional terms; the expression is not asserted for an arbitrary trajectory linearization.
+
+\subsection{Controllability, Observability, and Partial Modes}
+The controllability and observability matrices are $\mathcal C=[B,AB,A^2B]$ and $\mathcal O=[C^\top,(CA)^\top,(CA^2)^\top]^\top$. Their ranks depend on the operating point (Table~\ref{tab:ranks}). At $a>0$, the vector $AB_{(:,2)}=[0,-a,0]^\top$ supplies the third reachable direction, while $CA$ exposes the relative heading through the bearing derivative.
+
+\begin{table}[t]
+\caption{Local structural properties. Ranks are controllability / observability.}
+\label{tab:ranks}\centering\footnotesize
+\begin{tabularx}{\columnwidth}{@{}Xcc@{}}\toprule
+Model & States & Ranks\\\midrule
+Moving nominal plant, $a>0$ & 3 & 3 / 3\\
+Stopped virtual-input plant, $a=0$ & 3 & 2 / 2\\
+Plant with constant target disturbances & 5 & 3 / 5\\\bottomrule
+\end{tabularx}
+\end{table}
+
+At $a=0$, the reachable subspace is $\operatorname{span}\{e_1,e_2+e_3\}$ and the unobservable subspace is $\operatorname{span}\{e_3\}$, with $e_i$ the standard basis vectors. The transformation $T_0=[e_1,e_2+e_3,e_3]$ separates a two-state controllable/observable block from an uncontrollable/unobservable zero mode. Neither state feedback nor an observer can move that hidden zero mode; the virtual-input model is not stabilizable or detectable. The physical vehicle is more restrictive because its yaw authority also vanishes at zero speed.
+
+For constant target disturbances, define $\mathbf x_5=[\mathbf x^\top,\mathbf w^\top]^\top$ and
+\begin{equation}
+A_5=\begin{bmatrix}A&E\\0&0\end{bmatrix},\quad
+B_5=\begin{bmatrix}B\\0\end{bmatrix},\quad C_5=\begin{bmatrix}C&0\end{bmatrix}.
+\end{equation}
+The two additional zero modes describe external target motion; follower commands do not control them. Their observability at $a>0$ permits disturbance estimation in the ideal linear model but does not prove practical identifiability under sparse, biased acoustic measurements.
+
+\subsection{Numerical Checks and Local Validity}
+Finite-difference Jacobians agree with $A$ and $B$ to maximum absolute errors $2.50\times10^{-14}$ and $1.00\times10^{-12}$ in the stored numerical coordinates. Forced LTI response, the commuting LTV transition, and transfer equivalence under similarity were independently checked against numerical integration or direct evaluation.
+
+A three-second open-loop comparison starts from $\Delta\mathbf x=c[0.15\,\mathrm m,0.10\,\mathrm{rad},0.10\,\mathrm{rad}]^\top$. At $c=1$, maximum nonlinear--linear discrepancies are $0.00377\,\mathrm m$ in range and $0.00517\,\mathrm{rad}$ in bearing; at $c=2$, they increase to $0.01457\,\mathrm m$ and $0.01911\,\mathrm{rad}$. These finite tests illustrate local approximation error. They neither identify a region of attraction nor validate a model against a physical trajectory.

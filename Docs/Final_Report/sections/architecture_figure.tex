@@ -1,0 +1,39 @@
+\begin{figure}[!t]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+  font=\footnotesize,
+  blk/.style={draw, rounded corners=3pt, align=center, minimum height=11mm, minimum width=34mm, inner sep=3pt},
+  hw/.style={blk, fill=blue!8},
+  sw/.style={blk, fill=orange!14},
+  link/.style={-{Latex[length=2mm]}, thick},
+  both/.style={{Latex[length=2mm]}-{Latex[length=2mm]}, thick},
+  snd/.style={-{Latex[length=2mm]}, thick, dashed},
+  lbl/.style={font=\scriptsize, align=center},
+  box/.style={draw, dashed, rounded corners=4pt, gray}
+]
+% ---- rover containers
+\draw[box] (-0.4,-1.1) rectangle (3.6,1.5);
+\node[lbl, anchor=north west, gray!70!black] at (-0.3,1.45) {\textbf{target rover}};
+\draw[box] (4.9,-4.9) rectangle (13.6,1.5);
+\node[lbl, anchor=north west, gray!70!black] at (5.0,1.45) {\textbf{follower rover}};
+% ---- components
+\node[hw] (tgt) at (1.6,0) {Speaker tone $f_0$\\OL motion};
+\node[hw] (mic) at (7.2,0) {Servo arm with\\horn + MAX4466 mic};
+\node[sw] (esp) at (11.7,0) {ESP32\\ADC, amplitude\\features, servo PWM};
+\node[sw] (pi)  at (11.7,-3.3) {Raspberry Pi\\estimation and\\control software};
+\node[hw] (drv) at (7.2,-3.3) {Motor and steering\\drivers};
+
+% ---- links
+\draw[snd] (tgt.east) -- node[above, lbl] {sound} (mic.west);
+\draw[link] ([yshift=3mm]mic.east) -- node[above, lbl] {analog} ([yshift=3mm]esp.west);
+\draw[link] ([yshift=-3mm]esp.west) -- node[below, lbl] {PWM} ([yshift=-3mm]mic.east);
+\draw[both] (esp.south) -- node[right, lbl] {USB serial} (pi.north);
+\draw[link] (pi.west) -- node[above, lbl] {commands} (drv.east);
+\end{tikzpicture}%
+}
+\caption{System architecture: hardware components and communication links. Blue: physical elements; orange: computation. The signals and the control loop are shown in Fig.~\ref{fig:ctrl}.}
+\label{fig:arch}
+\end{figure}
+
+

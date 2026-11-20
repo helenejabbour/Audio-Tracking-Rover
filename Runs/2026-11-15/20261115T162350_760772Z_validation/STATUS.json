@@ -1,0 +1,5 @@
+{
+  "state": "interrupted",
+  "reason": "Development run stopped while adding a zero-initial-step metrics guard; superseded by final validation.",
+  "authoritative": false
+}

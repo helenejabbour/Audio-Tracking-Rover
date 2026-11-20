@@ -1,0 +1,38 @@
+[
+  {
+    "file": "Data\\E0_silence_20261022_134226.csv",
+    "rows": 2,
+    "valid_flags": 0,
+    "usable_pairs": 0,
+    "period_median_s": 12.879999999999999,
+    "clipped": 0,
+    "pair_gap_median_s": 6.42
+  },
+  {
+    "file": "Data\\E0_silence_20261022_134309.csv",
+    "rows": 2,
+    "valid_flags": 0,
+    "usable_pairs": 0,
+    "period_median_s": 12.879999999999999,
+    "clipped": 2,
+    "pair_gap_median_s": 6.42
+  },
+  {
+    "file": "Data\\E0_silence_20261022_134614.csv",
+    "rows": 2,
+    "valid_flags": 0,
+    "usable_pairs": 0,
+    "period_median_s": 12.879999999999999,
+    "clipped": 0,
+    "pair_gap_median_s": 6.42
+  },
+  {
+    "file": "Data\\E0_static_20261022_134646.csv",
+    "rows": 5,
+    "valid_flags": 0,
+    "usable_pairs": 0,
+    "period_median_s": 12.840000000000003,
+    "clipped": 2,
+    "pair_gap_median_s": 6.42
+  }
+]

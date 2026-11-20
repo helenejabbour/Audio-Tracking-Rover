@@ -64,10 +64,10 @@ def main():
     ap.add_argument("--rho", type=float, required=True, help="true distance servo axis -> speaker [m]")
     ap.add_argument("--beta", type=float, required=True, help="true bearing of the speaker [deg, + = left]")
     ap.add_argument("--phi", type=float, default=0.0, help="arm centre phi_c to command [deg]")
-    ap.add_argument("--delta", type=float, default=None, help="dither delta [deg] (firmware default 25)")
-    ap.add_argument("--settle", type=int, default=None, help="servo settle [ms] (firmware default 120)")
+    ap.add_argument("--delta", type=float, default=None, help="dither delta [deg]; inspect the selected legacy firmware default")
+    ap.add_argument("--settle", type=int, default=None, help="servo settle [ms]; inspect the selected legacy firmware default")
     ap.add_argument("--duration", type=float, default=60.0)
-    ap.add_argument("--outdir", default="data")
+    ap.add_argument("--outdir", default="Data")
     ap.add_argument("--notes", default="", help="e.g. gain trimmer mark, speaker volume, room")
     a = ap.parse_args()
 
@@ -99,7 +99,7 @@ def main():
                 if p is None:
                     bad += raw.startswith("M"); continue
                 fl = p[11]
-                row = dict(zip(RAW, [time.time()] + p), valid=fl & 1, clip=(fl >> 1) & 1, late=(fl >> 2) & 1)
+                row = dict(zip(RAW, [time.time()] + p), valid=int((fl & 7) == 1), clip=(fl >> 1) & 1, late=(fl >> 2) & 1)
                 rows.append(row)
                 w.writerow([row[k] for k in RAW] + [row["valid"], row["clip"], row["late"], a.rho, a.beta, a.label])
                 if time.monotonic() - t_stat > 1.0:

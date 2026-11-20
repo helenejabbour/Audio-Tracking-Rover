@@ -1,0 +1,134 @@
+"""Assemble a dated report draft from preserved progress text and saved evidence.
+
+Run from any directory. Handwritten new sections are not overwritten.
+"""
+from pathlib import Path
+import hashlib
+import json
+import shutil
+from datetime import datetime, timezone
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]
+ORIGINAL = ROOT / 'Docs/Audio_Tracking_Rover_Progress_Report'
+RUN = ROOT / 'Runs/2026-11-15/20261115T163143_844160Z_validation'
+source = (ORIGINAL / 'main.tex').read_text(encoding='utf-8')
+for name in ['sections', 'figures', 'tables', 'audit']:
+    (HERE / name).mkdir(exist_ok=True)
+
+def between(start, end):
+    return source[source.index(start):source.index(end, source.index(start))]
+
+def write(name, content):
+    (HERE / name).write_text(content, encoding='utf-8', newline='\n')
+
+preserved = {
+    'literature.tex': between(r'\section{Literature Review}', r'\section{System Description}'),
+    'kinematics.tex': between(r'\subsection{Kinematic Analysis}', r'\subsection{Linearization and Local LTI Model}'),
+    'local_model.tex': between(r'\subsection{Linearization and Local LTI Model}', 'A discrete-time observer will therefore'),
+    'poc.tex': between(r'\section{Proof of Concept}', r'\section{Model Assumptions}'),
+    'motivation.tex': between(r'\IEEEPARstart', '\n\nThis project investigates real-time'),
+    'research_question.tex': between('The research question is therefore:', r'\section{Literature Review}'),
+    'architecture_figure.tex': between(r'\begin{figure}[!t]'+'\n'+r'\centering'+'\n'+r'\resizebox{\linewidth}{!}{%'+'\n'+r'\begin{tikzpicture}['+'\n'+r'  font=\footnotesize,'+'\n'+r'  blk/.style', r'\section{Measurement Model and State-Space Model}'),
+    'linearization_appendix.tex': between(r'\subsection{Linearization}'+'\n', r'\subsection{Estimator Variance}'),
+}
+for name, content in preserved.items():
+    write('sections/' + name, content)
+
+for file in ORIGINAL.iterdir():
+    if file.name in ['refs.bib', 'poc.pdf', 'mic_horn.pdf', 'bare1_summary_angle.png', 'horn1_summary_angle.png']:
+        shutil.copy2(file, HERE / file.name)
+for name in ['nominal.png', 'outage.png']:
+    shutil.copy2(RUN / name, HERE / 'figures' / name)
+
+metrics = json.loads((RUN / 'aggregate_metrics.json').read_text())
+names = {'nominal':'Nominal following', 'speed_step':'Target speed increase',
+         'gentle_turn':'Gentle turn', 'actuator_mismatch':'Actuator mismatch',
+         'outage':'Five-second signal loss', 'noise_drops_reflections':'Noise, drops, amplitude outliers, jitter',
+         'gain_bias_20pct':r'Source gain $+20\%$'}
+rows = []
+for scenario, label in names.items():
+    values = []
+    for controller in ['lqi', 'place', 'bearing_only']:
+        m = next(m for m in metrics if m['controller'] == controller and m['scenario'] == scenario)
+        values.append(f"{m['practical_tracking_passes']}/12 / {m['mean_tail_range_rmse_m']:.4f}")
+    rows.append(label + ' & ' + ' & '.join(values) + r' \\')
+write('tables/comparison_rows.tex', '\n'.join(rows) + '\n')
+
+preamble = source.split(r'\begin{document}')[0]
+preamble += r'''
+% Final-report additions: preserve the original IEEE layout and bibliography style.
+\usepackage{xcolor}
+\newcommand{\pending}[2]{\par\smallskip{\color{red}\noindent\textbf{[TO COMPLETE: #1]} #2\par}\smallskip}
+'''
+main = preamble + r'''
+\begin{document}
+\title{Closed-Loop Acoustic Tracking of a Moving Rover for Real-Time Localization}
+\author{Helene~Jabbour\quad Nour~Raffoul}
+\markboth{MECH 653 / EECE 660: System Analysis and Design --- Final Report Draft}{Jabbour and Raffoul: Acoustic Rover Pursuit}
+\maketitle
+\begin{abstract}
+A front-steered rover follows a moving acoustic source using sequential amplitude measurements from a servo-mounted directional microphone. Relative planar kinematics yield a local three-state model for controllability, observability, and integral state-feedback design. A Cartesian extended Kalman filter processes timestamped range and bearing estimates with delayed correction and input replay; a supervisor constrains commands during acquisition, uncertain tracking, and signal loss. A reproducible comparison comprises 432 synthetic trials across three controller labels and twelve scenarios. Discrete LQI and pole placement each pass all twelve nominal trials under a declared practical tracking criterion; the constant-speed bearing steering baseline passes none. The selected LQI design has mean nominal tail range RMSE of 0.0041 m under the assumed calibration. A 20\% source-gain error produces approximately 0.24 m distance bias, and the original six-second settling objective remains unmet. These findings establish conditional simulation performance, not physical tracking accuracy.
+\textcolor{red}{[TO COMPLETE: Add measured sensing rate, calibration errors, live tracking results and model agreement after hardware trials.]}
+\end{abstract}
+\begin{IEEEkeywords}
+Acoustic tracking, state-space analysis, output feedback, integral control, delayed estimation, mobile robots.
+\end{IEEEkeywords}
+
+\section{Introduction and Motivation}
+\input{sections/motivation}
+
+The follower must estimate relative geometry from a single rotating acoustic receiver and use it for closed-loop feedback without access to target commands or position. The engineering problem is constrained by sequential sensing, amplitude calibration, and front-steering authority. State-space analysis determines which modes can be controlled and observed; constrained feedback must then remain compatible with the measured timing and vehicle limits.
+
+\input{sections/research_question}
+The intended contribution is a measured link between the low-cost sensing arrangement, a locally justified control model, and the resulting rover response. The present draft contains completed software and simulation evidence and explicitly marks the experimental evidence still required.
+
+\input{sections/literature}
+\input{sections/architecture}
+
+\section{Relative Kinematics and Local Design Model}
+\input{sections/kinematics}
+\input{sections/local_model}
+\textbf{Separation convention.} In the retained formulation, ``desired minimal separation'' denotes the regulation setpoint $d^\ast$. The hard clearance $r_{\mathrm{clear}}$ is distinct and smaller. The output vector contains acoustic estimates; it is not a direct position measurement. The local matrices describe virtual speed/yaw inputs before actuator dynamics and saturation.
+\input{sections/feedback_figure}
+\input{sections/analysis}
+\input{sections/sensing}
+\input{sections/control}
+\input{sections/validation}
+\input{sections/experiments}
+
+\bibliographystyle{IEEEtranN}
+\bibliography{refs}
+
+\appendices
+\section{Reproducibility and Evidence Status}
+The repository is \href{https://github.com/helenejabbour/Audio-Tracking-Rover}{Audio-Tracking-Rover}. The local evidence archive dated 15 November 2026 contains the comparison run \texttt{20261115T163143\_844160Z\_validation}, sensitivity run \texttt{20261115T163216\_183097Z\_sensitivity}, and static-log replay \texttt{20261115T162526\_373664Z\_replay}. These directories preserve configurations, source snapshots, seed-specific metrics, and test output. The implementation is in \texttt{rover/}; the synthetic parameter file is \texttt{Config/simulation.json}. Archived development runs are not used as final evidence.
+
+The ESP32 V2 firmware build was blocked before compilation by a Windows compiler startup failure. The independent MATLAB reference could not execute because the licensing service was unavailable. Neither is described as validated. The legacy Simulink model is retained but is not the source of the reported Python results.
+\pending{R1 --- Reproducible final release}{Insert successful ESP32 build and board test, MATLAB cross-check if executed, final repository commit/release, measured configuration, raw hardware logs, and dated run identifiers. Update toolchain status without deleting the record of earlier failed attempts.}
+
+\section{Supplementary Derivations}
+\label{app:der}
+\input{sections/linearization_appendix}
+\subsection{Pairwise Inversion}
+With $c=\varphi_c+b_0$, subtracting the two noiseless log-amplitude equations gives $\ln A_+-\ln A_-=2\delta(\beta-c)/\sigma^2$. Averaging gives $\tfrac12\ln(A_+A_-)=\ln K-n\ln\rho-[(c-\beta)^2+\delta^2]/(2\sigma^2)$, in the fixed amplitude/metre numerical convention. These relations yield Eqs.~\eqref{eq:beta}--\eqref{eq:rho}; differentiating them yields Eq.~\eqref{eq:covjac}.
+
+\input{sections/poc}
+\textbf{Scope of the retained preliminary evidence.} This appendix reproduces the progress-report account. Its plotted levels are relative acquisition quantities, not calibrated acoustic sound-pressure levels. The original text uses ``chirp'' and ``constant frequency'' together; the waveform specification must be recovered from the acquisition record before drawing a frequency-specific conclusion. The coarse 30 cm experiment does not calibrate the operating-tone Gaussian model or establish metre-scale ranging accuracy.
+\pending{P1 --- Preliminary-record reconciliation}{Verify the exact test waveform, level reference and raw-record links for the retained POC figures. Preserve the historical observations while distinguishing them from the new operating-tone calibration.}
+
+\end{document}
+'''
+write('main.tex', main)
+manifest = {
+    'created_utc': datetime.now(timezone.utc).isoformat(),
+    'progress_source': str((ORIGINAL / 'main.tex').relative_to(ROOT)),
+    'progress_source_sha256': hashlib.sha256((ORIGINAL / 'main.tex').read_bytes()).hexdigest(),
+    'preserved_blocks_normalized_lf_sha256': {k: hashlib.sha256(v.encode()).hexdigest() for k,v in preserved.items()},
+    'comparison_run': str(RUN.relative_to(ROOT)),
+    'comparison_metrics_sha256': hashlib.sha256((RUN / 'aggregate_metrics.json').read_bytes()).hexdigest(),
+    'literature_verbatim': (HERE/'sections/literature.tex').read_text(encoding='utf-8') == preserved['literature.tex'],
+}
+write('audit/provenance.json', json.dumps(manifest, indent=2) + '\n')
+print('Prepared', HERE / 'main.tex')
+print('Literature exactly preserved:', manifest['literature_verbatim'])

@@ -30,6 +30,7 @@
 % deviations), w = [dv_t; w_t] (target disturbance), y = [d_rho_hat; beta_hat] (acoustic estimates).
 
 function R = acoustic_pursuit_design(opt)
+warning('Historical uncalibrated model. Use rover_reference_design and Docs/IMPLEMENTATION_GUIDE.md for the current validated software path.');
 if nargin < 1, opt = struct(); end
 P = user_settings();
 if isfield(opt,'P'), fn = fieldnames(opt.P); for i = 1:numel(fn), P.(fn{i}) = opt.P.(fn{i}); end, end
@@ -62,7 +63,7 @@ n = 3;  m = 2;  q = 2;
 hdr('1. System identification');
 fprintf('  Design model: LTI, continuous-time, n = %d states, m = %d controlled inputs, q = %d outputs, 2 disturbance inputs.\n', n, m, q);
 fprintf('  => MIMO (%d x %d). It is also sampled-data (control Ts = %.2f s, measurements every Tm = %.2f s) and delayed (Td = %.2f s).\n', q, m, Ts, Tm, Td);
-fprintf('  Poles of A: '); fprintf('%g ', eig(A)); fprintf('  -> all at the origin: marginally stable, NOT asymptotically stable (A is nilpotent).\n');
+fprintf('  Poles of A: '); fprintf('%g ', eig(A)); fprintf('  -> all at the origin: for a > 0, the nontrivial nilpotent Jordan block makes the free response UNSTABLE.\n');
 fprintf('  Classification: the plant is NONLINEAR (Eq. nl); the design model is its linearization about straight-line pursuit: LTI at fixed v0\n');
 fprintf('    (valid for small d_rho, beta, eps: see S1), dynamic (integrators), causal, deterministic. If v0 varies, A(t) is time-varying: see 2b.\n');
 fprintf('    Hybrid structure: continuous plant, discrete controller / observer (Ts), intermittent measurements (Tm), causal delay Td (handled by the\n');
@@ -233,7 +234,7 @@ fprintf('  MIMO check: peak sensitivity max sigma(S) = %.2f (%.1f dB); loop coup
 
 hdr('4d. Lyapunov and BIBO characterisation');
 nl_ = size(Aloop,1);
-fprintf('  open loop: eig(A) = 0 (nilpotent A) -> no P > 0 solves A''P + PA = -Q: marginally stable, not asymptotically; G(s) has poles at s = 0 -> not BIBO stable.\n');
+fprintf('  open loop: for a > 0, A has a nontrivial zero Jordan block -> Lyapunov UNSTABLE; G(s) has poles at s = 0 -> not BIBO stable.\n');
 Acc = Aloop - Bloop*Kc;
 if max(real(eig(Acc))) < 0
     Pc_ = lyap(Acc', eye(nl_));
@@ -574,7 +575,7 @@ for k = 0:n, c(k+1) = factorial(2*n-k)*factorial(n)/(factorial(2*n)*factorial(k)
 num = zeros(1,n+1);  den = num;
 for k = 0:n, num(n+1-k) = c(k+1)*(-T)^k;  den(n+1-k) = c(k+1)*T^k; end
 end
-function W = gram_fh(A, B, T)                                      % finite-horizon Gramian (A is only marginally stable)
+function W = gram_fh(A, B, T)                                      % finite-horizon Gramian; does not require stable A
 t = linspace(0, T, 300);  N = size(A,1);  Wk = zeros(N,N,numel(t));
 for k = 1:numel(t), M = expm(A*t(k))*B;  Wk(:,:,k) = M*M'; end
 W = zeros(N);

@@ -1,0 +1,29 @@
+{
+  "checked_utc": "2026-11-15T17:13:07.065439+00:00",
+  "missing_references": [],
+  "duplicate_labels": [],
+  "missing_bibliography_keys": [],
+  "duplicate_bibliography_keys": [],
+  "missing_images": [],
+  "syntax_errors": [],
+  "preserved_block_hash_checks": {
+    "literature.tex": true,
+    "kinematics.tex": true,
+    "local_model.tex": true,
+    "poc.tex": true,
+    "motivation.tex": true,
+    "research_question.tex": true,
+    "architecture_figure.tex": true,
+    "linearization_appendix.tex": true
+  },
+  "bibliography_byte_identical": true,
+  "new_text_banned_word_hits": {},
+  "measurement_jacobian_max_error": 1.9463458622581697e-10,
+  "canonical_A_error": 0.0,
+  "canonical_B_error": 0.0,
+  "runtime_source_differences_from_saved_validation": [],
+  "red_placeholder_count": 15,
+  "compile_status": "BLOCKED: uncached Tectonic bundle inaccessible; MiKTeX initialization/registry denied",
+  "visual_layout_verified": false,
+  "source_checks_passed": true
+}

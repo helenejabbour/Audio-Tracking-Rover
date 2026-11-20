@@ -1,0 +1,63 @@
+{
+  "seeds": [
+    3000,
+    3001,
+    3002,
+    3003,
+    3004,
+    3005,
+    3006,
+    3007,
+    3008,
+    3009,
+    3010,
+    3011
+  ],
+  "scenarios": {
+    "nominal": {},
+    "speed_step": {
+      "speed_step": 0.05
+    },
+    "gentle_turn": {
+      "target_yaw": 0.025
+    },
+    "noise_drops_reflections": {
+      "noise_scale": 2.0,
+      "drop": 0.15,
+      "reflection": 0.12,
+      "jitter": 0.15
+    },
+    "outage": {
+      "outage": [
+        18.0,
+        23.0
+      ]
+    },
+    "gain_bias_20pct": {
+      "gain_scale": 1.2
+    },
+    "slow_sensor": {
+      "period": 1.2,
+      "gap": 0.55
+    },
+    "legacy_12s_sensor": {
+      "period": 12.84,
+      "gap": 6.42
+    },
+    "actuator_mismatch": {
+      "speed_scale": 0.8,
+      "lag_scale": 1.7
+    },
+    "stationary_target": {
+      "target_speed": 0.0,
+      "mission": "approach"
+    },
+    "no_beacon": {
+      "drop": 1.0
+    },
+    "unreachable_target": {
+      "target_speed": 0.5
+    }
+  },
+  "example_trace_seed": 3000
+}

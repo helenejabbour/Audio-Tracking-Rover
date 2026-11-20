@@ -1,0 +1,17 @@
+{
+  "instructions": "Copy simulation.json to a NEW measured_config.json, replace every measured parameter using the guide, and add the hardware object below. This file alone is intentionally not runnable.",
+  "hardware_ready": false,
+  "hardware": {
+    "speed_table": [],
+    "steering_table": [],
+    "picar_database": "config",
+    "sensor_holdout_passed": false,
+    "actuator_calibration_passed": false,
+    "stop_test_passed": false,
+    "wheels_lifted_passed": false,
+    "evidence_files": []
+  },
+  "speed_table_schema": "ascending [measured speed m/s, PWM command 0..100] pairs, >=3 points covering min_speed through max_speed",
+  "steering_table_schema": "ascending [measured road-wheel angle deg, servo command deg] pairs, >=3 points covering +/-max_steer_deg",
+  "evidence_files_schema": "paths to captured calibration results and commissioning records, resolved from the repo root"
+}

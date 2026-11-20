@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-11-15T16:32:16.183097+00:00",
+  "python": "3.14.3",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "git_head": "c1f9bbf0ace01f5068c49f1775f2ef55e11b9602",
+  "source_sha256": {
+    "rover/analysis.py": "70f523601fbadcf48ab34a69cc94d205a8bb507bc1a9afa7a968158ffd65ad19",
+    "rover/calibrate.py": "64035d870e27076a28f3c8aa54ced162cb0451135e53575c21e8e473e377c19a",
+    "rover/collect.py": "da493859648f7fbe1b762ce1890fc1cb46148eb1fc0230ea353f4f419f5b3a6a",
+    "rover/config.py": "3bac97de210270fff0cedc504f06f19c1aa64e811a117a1943f1fc5469489cdd",
+    "rover/controller.py": "b7d6d3866565de3d210094623868cf2cca3e6d1eb87d15c33e6d5d62209fbd37",
+    "rover/evaluate_trial.py": "bc6bf863d2acd9a9d473f4ba3f9aa33b21905fcce891005f85a1da7ae0c05129",
+    "rover/hardware.py": "5374d0cf5f3f0c8deb7cc7e2cacb817b4fe34700afa4a1681dde761445f9ed15",
+    "rover/live.py": "b8b3c27be2a2208089ddf66847905b6057a87cf6dddda60f910d445e40cae919",
+    "rover/model.py": "b455c6bc912ef70dc78fadd9646bb1222ffc593d1b199ee7bc68bcb1e16f4ed4",
+    "rover/observer.py": "2828129179f04ef238c68d2289a19b49b848d264b4b9654bf54f9a2bfbc303ec",
+    "rover/sensing.py": "30af20321c4d61a9b24b92944697d3601b358e31148afa60a60d548749aefd95",
+    "rover/sensitivity.py": "cabe9b2da313d3a9757c7efdffb3f90b5962987109108ed72d5b62684109e382",
+    "rover/simulation.py": "13d20134ff5d84b8a029ee21d408a21fde9dc038ff4bd12f6bb847cac7cfe83a",
+    "rover/target.py": "08a437edcaf643b9003ba75a0991050beaca6fc555ec727e612d823e0af5f8c2",
+    "rover/validate.py": "22db52cb6800d877b642b455df6a28d45bcb05342f0cc04933155055486c67ab",
+    "rover/__init__.py": "1ae06080c69a60268a8b0510ee224ef72664cb27f085b3a89a17b281243ead48",
+    "Tests/test_rover.py": "e7d0b8d28b1cebfd0a69ebc8699c7e5faf897b8457709dc445b9dd17ba979022",
+    "Config/hardware_template.json": "c7c9170a0c319791fc3fb79af269246566254924e15b49b8b2af0a7eca6d59f7",
+    "Config/simulation.json": "158d2ca42c02e1e6cc0e46bd1806e42f375afe8769fa6aa0abd6dca98ee0efa3",
+    "Firmware/esp32_acoustic_v2/esp32_acoustic_v2.ino": "cab277aa887b41a01146b7a2d9b6a7a4b0a8f5e58113b65a658580cac1448a38",
+    "Matlab/acoustic_pursuit_design.m": "45b23fba486152e2ee6c50e24d68c3ef2bcbcac5cf1c6d4df5f4b9f3e6f6769a",
+    "Matlab/gains.json": "81e2fbb7f93a86e1734b670312c604e72c5cd441056b69b16ef0a866b82aa600",
+    "Matlab/rover_reference_design.m": "e031387256c7c1bc8038535f9a74f359912f2e985e84ef44fc64b896605800b4"
+  },
+  "input_sha256": {
+    "Data/E0_silence_20261022_134226.csv": "eec7e921115afc6254359f83a7d6d8428817d1358280acbd6bf71bf2c2f91d29",
+    "Data/E0_silence_20261022_134309.csv": "6a26bd7becc69a3cbe2abb5727bc0ca8a0fcfb8100fc64b3d7a7b935eba8c434",
+    "Data/E0_silence_20261022_134614.csv": "cd03fd87b000d9a156ecd0baa3449e4871ca572ce9fac847e388b6744e3df546",
+    "Data/E0_static_20261022_134646.csv": "d0719a99d345868612a3b43aea91cdbd860cde9207cc84c9aee10c9c0c69e954"
+  }
+}

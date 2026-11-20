@@ -1,0 +1,39 @@
+\subsection{Kinematic Analysis}
+\label{sec:kinematic}
+The follower (pose $(x_f,y_f,\theta_f)$, speed $v_f$) is front-steered with wheelbase $L$ and steering angle $\delta_s$, so $\omega_f=\tfrac{v_f}{L}\tan\delta_s$. The target has speed $v_t$ and yaw rate $\omega_t$. Fig.~\ref{fig:geom} clarifies the relative geometry used for range $\rho$, line-of-sight angle $\lambda$, bearing $\beta=\lambda-\theta_f$, relative heading $\varepsilon=\theta_t-\theta_f$, and aspect $\alpha=\theta_t-\lambda=\varepsilon-\beta$, such that
+\begin{equation}
+\begin{aligned}
+\dot\rho&=v_t\cos\alpha-v_f\cos\beta,\\
+\dot\beta&=\frac{v_t\sin\alpha+v_f\sin\beta}{\rho}-\omega_f,\\
+\dot\varepsilon&=\omega_t-\omega_f.
+\end{aligned}
+\label{eq:nl}
+\end{equation}
+
+\begin{figure}[!t]
+\centering
+\begin{tikzpicture}[font=\footnotesize]
+  \coordinate (F) at (0,0);
+  \coordinate (T) at (45:3.1);
+  \draw[gray, dashed] (F) -- (3.7,0) node[right, black] {$x$};
+  \draw[gray, dashed] (T) -- ++(25:1.5);
+  \draw[thick] (F) -- (T) node[midway, above left=-1pt] {$\rho$};
+  \draw[-{Latex[length=2mm]}, thick, green!50!black] (F) -- ++(25:2.0);
+  \draw[-{Latex[length=2mm]}, thick, violet!70!black] (T) -- ++(80:1.6);
+  \node[draw, fill=green!20, rotate=25, minimum width=6mm, minimum height=3.5mm] at (F) {};
+  \node[draw, fill=violet!15, rotate=80, minimum width=6mm, minimum height=3.5mm] at (T) {};
+  \node[below=4pt] at (F) {follower};
+  \node[left=6pt] at (T) {target};
+  \draw[-{Latex[length=1.5mm]}] (1.1,0) arc (0:25:1.1);
+  \node at (11:1.5) {$\theta_f$};
+  \draw[-{Latex[length=1.5mm]}] (2.7,0) arc (0:45:2.7);
+  \node at (22:3.0) {$\lambda$};
+  \draw[-{Latex[length=1.5mm]}] (25:2.2) arc (25:45:2.2);
+  \node at (37:2.5) {$\beta$};
+  \draw[-{Latex[length=1.5mm]}, shift={(T)}] (25:0.9) arc (25:80:0.9);
+  \node at ($(T)+(53:1.3)$) {$\varepsilon$};
+\end{tikzpicture}
+\caption{Relative geometry (green: follower, violet: target; arrows show velocity vectors): range $\rho$, bearing $\beta=\lambda-\theta_f$, relative heading $\varepsilon=\theta_t-\theta_f$.}
+\label{fig:geom}
+\end{figure}
+
