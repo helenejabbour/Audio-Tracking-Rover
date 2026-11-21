@@ -1,0 +1,370 @@
+{
+ "session": {
+  "volume": "laptop 20 %, speaker 20 %",
+  "room": "living room",
+  "config": "Config/measured_multitone.json",
+  "delta": 50.0
+ },
+ "runs": [
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-30",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": -30.0,
+   "folder": "Runs/2026-11-20/20261120T161423_445318Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-25",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": -25.0,
+   "folder": "Runs/2026-11-20/20261120T161546_926996Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-20",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": -20.0,
+   "folder": "Runs/2026-11-20/20261120T161610_649734Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-15",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": -15.0,
+   "folder": "Runs/2026-11-20/20261120T161631_113980Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-10",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": -10.0,
+   "folder": "Runs/2026-11-20/20261120T161651_426567Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-5",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": -5.0,
+   "folder": "Runs/2026-11-20/20261120T161711_360484Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+0",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T161731_152008Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+5",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": 5.0,
+   "folder": "Runs/2026-11-20/20261120T161752_651273Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+10",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": 10.0,
+   "folder": "Runs/2026-11-20/20261120T161812_860840Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+15",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": 15.0,
+   "folder": "Runs/2026-11-20/20261120T161832_738118Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+20",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": 20.0,
+   "folder": "Runs/2026-11-20/20261120T161853_286805Z_capture"
+  },
+  {
+   "step": "B2",
+   "label": "B2_mt_rho1.000",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T162737_677200Z_capture"
+  },
+  {
+   "step": "B2",
+   "label": "B2_mt_rho1.015",
+   "rho": 1.015,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T163118_582966Z_capture"
+  },
+  {
+   "step": "B2",
+   "label": "B2_mt_rho1.030",
+   "rho": 1.03,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T163159_705732Z_capture"
+  },
+  {
+   "step": "B2",
+   "label": "B2_mt_rho1.045",
+   "rho": 1.045,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T163237_453187Z_capture"
+  },
+  {
+   "step": "B2",
+   "label": "B2_mt_rho1.060",
+   "rho": 1.06,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T163305_123139Z_capture"
+  },
+  {
+   "step": "B2",
+   "label": "B2_mt_rho1.075",
+   "rho": 1.075,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T163334_039516Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-30_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": -30.0,
+   "folder": "Runs/2026-11-20/20261120T163807_827111Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-25_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": -25.0,
+   "folder": "Runs/2026-11-20/20261120T163915_614884Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-20_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": -20.0,
+   "folder": "Runs/2026-11-20/20261120T164004_066514Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-15_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": -15.0,
+   "folder": "Runs/2026-11-20/20261120T164022_699379Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-10_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": -10.0,
+   "folder": "Runs/2026-11-20/20261120T164041_029851Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-5_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": -5.0,
+   "folder": "Runs/2026-11-20/20261120T164105_138057Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+0_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T164125_347774Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+5_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": 5.0,
+   "folder": "Runs/2026-11-20/20261120T164201_268424Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+10_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": 10.0,
+   "folder": "Runs/2026-11-20/20261120T164223_474648Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+15_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": 15.0,
+   "folder": "Runs/2026-11-20/20261120T164245_543034Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+20_r1.020",
+   "rho": 1.02,
+   "beta": 0.0,
+   "phi": 20.0,
+   "folder": "Runs/2026-11-20/20261120T164330_004963Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-30_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": -30.0,
+   "folder": "Runs/2026-11-20/20261120T164610_256786Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-25_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": -25.0,
+   "folder": "Runs/2026-11-20/20261120T164633_356481Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-20_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": -20.0,
+   "folder": "Runs/2026-11-20/20261120T164651_299668Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-15_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": -15.0,
+   "folder": "Runs/2026-11-20/20261120T164713_056491Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-10_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": -10.0,
+   "folder": "Runs/2026-11-20/20261120T164732_783864Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi-5_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": -5.0,
+   "folder": "Runs/2026-11-20/20261120T164752_537189Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+0_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T164813_457172Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+5_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": 5.0,
+   "folder": "Runs/2026-11-20/20261120T164833_298844Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+10_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": 10.0,
+   "folder": "Runs/2026-11-20/20261120T164851_486280Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+15_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": 15.0,
+   "folder": "Runs/2026-11-20/20261120T164909_853568Z_capture"
+  },
+  {
+   "step": "B0",
+   "label": "B0_mt_phi+20_r1.040",
+   "rho": 1.04,
+   "beta": 0.0,
+   "phi": 20.0,
+   "folder": "Runs/2026-11-20/20261120T164928_185023Z_capture"
+  },
+  {
+   "step": "E3",
+   "label": "E3_mt_r0.75_b-30",
+   "rho": 0.75,
+   "beta": -30.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T170523_071120Z_capture"
+  },
+  {
+   "step": "E3",
+   "label": "E3_mt_r0.75_b+15",
+   "rho": 0.75,
+   "beta": 15.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T171305_488335Z_capture"
+  },
+  {
+   "step": "E3",
+   "label": "E3_mt_r1.00_b+0",
+   "rho": 1.0,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T171456_225607Z_capture"
+  },
+  {
+   "step": "E3",
+   "label": "E3_mt_r1.50_b-30",
+   "rho": 1.5,
+   "beta": -30.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T172518_046337Z_capture"
+  },
+  {
+   "step": "E3",
+   "label": "E3_mt_r1.50_b+30",
+   "rho": 1.5,
+   "beta": 30.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T173305_161903Z_capture"
+  },
+  {
+   "step": "E3",
+   "label": "E3_mt_r1.50_b+0",
+   "rho": 1.5,
+   "beta": 0.0,
+   "phi": 0.0,
+   "folder": "Runs/2026-11-20/20261120T173713_673172Z_capture"
+  }
+ ]
+}

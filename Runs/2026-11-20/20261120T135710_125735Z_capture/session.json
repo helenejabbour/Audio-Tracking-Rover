@@ -1,0 +1,12 @@
+{
+  "port": "COM6",
+  "label": "E4_dlt40",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0.0,
+  "delta": 40.0,
+  "settle_ms": 40,
+  "duration": 30.0,
+  "notes": "E4 timing V2; vol 30; <room>",
+  "config": "Config/measured_sensor.json"
+}

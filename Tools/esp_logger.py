@@ -6,7 +6,7 @@ esp_logger.py - log ESP32 acoustic packets to CSV, with ground truth passed on t
   python esp_logger.py --port COM6 --label E0_static --rho 1.0 --beta 0 --phi 0 --duration 60
   (Pi/Linux: --port /dev/ttyUSB0 or /dev/ttyACM0)
 
-Writes data/<label>_<timestamp>.csv (+ .json with args, firmware config, summary) and prints a quick look:
+Writes Data/raw/<label>_<timestamp>.csv (+ .json with args, firmware config, summary) and prints a quick look:
 packet period (~T_m), valid/clip/late rates, noise estimate s_n, ln(A+/A-) stats, A_bar*rho.
 Close the Arduino Serial Monitor first (the port is exclusive).
 
@@ -76,7 +76,7 @@ def main():
     ap.add_argument("--delta", type=float, default=None, help="dither delta [deg]; inspect the selected legacy firmware default")
     ap.add_argument("--settle", type=int, default=None, help="servo settle [ms]; inspect the selected legacy firmware default")
     ap.add_argument("--duration", type=float, default=60.0)
-    ap.add_argument("--outdir", default="Data")
+    ap.add_argument("--outdir", default="Data/raw")
     ap.add_argument("--notes", default="", help="e.g. gain trimmer mark, speaker volume, room")
     a = ap.parse_args()
 

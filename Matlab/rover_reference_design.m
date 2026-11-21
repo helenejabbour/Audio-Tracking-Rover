@@ -1,10 +1,10 @@
 function R = rover_reference_design(runFolder)
 % Independent base-MATLAB reference; compare against a saved Python validation.
-% Run from repo root: addpath('Matlab'); R=rover_reference_design('Runs/...');
+% Run from repo root: addpath('Matlab'); R=rover_reference_design('Runs/<date>/<stamp>_validation');
 % No hardware I/O. Does not claim the legacy Simulink model is validated.
 root=fileparts(fileparts(mfilename('fullpath')));
 if nargin==0
-    cfg=jsondecode(fileread(fullfile(root,'Config','simulation.json')));
+    cfg=jsondecode(fileread(fullfile(root,'Config','phase_e.json')));   % Phase E design config (was simulation.json)
 else
     cfg=jsondecode(fileread(fullfile(runFolder,'config.json')));
 end

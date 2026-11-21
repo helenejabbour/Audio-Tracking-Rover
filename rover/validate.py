@@ -7,19 +7,19 @@ import subprocess
 import sys
 import time
 import numpy as np
-from .config import ROOT,load_config,create_run,write_json
+from .config import ROOT,BASELINE_DIR,load_config,create_run,write_json
 from .analysis import run_analysis
 from .simulation import SCENARIOS,COLUMNS,run_simulation
-from .sensing import legacy_row,estimate
+from .sensing import legacy_row,estimate,quality_ok
 
 
 def audit_existing(cfg):
     results=[]
-    for path in sorted((ROOT/'Data').glob('*.csv')):
+    for path in sorted((ROOT/BASELINE_DIR).glob('*.csv')):
         with path.open(newline='') as f:rows=list(csv.DictReader(f))
         periods=np.diff([float(r['t_ms'])*.001 for r in rows])
         periods=periods[periods>0]
-        good=sum(int(r['flags'])==1 for r in rows)
+        good=sum(quality_ok(r['flags']) for r in rows)
         usable=sum(estimate(legacy_row(r,i),cfg)[0] is not None for i,r in enumerate(rows))
         results.append({'file':str(path.relative_to(ROOT)),'rows':len(rows),'valid_flags':good,'usable_pairs':usable,
                         'period_median_s':float(np.median(periods)) if len(periods) else None,
@@ -65,7 +65,7 @@ def main():
                                      'scenarios':SCENARIOS,'example_trace_seed':a.seed_start})
     import scipy,matplotlib
     write_json(out/'environment.json',{'python':sys.version,'numpy':np.__version__,'scipy':scipy.__version__,'matplotlib':matplotlib.__version__})
-    if not a.skip_tests:
+    if not a.skip_tests and (ROOT/'Tests').is_dir():
         test=subprocess.run([sys.executable,'-m','unittest','discover','-s','Tests','-v'],cwd=ROOT,capture_output=True,text=True)
         (out/'tests.txt').write_text(test.stdout+test.stderr,encoding='utf-8')
         if test.returncode:raise SystemExit(f'Tests failed; see {out}/tests.txt')
@@ -113,7 +113,7 @@ def main():
               '- A minimum simulated separation is not a hardware collision guarantee. The runtime speed bound depends on calibrated error and braking bounds.',
               '- Original O3 2% settling and 15% overshoot results remain in every run, including failures and non-settling outcomes.',
               '- The sampled-loop analysis includes lag, delay and measurement rate in a local periodic reference. It is not a global nonlinear stability proof or a classical phase-margin certificate.',
-              '- MATLAB execution and ESP32 compilation depend on the installed toolchain; see Docs/VALIDATION_STATUS.md for actual execution status.', '']
+              '- MATLAB execution and ESP32 compilation depend on the installed toolchain.', '']
     (out/'REPORT.md').write_text('\n'.join(lines),encoding='utf-8')
     write_json(out/'STATUS.json',{'state':'complete','simulations':len(records),'seeds_per_scenario':a.seeds})
     print(out,flush=True)

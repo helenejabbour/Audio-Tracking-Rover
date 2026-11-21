@@ -1,0 +1,12 @@
+{
+  "port": "COM6",
+  "label": "B0_mt_phi-30_r1.020",
+  "rho": 1.02,
+  "beta": 0.0,
+  "phi": -30.0,
+  "delta": 50.0,
+  "settle_ms": 40,
+  "duration": 15.0,
+  "notes": "B0 multitone s1; vol laptop 20 %, speaker 20 %; room living room",
+  "config": "Config/measured_multitone.json"
+}

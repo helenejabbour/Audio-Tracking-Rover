@@ -1,0 +1,12 @@
+{
+  "port": "COM6",
+  "label": "E3_mt_r0.75_b+15",
+  "rho": 0.75,
+  "beta": 15.0,
+  "phi": 0.0,
+  "delta": 50.0,
+  "settle_ms": 40,
+  "duration": 20.0,
+  "notes": "E3 multitone s1; vol laptop 20 %, speaker 20 %; room living room",
+  "config": "Config/measured_multitone.json"
+}

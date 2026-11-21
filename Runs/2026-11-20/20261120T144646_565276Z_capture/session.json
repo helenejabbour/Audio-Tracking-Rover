@@ -1,0 +1,12 @@
+{
+  "port": "COM6",
+  "label": "B0_boresight",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 15.0,
+  "delta": 50.0,
+  "settle_ms": 40,
+  "duration": 15.0,
+  "notes": "B0 sweep, phi_c=15, room/vol/aim...",
+  "config": "Config/measured_sensor.json"
+}

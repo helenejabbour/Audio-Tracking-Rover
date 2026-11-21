@@ -8,7 +8,7 @@ import time
 from .config import create_run,load_config,write_json
 from .controller import Tracker
 from .hardware import MotorProcess
-from .sensing import DeviceClock,parse_v2,legacy_row
+from .sensing import DeviceClock,parse_v2,parse_bins,apply_bins,apply_bin_model,tone_frequencies,legacy_row
 from .model import polar_output
 import numpy as np
 
@@ -56,6 +56,8 @@ def run_serial(cfg,port,duration,out,drive=False,baud=115200):
         time.sleep(2);ser.reset_input_buffer()
         ser.write(f"P0\nD{cfg['dither_deg']}\n?\n".encode())
         start=time.monotonic();tracker.scan_start=start;next_tick=start;buffer=b'';last_horn=None
+        # Optional host-side bin weighting (cfg bin_weights): B2 precedes its R2 with the same seq.
+        weights=cfg.get('bin_weights');model=cfg.get('bin_model');last_bins=None
         with (out/'raw_serial.jsonl').open('w',encoding='utf-8') as raw, \
              (out/'commands.csv').open('w',newline='') as commands, \
              (out/'measurement_decisions.csv').open('w',newline='') as decisions:
@@ -78,9 +80,23 @@ def run_serial(cfg,port,duration,out,drive=False,baud=115200):
                     line,buffer=buffer.split(b'\n',1)
                     text=line.decode('ascii',errors='replace').strip()
                     raw.write(json.dumps({'received_monotonic':now,'line':text})+'\n')
+                    if text.startswith('C2,') and model is not None:
+                        freqs=tone_frequencies(text)
+                        if freqs is None or len(freqs)!=len(model['tone_hz']) or                                 not np.allclose(freqs,model['tone_hz']):
+                            raise RuntimeError(f"bin_model tones {model['tone_hz']} do not match firmware {freqs}")
+                    if text.startswith('B2,'):
+                        last_bins=parse_bins(text)
+                        if last_bins is None:invalid+=1
+                        continue
                     if not text.startswith('R2,'):continue
                     fields=parse_v2(text)
                     if fields is None:invalid+=1;continue
+                    if (weights is not None or model is not None) and last_bins is not None and last_bins[0]==fields[0]:
+                        try:
+                            fields=apply_bin_model(fields,last_bins,model,cfg,weights) if model is not None                                 else apply_bins(fields,last_bins,weights)
+                        except ValueError as exc:raise RuntimeError(f'bin_weights/bin_model: {exc}') from exc
+                    elif model is not None:
+                        invalid+=1;continue   # no matching B2: the firmware ratio is not the calibrated estimator
                     try:pair=clock.convert(fields,now)
                     except ValueError as exc:raise RuntimeError(str(exc)) from exc
                     ok,why=tracker.ingest(pair,now);count+=1
@@ -111,8 +127,14 @@ def main():
     p.add_argument('--config');p.add_argument('--port');p.add_argument('--replay')
     p.add_argument('--duration',type=float,default=60);p.add_argument('--drive',action='store_true')
     p.add_argument('--mission',choices=['follow','approach'],help='approach is for an operator-declared stationary beacon')
+    p.add_argument('--desired-range',type=float,help='separation / stand-off override in m')
     a=p.parse_args();cfg=load_config(a.config)
     if a.mission:cfg['mission']=a.mission
+    if a.desired_range is not None:
+        lo=cfg['clearance']+cfg['stop_margin']+3*cfg.get('range_noise_floor_rel',0.)*a.desired_range
+        if not (lo < a.desired_range < cfg['range_domain'][1]):
+            p.error(f"--desired-range must exceed clearance + stop margin + 3 sigma_rho ({lo:.2f} m) and stay inside the calibrated range")
+        cfg['desired_range']=a.desired_range
     if bool(a.port)==bool(a.replay):p.error('choose exactly one of --port or --replay')
     if a.replay and a.drive:p.error('replay never drives hardware')
     if a.duration<=0:p.error('duration must be positive')

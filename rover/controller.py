@@ -142,11 +142,13 @@ class Tracker:
         return 0., 0.
 
     def horn_command(self, now):
-        limit = self.cfg['horn_limit_deg']-self.cfg['dither_deg']
+        # Horn span may be asymmetric: [-horn_limit_deg, +horn_limit_left_deg] (servo range).
+        lo = -(self.cfg['horn_limit_deg']-self.cfg['dither_deg'])
+        hi = self.cfg.get('horn_limit_left_deg', self.cfg['horn_limit_deg'])-self.cfg['dither_deg']
         if self.mode == 'TRACK' and self.observer.initialized:
             self.horn_center = float(np.rad2deg(np.arctan2(self.observer.state[1], self.observer.state[0])))
         if self.mode == 'TRACK' or now-self.last_accepted < 3.:
-            return float(np.clip(self.horn_center, -limit, limit))
+            return float(np.clip(self.horn_center, lo, hi))
         # Stationary scan; never rotate the chassis for acquisition.
-        centers = [float(np.clip(self.horn_center, -limit, limit)), -limit, 0., limit]
+        centers = [float(np.clip(self.horn_center, lo, hi)), lo, 0., hi]
         return centers[int((now-self.scan_start)/(self.cfg['measurement_period']*(self.cfg['acquire_pairs']+1))) % len(centers)]

@@ -1,0 +1,12 @@
+{
+  "port": "COM6",
+  "label": "E0_silence",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0.0,
+  "delta": 1.0,
+  "settle_ms": 40,
+  "duration": 60.0,
+  "notes": "V2 flashed; speaker off; servo on; <room, battery>",
+  "config": "Config/measured_sensor.json"
+}

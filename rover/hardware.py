@@ -5,6 +5,46 @@ import queue
 import time
 import numpy as np
 
+# SunFounder_PiCar (github.com/sunfounder/SunFounder_PiCar, installed by SunFounder_PiCar-S):
+# Front_Wheels.turn() clamps the servo command to 90 +- turning_max (default 45, lower = left),
+# then Servo.write() adds turning_offset in PCA9685 counts (4096 per 1/60 s, ~0.41 deg each).
+# One PCA9685 at 60 Hz drives the steering servo and both motor PWMs (speed 0..100 = duty %).
+PICAR_STRAIGHT = 90
+PICAR_TURNING_MAX = 45
+PICAR_KEYS = ('turning_offset', 'forward_A', 'forward_B')
+
+
+def read_picar_database(path):
+    """Parse the SunFounder file database the way the robot must see it, and reject the
+    two silent failure modes of picar.filedb: a missing file returns defaults
+    (offset 0, forward_A/B = 1), and fileDB.get() never reads the file's last line, so a
+    key on the last line (e.g. 'forward_B = 0' without a trailing line) reads as default."""
+    path = Path(path)
+    if not path.is_absolute() or not path.is_file():
+        raise ValueError(f'hardware.picar_database must be an absolute path to the calibrated SunFounder config, got {path}')
+    lines = path.read_text(encoding='utf-8', errors='replace').splitlines(keepends=True)
+    values, last_index = {}, {}
+    for i, line in enumerate(lines):
+        if line.lstrip().startswith('#') or '=' not in line:
+            continue
+        key, value = (x.strip() for x in line.split('=', 1))
+        values[key], last_index[key] = value, i
+    for key in PICAR_KEYS:
+        if key not in values:
+            raise ValueError(f'{path}: missing {key}')
+        if last_index[key] >= len(lines) - 1:
+            raise ValueError(f'{path}: {key} is on the last line, which picar.filedb never reads; '
+                             'add a trailing comment line, as in the SunFounder file')
+    try:
+        parsed = {k: int(values[k]) for k in PICAR_KEYS}
+    except ValueError:
+        raise ValueError(f'{path}: turning_offset, forward_A and forward_B must be integers')
+    if parsed['forward_A'] not in (0, 1) or parsed['forward_B'] not in (0, 1):
+        raise ValueError(f'{path}: forward_A/forward_B must be 0 or 1')
+    if not -30 <= parsed['turning_offset'] <= 30:
+        raise ValueError(f'{path}: turning_offset outside the +-30 range SunFounder allows')
+    return parsed
+
 
 def validate_hardware(cfg):
     if cfg.get('hardware_ready') is not True:
@@ -27,6 +67,13 @@ def validate_hardware(cfg):
     change=np.diff(steering[:,1])
     if not (np.all(change>0) or np.all(change<0)):
         raise ValueError('steering servo calibration must be strictly monotonic in either direction')
+    lo,hi=PICAR_STRAIGHT-PICAR_TURNING_MAX,PICAR_STRAIGHT+PICAR_TURNING_MAX
+    if np.any((steering[:,1]<lo)|(steering[:,1]>hi)):
+        raise ValueError(f'steering servo commands must lie in [{lo}, {hi}]: Front_Wheels.turn() clamps outside it')
+    db=read_picar_database(hw.get('picar_database',''))
+    if hw.get('turning_offset_at_calibration')!=db['turning_offset']:
+        raise ValueError('turning_offset in the SunFounder config differs from hardware.turning_offset_at_calibration: '
+                         're-measure the steering table after changing the offset')
     for flag in ['sensor_holdout_passed','actuator_calibration_passed','stop_test_passed','wheels_lifted_passed']:
         if hw.get(flag) is not True:
             raise ValueError(f'hardware.{flag} is not confirmed')
@@ -49,15 +96,26 @@ def map_actuators(cfg, speed, steering):
     return pwm, int(round(np.interp(angle,angles[:,0],angles[:,1])))
 
 
+def open_picar(db_path):
+    """(front, back) SunFounder wheel objects, motors stopped, after checking that the library
+    read the same turning_offset/forward_A/forward_B as the calibrated file contains."""
+    expected=read_picar_database(db_path)
+    import picar
+    from picar import front_wheels, back_wheels
+    picar.setup()
+    front=front_wheels.Front_Wheels(db=db_path)
+    back=back_wheels.Back_Wheels(db=db_path)
+    back.speed=0;back.stop()
+    seen={'turning_offset':int(front.turning_offset),'forward_A':int(back.forward_A),'forward_B':int(back.forward_B)}
+    if seen!=expected:
+        raise RuntimeError(f'picar library read {seen} from {db_path}, expected {expected}')
+    return front,back
+
+
 def motor_worker(commands, status, cfg):
     back=None
     try:
-        import picar
-        from picar import front_wheels, back_wheels
-        picar.setup()
-        front=front_wheels.Front_Wheels(db=cfg['hardware'].get('picar_database','config'))
-        back=back_wheels.Back_Wheels(db=cfg['hardware'].get('picar_database','config'))
-        back.speed=0;back.stop()
+        front,back=open_picar(cfg['hardware']['picar_database'])
         status.put(('ready',None))
         while True:
             try:

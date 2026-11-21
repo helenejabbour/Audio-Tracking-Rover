@@ -1,0 +1,4650 @@
+[
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 25.0,
+    "config_overrides": {
+      "sigma_deg": 25.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.195394628304966,
+    "tail_range_rmse_m": 10.208743125591848,
+    "tail_bearing_rms_deg": 0.7611596737820654,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 0,
+    "rejections": {
+      "low_signal": 104,
+      "firmware_quality": 16
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 25.0,
+    "config_overrides": {
+      "sigma_deg": 25.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.160837299607987,
+    "tail_range_rmse_m": 10.174246761941973,
+    "tail_bearing_rms_deg": 1.288916499612026,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "low_signal": 88,
+      "outside_range_calibration": 3,
+      "firmware_quality": 23
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 25.0,
+    "config_overrides": {
+      "sigma_deg": 25.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.237438156686554,
+    "tail_range_rmse_m": 10.250736961367616,
+    "tail_bearing_rms_deg": 2.251974539119255,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 3,
+    "rejections": {
+      "low_signal": 82,
+      "outside_range_calibration": 6,
+      "firmware_quality": 29
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 25.0,
+    "config_overrides": {
+      "sigma_deg": 25.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.164879089658173,
+    "tail_range_rmse_m": 10.17828210642701,
+    "tail_bearing_rms_deg": 4.268500565857731,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 0,
+    "rejections": {
+      "low_signal": 96,
+      "firmware_quality": 24
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 25.0,
+    "config_overrides": {
+      "sigma_deg": 25.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.305826060653574,
+    "tail_range_rmse_m": 10.319046146129475,
+    "tail_bearing_rms_deg": 2.123739057431724,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 0,
+    "rejections": {
+      "low_signal": 106,
+      "firmware_quality": 14
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 25.0,
+    "config_overrides": {
+      "sigma_deg": 25.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.32410089262931,
+    "tail_range_rmse_m": 10.337295091357086,
+    "tail_bearing_rms_deg": 0.3620293779664283,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 5,
+      "low_signal": 89,
+      "firmware_quality": 21
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 40.0,
+    "config_overrides": {
+      "sigma_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.179060657235906,
+    "tail_range_rmse_m": 10.192430564790168,
+    "tail_bearing_rms_deg": 0.8117973483148585,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.3073218317986118,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 44,
+      "low_signal": 68,
+      "outside_angular_calibration": 1,
+      "firmware_quality": 2
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 40.0,
+    "config_overrides": {
+      "sigma_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.138171999517679,
+    "tail_range_rmse_m": 10.151611410619255,
+    "tail_bearing_rms_deg": 1.298893829268816,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.2905051968220274,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 49,
+      "low_signal": 65
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 40.0,
+    "config_overrides": {
+      "sigma_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.232442032331413,
+    "tail_range_rmse_m": 10.245747335245564,
+    "tail_bearing_rms_deg": 2.2578789310843943,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3128787612230963,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 47,
+      "low_signal": 68
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 40.0,
+    "config_overrides": {
+      "sigma_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.134701973721175,
+    "tail_range_rmse_m": 10.148144782190977,
+    "tail_bearing_rms_deg": 4.162077743811562,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.28672664432388806,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 43,
+      "low_signal": 69,
+      "firmware_quality": 1
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 40.0,
+    "config_overrides": {
+      "sigma_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.300829484363202,
+    "tail_range_rmse_m": 10.3140559692283,
+    "tail_bearing_rms_deg": 2.1195278992501567,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.31844509501527035,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 48,
+      "low_signal": 66,
+      "firmware_quality": 1
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 40.0,
+    "config_overrides": {
+      "sigma_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.319100994405165,
+    "tail_range_rmse_m": 10.332301579240465,
+    "tail_bearing_rms_deg": 0.36691508131260064,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3096552901720133,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 50,
+      "low_signal": 66
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 80.0,
+    "config_overrides": {
+      "sigma_deg": 80.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.179060644799446,
+    "tail_range_rmse_m": 10.1924305522959,
+    "tail_bearing_rms_deg": 0.8080273524989265,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.3088259434412028,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 15,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 80.0,
+    "config_overrides": {
+      "sigma_deg": 80.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.138171968734389,
+    "tail_range_rmse_m": 10.15161137985099,
+    "tail_bearing_rms_deg": 1.2949044865587194,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.29312544232650006,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 103,
+      "outside_angular_calibration": 10,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 80.0,
+    "config_overrides": {
+      "sigma_deg": 80.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.226446720135126,
+    "tail_range_rmse_m": 10.239759829306832,
+    "tail_bearing_rms_deg": 2.2654152284307547,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.31310593899974015,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 17,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 80.0,
+    "config_overrides": {
+      "sigma_deg": 80.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.134701553605607,
+    "tail_range_rmse_m": 10.14814436280022,
+    "tail_bearing_rms_deg": 4.149777403143302,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2875346729459615,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 102,
+      "outside_angular_calibration": 10,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 80.0,
+    "config_overrides": {
+      "sigma_deg": 80.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.30082948481084,
+    "tail_range_rmse_m": 10.314055969675037,
+    "tail_bearing_rms_deg": 2.119717220407215,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3173755825830256,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 90,
+      "outside_angular_calibration": 25
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 80.0,
+    "config_overrides": {
+      "sigma_deg": 80.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.31910099461791,
+    "tail_range_rmse_m": 10.332301579454334,
+    "tail_bearing_rms_deg": 0.3674356237905804,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.31709607289359243,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 100,
+      "outside_angular_calibration": 15,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 120.0,
+    "config_overrides": {
+      "sigma_deg": 120.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.179060625436101,
+    "tail_range_rmse_m": 10.192430532841884,
+    "tail_bearing_rms_deg": 0.8020957243247006,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.31146835027672637,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 90,
+      "outside_angular_calibration": 24
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 120.0,
+    "config_overrides": {
+      "sigma_deg": 120.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.144572986713268,
+    "tail_range_rmse_m": 10.158003926322069,
+    "tail_bearing_rms_deg": 1.2924848805104545,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.298367559290785,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 99,
+      "outside_angular_calibration": 15
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 120.0,
+    "config_overrides": {
+      "sigma_deg": 120.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.226446649425021,
+    "tail_range_rmse_m": 10.239759758566725,
+    "tail_bearing_rms_deg": 2.252076659927235,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.31612487776996384,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 95,
+      "outside_angular_calibration": 20
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 120.0,
+    "config_overrides": {
+      "sigma_deg": 120.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.1347008395342,
+    "tail_range_rmse_m": 10.148143649961913,
+    "tail_bearing_rms_deg": 4.128664077873349,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2888505226600918,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 86,
+      "outside_angular_calibration": 27
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 120.0,
+    "config_overrides": {
+      "sigma_deg": 120.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.300829485233134,
+    "tail_range_rmse_m": 10.31405597009648,
+    "tail_bearing_rms_deg": 2.119895746103962,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3174999723163542,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 24
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 120.0,
+    "config_overrides": {
+      "sigma_deg": 120.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.31910099500658,
+    "tail_range_rmse_m": 10.33230157984505,
+    "tail_bearing_rms_deg": 0.36838488175120615,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3184930385686798,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 93,
+      "outside_angular_calibration": 23
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 160.0,
+    "config_overrides": {
+      "sigma_deg": 160.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.190395078124784,
+    "tail_range_rmse_m": 10.203750121261296,
+    "tail_bearing_rms_deg": 0.7713547576995743,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.32463889803409607,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 76,
+      "outside_angular_calibration": 38
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 160.0,
+    "config_overrides": {
+      "sigma_deg": 160.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.149840095832888,
+    "tail_range_rmse_m": 10.16326407263151,
+    "tail_bearing_rms_deg": 1.2935668589839653,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.30458824690962616,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 89,
+      "outside_angular_calibration": 25
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 160.0,
+    "config_overrides": {
+      "sigma_deg": 160.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.237438156686554,
+    "tail_range_rmse_m": 10.250736961367616,
+    "tail_bearing_rms_deg": 2.251974539119255,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 83,
+      "outside_angular_calibration": 32
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 160.0,
+    "config_overrides": {
+      "sigma_deg": 160.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.159892942484518,
+    "tail_range_rmse_m": 10.173302517653468,
+    "tail_bearing_rms_deg": 4.2657017784436695,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3040338316199197,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 75,
+      "outside_angular_calibration": 39
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 160.0,
+    "config_overrides": {
+      "sigma_deg": 160.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.305826060653574,
+    "tail_range_rmse_m": 10.319046146129475,
+    "tail_bearing_rms_deg": 2.123739057431724,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 76,
+      "outside_angular_calibration": 39
+    }
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 160.0,
+    "config_overrides": {
+      "sigma_deg": 160.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.32410089262931,
+    "tail_range_rmse_m": 10.337295091357086,
+    "tail_bearing_rms_deg": 0.3620293779664283,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 82,
+      "outside_angular_calibration": 34
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.1,
+    "config_overrides": {
+      "pair_gap": 0.1,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.3382185356632249,
+    "tail_range_rmse_m": 0.3382429015080928,
+    "tail_bearing_rms_deg": 0.6126326197635257,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.520494845362676,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6228143213988343,
+    "max_command_speed": 0.3020376283797132,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.1,
+    "config_overrides": {
+      "pair_gap": 0.1,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.34019060531232254,
+    "tail_range_rmse_m": 0.3402233101098805,
+    "tail_bearing_rms_deg": 0.27894401225272514,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6203164029975021,
+    "max_command_speed": 0.2885268120864242,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.1,
+    "config_overrides": {
+      "pair_gap": 0.1,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.33603328365480434,
+    "tail_range_rmse_m": 0.3360370157440158,
+    "tail_bearing_rms_deg": 0.3463214905782093,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5261246164646463,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6203164029975021,
+    "max_command_speed": 0.3199479568707699,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.1,
+    "config_overrides": {
+      "pair_gap": 0.1,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.3391966274302492,
+    "tail_range_rmse_m": 0.33924313836429654,
+    "tail_bearing_rms_deg": 0.19745117626388045,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6228143213988343,
+    "max_command_speed": 0.2853415031395556,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.1,
+    "config_overrides": {
+      "pair_gap": 0.1,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.3412565564271727,
+    "tail_range_rmse_m": 0.34127352602696026,
+    "tail_bearing_rms_deg": 0.4488224462331053,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5171882866526563,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6178184845961698,
+    "max_command_speed": 0.3259856850985639,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.1,
+    "config_overrides": {
+      "pair_gap": 0.1,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.3317224809348868,
+    "tail_range_rmse_m": 0.33173524910731694,
+    "tail_bearing_rms_deg": 0.5499950418531149,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5247719392683907,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6194837635303914,
+    "max_command_speed": 0.32525546206012057,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.18,
+    "config_overrides": {
+      "pair_gap": 0.18,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.41282116854177964,
+    "tail_range_rmse_m": 0.4129044389243426,
+    "tail_bearing_rms_deg": 0.6339420613784477,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.5628642797668609,
+    "max_command_speed": 0.3007028101974541,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.18,
+    "config_overrides": {
+      "pair_gap": 0.18,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.4033052740821671,
+    "tail_range_rmse_m": 0.40334505063530074,
+    "tail_bearing_rms_deg": 0.2982642128882073,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.5645295587010825,
+    "max_command_speed": 0.2885399237509877,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.18,
+    "config_overrides": {
+      "pair_gap": 0.18,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.4079623774420759,
+    "tail_range_rmse_m": 0.4080145991035148,
+    "tail_bearing_rms_deg": 0.3708577416648797,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.5603663613655288,
+    "max_command_speed": 0.3184146374566539,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.18,
+    "config_overrides": {
+      "pair_gap": 0.18,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.40996162918493645,
+    "tail_range_rmse_m": 0.41005639875058353,
+    "tail_bearing_rms_deg": 0.2280125711583165,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.5645295587010825,
+    "max_command_speed": 0.2842874973054991,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.18,
+    "config_overrides": {
+      "pair_gap": 0.18,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.4073229182721137,
+    "tail_range_rmse_m": 0.4073596919645186,
+    "tail_bearing_rms_deg": 0.46992897278840884,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5796571956254193,
+    "safe_clearance": true,
+    "tracking_fraction": 0.556203164029975,
+    "max_command_speed": 0.3255773672071859,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.18,
+    "config_overrides": {
+      "pair_gap": 0.18,
+      "measurement_period": 0.4
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.40014546708383814,
+    "tail_range_rmse_m": 0.40022684671327524,
+    "tail_bearing_rms_deg": 0.5985165964176447,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5849348354254817,
+    "safe_clearance": true,
+    "tracking_fraction": 0.559533721898418,
+    "max_command_speed": 0.3298837006851004,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 150,
+    "rejections": {}
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.3,
+    "config_overrides": {
+      "pair_gap": 0.3,
+      "measurement_period": 0.6
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.184395660803258,
+    "tail_range_rmse_m": 10.197758567633224,
+    "tail_bearing_rms_deg": 0.7953215591926462,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.2967703846170524,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 81,
+      "outside_angular_calibration": 13,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.3,
+    "config_overrides": {
+      "pair_gap": 0.3,
+      "measurement_period": 0.6
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.137440600010645,
+    "tail_range_rmse_m": 10.15088097975339,
+    "tail_bearing_rms_deg": 1.2950033398355671,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.29403098273137807,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 83,
+      "outside_angular_calibration": 10,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.3,
+    "config_overrides": {
+      "pair_gap": 0.3,
+      "measurement_period": 0.6
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.226446725500573,
+    "tail_range_rmse_m": 10.239759834674532,
+    "tail_bearing_rms_deg": 2.2664247732213973,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.31599654132463406,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 82,
+      "outside_angular_calibration": 12,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.3,
+    "config_overrides": {
+      "pair_gap": 0.3,
+      "measurement_period": 0.6
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.133291446299253,
+    "tail_range_rmse_m": 10.146736121070974,
+    "tail_bearing_rms_deg": 4.113305206787835,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2875675681359236,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 85,
+      "outside_angular_calibration": 8,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.3,
+    "config_overrides": {
+      "pair_gap": 0.3,
+      "measurement_period": 0.6
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.300829484629842,
+    "tail_range_rmse_m": 10.314055969494403,
+    "tail_bearing_rms_deg": 2.1196406421651206,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3215618406336463,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 80,
+      "outside_angular_calibration": 16
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.3,
+    "config_overrides": {
+      "pair_gap": 0.3,
+      "measurement_period": 0.6
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.31910099447424,
+    "tail_range_rmse_m": 10.332301579309906,
+    "tail_bearing_rms_deg": 0.36708422667048474,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3204277523343843,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 82,
+      "outside_angular_calibration": 13,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.5,
+    "config_overrides": {
+      "pair_gap": 0.5,
+      "measurement_period": 1.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.195394628304966,
+    "tail_range_rmse_m": 10.208743125591848,
+    "tail_bearing_rms_deg": 0.7611596737820654,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 3,
+    "rejections": {
+      "outside_range_calibration": 44,
+      "outside_angular_calibration": 10,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.5,
+    "config_overrides": {
+      "pair_gap": 0.5,
+      "measurement_period": 1.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.160837299607987,
+    "tail_range_rmse_m": 10.174246761941973,
+    "tail_bearing_rms_deg": 1.288916499612026,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 3,
+    "rejections": {
+      "outside_range_calibration": 45,
+      "outside_angular_calibration": 9,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.5,
+    "config_overrides": {
+      "pair_gap": 0.5,
+      "measurement_period": 1.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.237438156686554,
+    "tail_range_rmse_m": 10.250736961367616,
+    "tail_bearing_rms_deg": 2.251974539119255,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 3,
+    "rejections": {
+      "outside_range_calibration": 50,
+      "outside_angular_calibration": 6,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.5,
+    "config_overrides": {
+      "pair_gap": 0.5,
+      "measurement_period": 1.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.164879089658173,
+    "tail_range_rmse_m": 10.17828210642701,
+    "tail_bearing_rms_deg": 4.268500565857731,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 49,
+      "outside_angular_calibration": 5,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.5,
+    "config_overrides": {
+      "pair_gap": 0.5,
+      "measurement_period": 1.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.305826060653574,
+    "tail_range_rmse_m": 10.319046146129475,
+    "tail_bearing_rms_deg": 2.123739057431724,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 3,
+    "rejections": {
+      "outside_range_calibration": 44,
+      "outside_angular_calibration": 10,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.5,
+    "config_overrides": {
+      "pair_gap": 0.5,
+      "measurement_period": 1.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.32410089262931,
+    "tail_range_rmse_m": 10.337295091357086,
+    "tail_bearing_rms_deg": 0.3620293779664283,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 3,
+    "rejections": {
+      "outside_range_calibration": 50,
+      "outside_angular_calibration": 4,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.2,
+    "config_overrides": {
+      "amplitude_noise": 0.2
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.171767927838488,
+    "tail_range_rmse_m": 10.18514741771708,
+    "tail_bearing_rms_deg": 0.8553318111304876,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.3031142213587489,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 94,
+      "outside_angular_calibration": 20
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.2,
+    "config_overrides": {
+      "amplitude_noise": 0.2
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.13058674626792,
+    "tail_range_rmse_m": 10.144036210006222,
+    "tail_bearing_rms_deg": 1.3037829648559078,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2897829951506584,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 12
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.2,
+    "config_overrides": {
+      "amplitude_noise": 0.2
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.221115441470936,
+    "tail_range_rmse_m": 10.23443550013006,
+    "tail_bearing_rms_deg": 2.281963124139779,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.32220983393352837,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 105,
+      "outside_angular_calibration": 10
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.2,
+    "config_overrides": {
+      "amplitude_noise": 0.2
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.134701848971856,
+    "tail_range_rmse_m": 10.148144657656783,
+    "tail_bearing_rms_deg": 4.159497378372365,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.28718925425814973,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 112,
+      "outside_angular_calibration": 1
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.2,
+    "config_overrides": {
+      "amplitude_noise": 0.2
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.30082948610936,
+    "tail_range_rmse_m": 10.31405597097094,
+    "tail_bearing_rms_deg": 2.1202663024114656,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.31755532104844036,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 90,
+      "outside_angular_calibration": 24,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.2,
+    "config_overrides": {
+      "amplitude_noise": 0.2
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.319100994582792,
+    "tail_range_rmse_m": 10.332301579419031,
+    "tail_bearing_rms_deg": 0.3673496905976306,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.32105448327778197,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 103,
+      "outside_angular_calibration": 12,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.8,
+    "config_overrides": {
+      "amplitude_noise": 0.8
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.179060645224126,
+    "tail_range_rmse_m": 10.19243055272257,
+    "tail_bearing_rms_deg": 0.8080836777206075,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.30905279481735176,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 13,
+      "low_signal": 4
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.8,
+    "config_overrides": {
+      "amplitude_noise": 0.8
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.13817196705124,
+    "tail_range_rmse_m": 10.151611378168667,
+    "tail_bearing_rms_deg": 1.294271719476108,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.29289725170518216,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 103,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.8,
+    "config_overrides": {
+      "amplitude_noise": 0.8
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.22644671753569,
+    "tail_range_rmse_m": 10.239759826706305,
+    "tail_bearing_rms_deg": 2.264926102960146,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.3142106112243495,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 16,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.8,
+    "config_overrides": {
+      "amplitude_noise": 0.8
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.134701545463223,
+    "tail_range_rmse_m": 10.148144354671903,
+    "tail_bearing_rms_deg": 4.149326324724286,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2875500192656422,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 13,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.8,
+    "config_overrides": {
+      "amplitude_noise": 0.8
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.300829484508514,
+    "tail_range_rmse_m": 10.31405596937332,
+    "tail_bearing_rms_deg": 2.1195892260249636,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3173483266958588,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 22,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.8,
+    "config_overrides": {
+      "amplitude_noise": 0.8
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.319100994596983,
+    "tail_range_rmse_m": 10.332301579433295,
+    "tail_bearing_rms_deg": 0.3673843223855923,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3161452232103059,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 13,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 2.0,
+    "config_overrides": {
+      "amplitude_noise": 2.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.184395656963577,
+    "tail_range_rmse_m": 10.197758563775434,
+    "tail_bearing_rms_deg": 0.793248823200091,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.2949684669529423,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 86,
+      "outside_angular_calibration": 20,
+      "low_signal": 9
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 2.0,
+    "config_overrides": {
+      "amplitude_noise": 2.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.149840071254756,
+    "tail_range_rmse_m": 10.163264048065205,
+    "tail_bearing_rms_deg": 1.2854446074527217,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.29680960162970177,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 87,
+      "outside_angular_calibration": 17,
+      "low_signal": 10
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 2.0,
+    "config_overrides": {
+      "amplitude_noise": 2.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.237438156686554,
+    "tail_range_rmse_m": 10.250736961367616,
+    "tail_bearing_rms_deg": 2.251974539119255,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 86,
+      "outside_angular_calibration": 16,
+      "low_signal": 13
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 2.0,
+    "config_overrides": {
+      "amplitude_noise": 2.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.142269356444828,
+    "tail_range_rmse_m": 10.155702164223198,
+    "tail_bearing_rms_deg": 4.192780561539105,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.28994244757645893,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 78,
+      "outside_angular_calibration": 22,
+      "low_signal": 13
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 2.0,
+    "config_overrides": {
+      "amplitude_noise": 2.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.305826060653574,
+    "tail_range_rmse_m": 10.319046146129475,
+    "tail_bearing_rms_deg": 2.123739057431724,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 82,
+      "outside_angular_calibration": 23,
+      "low_signal": 10
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 2.0,
+    "config_overrides": {
+      "amplitude_noise": 2.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.307765708915063,
+    "tail_range_rmse_m": 10.320980794796613,
+    "tail_bearing_rms_deg": 0.3901319486485054,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.31218457946339295,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 90,
+      "outside_angular_calibration": 21,
+      "low_signal": 5
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 5.0,
+    "config_overrides": {
+      "amplitude_noise": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.195394628304966,
+    "tail_range_rmse_m": 10.208743125591848,
+    "tail_bearing_rms_deg": 0.7611596737820654,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 57,
+      "outside_angular_calibration": 26,
+      "low_signal": 27,
+      "firmware_quality": 6
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 5.0,
+    "config_overrides": {
+      "amplitude_noise": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.160837299607987,
+    "tail_range_rmse_m": 10.174246761941973,
+    "tail_bearing_rms_deg": 1.288916499612026,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 7,
+    "rejections": {
+      "outside_angular_calibration": 28,
+      "outside_range_calibration": 50,
+      "low_signal": 25,
+      "firmware_quality": 10
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 5.0,
+    "config_overrides": {
+      "amplitude_noise": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.237438156686554,
+    "tail_range_rmse_m": 10.250736961367616,
+    "tail_bearing_rms_deg": 2.251974539119255,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 51,
+      "outside_angular_calibration": 34,
+      "low_signal": 21,
+      "firmware_quality": 10
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 5.0,
+    "config_overrides": {
+      "amplitude_noise": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.164879089658173,
+    "tail_range_rmse_m": 10.17828210642701,
+    "tail_bearing_rms_deg": 4.268500565857731,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 8,
+    "rejections": {
+      "outside_range_calibration": 48,
+      "outside_angular_calibration": 32,
+      "firmware_quality": 10,
+      "low_signal": 22
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 5.0,
+    "config_overrides": {
+      "amplitude_noise": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.305826060653574,
+    "tail_range_rmse_m": 10.319046146129475,
+    "tail_bearing_rms_deg": 2.123739057431724,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 51,
+      "outside_angular_calibration": 33,
+      "low_signal": 22,
+      "firmware_quality": 9
+    }
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 5.0,
+    "config_overrides": {
+      "amplitude_noise": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.32410089262931,
+    "tail_range_rmse_m": 10.337295091357086,
+    "tail_bearing_rms_deg": 0.3620293779664283,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 52,
+      "outside_angular_calibration": 35,
+      "low_signal": 22,
+      "firmware_quality": 6
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 0.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 0.0
+    },
+    "steady_range_error_m": 10.179060645955522,
+    "tail_range_rmse_m": 10.192430553457363,
+    "tail_bearing_rms_deg": 0.8083767800073238,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.30870708604743435,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 14,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 0.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 0.0
+    },
+    "steady_range_error_m": 10.138171971949431,
+    "tail_range_rmse_m": 10.151611383064468,
+    "tail_bearing_rms_deg": 1.2953410743616995,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.29304377297145073,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 103,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 0.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 0.0
+    },
+    "steady_range_error_m": 10.226446724299857,
+    "tail_range_rmse_m": 10.239759833473313,
+    "tail_bearing_rms_deg": 2.2661988060504172,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.3129264693664697,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 16,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 0.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 0.0
+    },
+    "steady_range_error_m": 10.134701595872462,
+    "tail_range_rmse_m": 10.148144404994135,
+    "tail_bearing_rms_deg": 4.151012901898856,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.28749452837945505,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 102,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 0.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 0.0
+    },
+    "steady_range_error_m": 10.30082948477965,
+    "tail_range_rmse_m": 10.31405596964391,
+    "tail_bearing_rms_deg": 2.119703883821539,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.317405083453161,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 22,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 0.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 0.0
+    },
+    "steady_range_error_m": 10.319100994594553,
+    "tail_range_rmse_m": 10.332301579430853,
+    "tail_bearing_rms_deg": 0.36737842759131617,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3169626147973331,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 13,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 5.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 5.0
+    },
+    "steady_range_error_m": 10.179060582311402,
+    "tail_range_rmse_m": 10.192430489512638,
+    "tail_bearing_rms_deg": 0.7841458246576996,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.31526509863635854,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 100,
+      "outside_angular_calibration": 12,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 5.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 5.0
+    },
+    "steady_range_error_m": 10.130586205677586,
+    "tail_range_rmse_m": 10.14403566967255,
+    "tail_bearing_rms_deg": 1.2293726232601663,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2874504426386929,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 108,
+      "outside_angular_calibration": 5,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 5.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 5.0
+    },
+    "steady_range_error_m": 10.2264466370308,
+    "tail_range_rmse_m": 10.239759746167184,
+    "tail_bearing_rms_deg": 2.2497313743787397,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.31370023303121325,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 104,
+      "outside_angular_calibration": 8,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 5.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 5.0
+    },
+    "steady_range_error_m": 10.134699781937377,
+    "tail_range_rmse_m": 10.148142594195512,
+    "tail_bearing_rms_deg": 4.07638325450303,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2789755348757054,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 12,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 5.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 5.0
+    },
+    "steady_range_error_m": 10.30082949495194,
+    "tail_range_rmse_m": 10.314055979795738,
+    "tail_bearing_rms_deg": 2.1240022448112432,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3212554971921956,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 102,
+      "outside_angular_calibration": 13
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 5.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 5.0
+    },
+    "steady_range_error_m": 10.319100996420005,
+    "tail_range_rmse_m": 10.332301581265867,
+    "tail_bearing_rms_deg": 0.37182014684064224,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3096190715091962,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 107,
+      "outside_angular_calibration": 9
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 10.0
+    },
+    "steady_range_error_m": 10.179060522585296,
+    "tail_range_rmse_m": 10.19243042949548,
+    "tail_bearing_rms_deg": 0.7608588180663262,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.3176739108946203,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 96,
+      "outside_angular_calibration": 15,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 10.0
+    },
+    "steady_range_error_m": 10.1305857104928,
+    "tail_range_rmse_m": 10.144035174703548,
+    "tail_bearing_rms_deg": 1.1594848299115095,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2820495186727493,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 105,
+      "outside_angular_calibration": 9
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 10.0
+    },
+    "steady_range_error_m": 10.22644654874234,
+    "tail_range_rmse_m": 10.239759657840262,
+    "tail_bearing_rms_deg": 2.2329675974281717,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.3099624339238203,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 14,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 10.0
+    },
+    "steady_range_error_m": 10.134697756472768,
+    "tail_range_rmse_m": 10.148140572245365,
+    "tail_bearing_rms_deg": 3.9921353407024287,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.26698868693354927,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 89,
+      "outside_angular_calibration": 20,
+      "low_signal": 4
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 10.0
+    },
+    "steady_range_error_m": 10.300829505008316,
+    "tail_range_rmse_m": 10.314055989831898,
+    "tail_bearing_rms_deg": 2.1282442562599346,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3205410778238435,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 12,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 10.0
+    },
+    "steady_range_error_m": 10.31910099843876,
+    "tail_range_rmse_m": 10.332301583295052,
+    "tail_bearing_rms_deg": 0.3766801971660969,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.29816491467011985,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 14,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 20.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 20.0
+    },
+    "steady_range_error_m": 10.179060404542396,
+    "tail_range_rmse_m": 10.19243031084919,
+    "tail_bearing_rms_deg": 0.7131466207242404,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.309925953535118,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 18,
+      "low_signal": 5
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 20.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 20.0
+    },
+    "steady_range_error_m": 10.130584642362217,
+    "tail_range_rmse_m": 10.144034106962046,
+    "tail_bearing_rms_deg": 0.997292610382668,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.26065320535238806,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 86,
+      "outside_angular_calibration": 24,
+      "low_signal": 4
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 20.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 20.0
+    },
+    "steady_range_error_m": 10.226446352841762,
+    "tail_range_rmse_m": 10.239759461850815,
+    "tail_bearing_rms_deg": 2.1953881932636374,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.28943016460313487,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 87,
+      "outside_angular_calibration": 21,
+      "low_signal": 7
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 20.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 20.0
+    },
+    "steady_range_error_m": 10.164879089658173,
+    "tail_range_rmse_m": 10.17828210642701,
+    "tail_bearing_rms_deg": 4.268500565857731,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 4,
+    "rejections": {
+      "outside_angular_calibration": 26,
+      "outside_range_calibration": 82,
+      "low_signal": 8
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 20.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 20.0
+    },
+    "steady_range_error_m": 10.30082952655387,
+    "tail_range_rmse_m": 10.31405601133418,
+    "tail_bearing_rms_deg": 2.137308270146792,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3057426476641155,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 88,
+      "outside_angular_calibration": 22,
+      "low_signal": 5
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 20.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": 20.0
+    },
+    "steady_range_error_m": 10.3191010035118,
+    "tail_range_rmse_m": 10.332301588393683,
+    "tail_bearing_rms_deg": 0.38866326295757236,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.2644088491886707,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 94,
+      "outside_angular_calibration": 18,
+      "low_signal": 4
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": -10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": -10.0
+    },
+    "steady_range_error_m": 10.179060798445152,
+    "tail_range_rmse_m": 10.192430706631185,
+    "tail_bearing_rms_deg": 0.8641661021150696,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.2837090432691704,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 87,
+      "outside_angular_calibration": 23,
+      "low_signal": 4
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": -10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": -10.0
+    },
+    "steady_range_error_m": 10.138172431815525,
+    "tail_range_rmse_m": 10.15161184269712,
+    "tail_bearing_rms_deg": 1.3777334240065107,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.28470467384072856,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 89,
+      "outside_angular_calibration": 22,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": -10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": -10.0
+    },
+    "steady_range_error_m": 10.226446911560389,
+    "tail_range_rmse_m": 10.239760020810301,
+    "tail_bearing_rms_deg": 2.301196129843322,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.2981551849111403,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 90,
+      "outside_angular_calibration": 20,
+      "low_signal": 5
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": -10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": -10.0
+    },
+    "steady_range_error_m": 10.134704908006483,
+    "tail_range_rmse_m": 10.148147711426555,
+    "tail_bearing_rms_deg": 4.285400471398551,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.29331894930718244,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 92,
+      "outside_angular_calibration": 20,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": -10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": -10.0
+    },
+    "steady_range_error_m": 10.300829462211448,
+    "tail_range_rmse_m": 10.314055947121151,
+    "tail_bearing_rms_deg": 2.1101416120603607,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.29647795786435127,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 88,
+      "outside_angular_calibration": 21,
+      "low_signal": 6
+    }
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": -10.0,
+    "config_overrides": {},
+    "scenario_overrides": {
+      "boresight_error_deg": -10.0
+    },
+    "steady_range_error_m": 10.319100991190323,
+    "tail_range_rmse_m": 10.332301576008453,
+    "tail_bearing_rms_deg": 0.35897115715617256,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.31852443552350884,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 89,
+      "outside_angular_calibration": 24,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 20.0,
+    "config_overrides": {
+      "dither_deg": 20.0,
+      "pair_gap": 0.2053333333333333,
+      "measurement_period": 0.2773333333333333,
+      "bearing_domain_deg": 60.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.20260234757430606,
+    "tail_range_rmse_m": 0.20262920587537112,
+    "tail_bearing_rms_deg": 0.6990434114220073,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.3911957836454925,
+    "safe_clearance": true,
+    "tracking_fraction": 0.880932556203164,
+    "max_command_speed": 0.305941101382859,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 200,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 20.0,
+    "config_overrides": {
+      "dither_deg": 20.0,
+      "pair_gap": 0.2053333333333333,
+      "measurement_period": 0.2773333333333333,
+      "bearing_domain_deg": 60.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.19910667304241622,
+    "tail_range_rmse_m": 0.1991663129793413,
+    "tail_bearing_rms_deg": 0.5717714143203219,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.3893792110074896,
+    "safe_clearance": true,
+    "tracking_fraction": 0.8825978351373855,
+    "max_command_speed": 0.2912580054218735,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 200,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 20.0,
+    "config_overrides": {
+      "dither_deg": 20.0,
+      "pair_gap": 0.2053333333333333,
+      "measurement_period": 0.2773333333333333,
+      "bearing_domain_deg": 60.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.19693551638655057,
+    "tail_range_rmse_m": 0.1969548848238358,
+    "tail_bearing_rms_deg": 1.4452154783027225,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.3918820683876578,
+    "safe_clearance": true,
+    "tracking_fraction": 0.8834304746044963,
+    "max_command_speed": 0.3262247564605667,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 200,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 20.0,
+    "config_overrides": {
+      "dither_deg": 20.0,
+      "pair_gap": 0.2053333333333333,
+      "measurement_period": 0.2773333333333333,
+      "bearing_domain_deg": 60.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.2003623588085769,
+    "tail_range_rmse_m": 0.20038735407990813,
+    "tail_bearing_rms_deg": 1.863989330405108,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.393972808500006,
+    "safe_clearance": true,
+    "tracking_fraction": 0.880932556203164,
+    "max_command_speed": 0.2881892329536804,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 200,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 20.0,
+    "config_overrides": {
+      "dither_deg": 20.0,
+      "pair_gap": 0.2053333333333333,
+      "measurement_period": 0.2773333333333333,
+      "bearing_domain_deg": 60.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.20160307933564536,
+    "tail_range_rmse_m": 0.20162925226454004,
+    "tail_bearing_rms_deg": 1.2753633325418117,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.391802172880012,
+    "safe_clearance": true,
+    "tracking_fraction": 0.8817651956702748,
+    "max_command_speed": 0.32606886933975876,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 200,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 20.0,
+    "config_overrides": {
+      "dither_deg": 20.0,
+      "pair_gap": 0.2053333333333333,
+      "measurement_period": 0.2773333333333333,
+      "bearing_domain_deg": 60.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.19969412408585907,
+    "tail_range_rmse_m": 0.19970858971972671,
+    "tail_bearing_rms_deg": 1.4301286193875253,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.3915981705838407,
+    "safe_clearance": true,
+    "tracking_fraction": 0.8867610324729392,
+    "max_command_speed": 0.33094248880183447,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 200,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 30.0,
+    "config_overrides": {
+      "dither_deg": 30.0,
+      "pair_gap": 0.272,
+      "measurement_period": 0.344,
+      "bearing_domain_deg": 50.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.35098252360089416,
+    "tail_range_rmse_m": 0.3510718904843891,
+    "tail_bearing_rms_deg": 0.7378811450326321,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5369213723641473,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6219816819317235,
+    "max_command_speed": 0.3018458297784503,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 171,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 30.0,
+    "config_overrides": {
+      "dither_deg": 30.0,
+      "pair_gap": 0.272,
+      "measurement_period": 0.344,
+      "bearing_domain_deg": 50.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.3528893397843771,
+    "tail_range_rmse_m": 0.3529081881429476,
+    "tail_bearing_rms_deg": 0.44124424845805915,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6253122398001665,
+    "max_command_speed": 0.2879650317890749,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 171,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 30.0,
+    "config_overrides": {
+      "dither_deg": 30.0,
+      "pair_gap": 0.272,
+      "measurement_period": 0.344,
+      "bearing_domain_deg": 50.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.3497282360879574,
+    "tail_range_rmse_m": 0.34975433261824806,
+    "tail_bearing_rms_deg": 0.686485652101942,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.538878756535703,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6236469608659451,
+    "max_command_speed": 0.32135436640247017,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 171,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 30.0,
+    "config_overrides": {
+      "dither_deg": 30.0,
+      "pair_gap": 0.272,
+      "measurement_period": 0.344,
+      "bearing_domain_deg": 50.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.35222210108536006,
+    "tail_range_rmse_m": 0.35226022342576147,
+    "tail_bearing_rms_deg": 0.933905122904335,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6261448792672772,
+    "max_command_speed": 0.28478351480884834,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 171,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 30.0,
+    "config_overrides": {
+      "dither_deg": 30.0,
+      "pair_gap": 0.272,
+      "measurement_period": 0.344,
+      "bearing_domain_deg": 50.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.3531078721709793,
+    "tail_range_rmse_m": 0.3531272144313412,
+    "tail_bearing_rms_deg": 0.8097283666573264,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5346423329195453,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6194837635303914,
+    "max_command_speed": 0.32443780281657814,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 171,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 30.0,
+    "config_overrides": {
+      "dither_deg": 30.0,
+      "pair_gap": 0.272,
+      "measurement_period": 0.344,
+      "bearing_domain_deg": 50.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.3497065797702771,
+    "tail_range_rmse_m": 0.3497410550680983,
+    "tail_bearing_rms_deg": 0.6654423470341531,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5371849524431132,
+    "safe_clearance": true,
+    "tracking_fraction": 0.6203164029975021,
+    "max_command_speed": 0.32646676120447665,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 171,
+    "rejections": {}
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 40.0,
+    "config_overrides": {
+      "dither_deg": 40.0,
+      "pair_gap": 0.33866666666666667,
+      "measurement_period": 0.4106666666666666,
+      "bearing_domain_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.101385477943861,
+    "tail_range_rmse_m": 10.114858186771682,
+    "tail_bearing_rms_deg": 1.2876135795827224,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.009991673605328892,
+    "max_command_speed": 0.31517759072863427,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 106,
+      "outside_angular_calibration": 17,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 40.0,
+    "config_overrides": {
+      "dither_deg": 40.0,
+      "pair_gap": 0.33866666666666667,
+      "measurement_period": 0.4106666666666666,
+      "bearing_domain_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.054292112038128,
+    "tail_range_rmse_m": 10.06784353036905,
+    "tail_bearing_rms_deg": 1.3601824104435454,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.010824313072439634,
+    "max_command_speed": 0.29580748533361945,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 8,
+    "rejections": {
+      "outside_range_calibration": 104,
+      "outside_angular_calibration": 19,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 40.0,
+    "config_overrides": {
+      "dither_deg": 40.0,
+      "pair_gap": 0.33866666666666667,
+      "measurement_period": 0.4106666666666666,
+      "bearing_domain_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.176296599279214,
+    "tail_range_rmse_m": 10.18967537124115,
+    "tail_bearing_rms_deg": 2.3925235698994842,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.00749375520399667,
+    "max_command_speed": 0.3254488809281046,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 105,
+      "outside_angular_calibration": 19,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 40.0,
+    "config_overrides": {
+      "dither_deg": 40.0,
+      "pair_gap": 0.33866666666666667,
+      "measurement_period": 0.4106666666666666,
+      "bearing_domain_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.038313277232913,
+    "tail_range_rmse_m": 10.051884802626288,
+    "tail_bearing_rms_deg": 3.5116741388222072,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.011656952539550375,
+    "max_command_speed": 0.28786348943700363,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 9,
+    "rejections": {
+      "outside_range_calibration": 104,
+      "outside_angular_calibration": 17,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 40.0,
+    "config_overrides": {
+      "dither_deg": 40.0,
+      "pair_gap": 0.33866666666666667,
+      "measurement_period": 0.4106666666666666,
+      "bearing_domain_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.25179756639084,
+    "tail_range_rmse_m": 10.265087181507319,
+    "tail_bearing_rms_deg": 1.9569831881311763,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.006661115736885929,
+    "max_command_speed": 0.33612468092732717,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 100,
+      "outside_angular_calibration": 26,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 40.0,
+    "config_overrides": {
+      "dither_deg": 40.0,
+      "pair_gap": 0.33866666666666667,
+      "measurement_period": 0.4106666666666666,
+      "bearing_domain_deg": 40.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.270040435176503,
+    "tail_range_rmse_m": 10.283304015324793,
+    "tail_bearing_rms_deg": 0.5126114229091899,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.006661115736885929,
+    "max_command_speed": 0.33609755922463475,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 107,
+      "outside_angular_calibration": 16,
+      "low_signal": 4
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 50.0,
+    "config_overrides": {
+      "dither_deg": 50.0,
+      "pair_gap": 0.4053333333333333,
+      "measurement_period": 0.4773333333333333,
+      "bearing_domain_deg": 30.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.179060645955522,
+    "tail_range_rmse_m": 10.192430553457363,
+    "tail_bearing_rms_deg": 0.8083767800073238,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.30870708604743435,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 96,
+      "outside_angular_calibration": 15,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 50.0,
+    "config_overrides": {
+      "dither_deg": 50.0,
+      "pair_gap": 0.4053333333333333,
+      "measurement_period": 0.4773333333333333,
+      "bearing_domain_deg": 30.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.138171971949431,
+    "tail_range_rmse_m": 10.151611383064468,
+    "tail_bearing_rms_deg": 1.2953410743616995,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.29304377297145073,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 102,
+      "outside_angular_calibration": 10,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 50.0,
+    "config_overrides": {
+      "dither_deg": 50.0,
+      "pair_gap": 0.4053333333333333,
+      "measurement_period": 0.4773333333333333,
+      "bearing_domain_deg": 30.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.226446724299857,
+    "tail_range_rmse_m": 10.239759833473313,
+    "tail_bearing_rms_deg": 2.2661988060504172,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.3129264693664697,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 16,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 50.0,
+    "config_overrides": {
+      "dither_deg": 50.0,
+      "pair_gap": 0.4053333333333333,
+      "measurement_period": 0.4773333333333333,
+      "bearing_domain_deg": 30.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.134701595872462,
+    "tail_range_rmse_m": 10.148144404994135,
+    "tail_bearing_rms_deg": 4.151012901898856,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.28749452837945505,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 103,
+      "outside_angular_calibration": 8,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 50.0,
+    "config_overrides": {
+      "dither_deg": 50.0,
+      "pair_gap": 0.4053333333333333,
+      "measurement_period": 0.4773333333333333,
+      "bearing_domain_deg": 30.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.30082948477965,
+    "tail_range_rmse_m": 10.31405596964391,
+    "tail_bearing_rms_deg": 2.119703883821539,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.317405083453161,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 22,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 50.0,
+    "config_overrides": {
+      "dither_deg": 50.0,
+      "pair_gap": 0.4053333333333333,
+      "measurement_period": 0.4773333333333333,
+      "bearing_domain_deg": 30.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.319100994594553,
+    "tail_range_rmse_m": 10.332301579430853,
+    "tail_bearing_rms_deg": 0.36737842759131617,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3169626147973331,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 13,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 60.0,
+    "config_overrides": {
+      "dither_deg": 60.0,
+      "pair_gap": 0.47200000000000003,
+      "measurement_period": 0.544,
+      "bearing_domain_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.195394628304966,
+    "tail_range_rmse_m": 10.208743125591848,
+    "tail_bearing_rms_deg": 0.7611596737820654,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 87,
+      "outside_angular_calibration": 15,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 60.0,
+    "config_overrides": {
+      "dither_deg": 60.0,
+      "pair_gap": 0.47200000000000003,
+      "measurement_period": 0.544,
+      "bearing_domain_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.155838565360298,
+    "tail_range_rmse_m": 10.169254621292712,
+    "tail_bearing_rms_deg": 1.2895481221635625,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.2740501566108167,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 89,
+      "outside_angular_calibration": 10,
+      "low_signal": 4
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 60.0,
+    "config_overrides": {
+      "dither_deg": 60.0,
+      "pair_gap": 0.47200000000000003,
+      "measurement_period": 0.544,
+      "bearing_domain_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.237438156686554,
+    "tail_range_rmse_m": 10.250736961367616,
+    "tail_bearing_rms_deg": 2.251974539119255,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 89,
+      "outside_angular_calibration": 12,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 60.0,
+    "config_overrides": {
+      "dither_deg": 60.0,
+      "pair_gap": 0.47200000000000003,
+      "measurement_period": 0.544,
+      "bearing_domain_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.159892914812902,
+    "tail_range_rmse_m": 10.173302490029016,
+    "tail_bearing_rms_deg": 4.2598779922732986,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.27287675533979144,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 90,
+      "outside_angular_calibration": 10,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 60.0,
+    "config_overrides": {
+      "dither_deg": 60.0,
+      "pair_gap": 0.47200000000000003,
+      "measurement_period": 0.544,
+      "bearing_domain_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.305826060653574,
+    "tail_range_rmse_m": 10.319046146129475,
+    "tail_bearing_rms_deg": 2.123739057431724,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 85,
+      "outside_angular_calibration": 17,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 60.0,
+    "config_overrides": {
+      "dither_deg": 60.0,
+      "pair_gap": 0.47200000000000003,
+      "measurement_period": 0.544,
+      "bearing_domain_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.32410089262931,
+    "tail_range_rmse_m": 10.337295091357086,
+    "tail_bearing_rms_deg": 0.3620293779664283,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0,
+    "max_command_speed": 0.0,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 92,
+      "outside_angular_calibration": 12,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 5.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.179060638007243,
+    "tail_range_rmse_m": 10.192430545471705,
+    "tail_bearing_rms_deg": 0.8079516074871399,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.3097615529679354,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 14,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 5.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.121750246168867,
+    "tail_range_rmse_m": 10.135211439836459,
+    "tail_bearing_rms_deg": 1.318035504403484,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004995836802664446,
+    "max_command_speed": 0.2859181176932476,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 99,
+      "outside_angular_calibration": 12,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 5.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.226446715369947,
+    "tail_range_rmse_m": 10.239759824539652,
+    "tail_bearing_rms_deg": 2.2645178694318657,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.3154725347355306,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 16,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 5.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.125882606983879,
+    "tail_range_rmse_m": 10.139337090914461,
+    "tail_bearing_rms_deg": 4.058328168849952,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004995836802664446,
+    "max_command_speed": 0.2882138880321141,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 102,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 5.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.300829490644027,
+    "tail_range_rmse_m": 10.31405597549649,
+    "tail_bearing_rms_deg": 2.1221829041218405,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.31899427167224903,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 22,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 5.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 5.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.319100995210542,
+    "tail_range_rmse_m": 10.332301580050084,
+    "tail_bearing_rms_deg": 0.3688825172559818,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.31915276347247845,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 13,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 10.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 10.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.179060643049949,
+    "tail_range_rmse_m": 10.192430550538125,
+    "tail_bearing_rms_deg": 0.8083658733351714,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.30887124307504565,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 14,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 10.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 10.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.121750155121978,
+    "tail_range_rmse_m": 10.135211348835142,
+    "tail_bearing_rms_deg": 1.306195930344052,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004995836802664446,
+    "max_command_speed": 0.28538554581689607,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 99,
+      "outside_angular_calibration": 12,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 10.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 10.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.226446720819746,
+    "tail_range_rmse_m": 10.239759829991742,
+    "tail_bearing_rms_deg": 2.2655438146470583,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.3136959039807349,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 16,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 10.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 10.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.13470143481641,
+    "tail_range_rmse_m": 10.148144244215814,
+    "tail_bearing_rms_deg": 4.151413664730412,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2889919559976497,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 102,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 10.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 10.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.300829486975603,
+    "tail_range_rmse_m": 10.314055971835444,
+    "tail_bearing_rms_deg": 2.1206323671191845,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.31793119978887097,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 22,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 10.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 10.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.319100994823048,
+    "tail_range_rmse_m": 10.332301579660548,
+    "tail_bearing_rms_deg": 0.3679369938560377,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.31762909310897464,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 13,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 15.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 15.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.17906064500072,
+    "tail_range_rmse_m": 10.192430552498074,
+    "tail_bearing_rms_deg": 0.8083720677941021,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.30874010198029117,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 14,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 15.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 15.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.12175011093107,
+    "tail_range_rmse_m": 10.135211304666178,
+    "tail_bearing_rms_deg": 1.3001883803486614,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004995836802664446,
+    "max_command_speed": 0.2852388737303602,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 99,
+      "outside_angular_calibration": 12,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 15.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 15.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.226446723138057,
+    "tail_range_rmse_m": 10.239759832311027,
+    "tail_bearing_rms_deg": 2.2659802212097904,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.31315893494017116,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 16,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 15.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 15.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.134701548161235,
+    "tail_range_rmse_m": 10.148144357365158,
+    "tail_bearing_rms_deg": 4.151358311643475,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.2879690038021159,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 102,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 15.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 15.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.300829485459596,
+    "tail_range_rmse_m": 10.314055970322487,
+    "tail_bearing_rms_deg": 2.1199915114895447,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.317568390644248,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 22,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 15.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 15.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.319100994664646,
+    "tail_range_rmse_m": 10.332301579501316,
+    "tail_bearing_rms_deg": 0.36754981239896267,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.31716659302554484,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 13,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 20.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.179060645955522,
+    "tail_range_rmse_m": 10.192430553457363,
+    "tail_bearing_rms_deg": 0.8083767800073238,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.30870708604743435,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 14,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 20.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.138171971949431,
+    "tail_range_rmse_m": 10.151611383064468,
+    "tail_bearing_rms_deg": 1.2953410743616995,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.29304377297145073,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 103,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 20.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.226446724299857,
+    "tail_range_rmse_m": 10.239759833473313,
+    "tail_bearing_rms_deg": 2.2661988060504172,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.3129264693664697,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 16,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 20.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.134701595872462,
+    "tail_range_rmse_m": 10.148144404994135,
+    "tail_bearing_rms_deg": 4.151012901898856,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.28749452837945505,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 102,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 20.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.30082948477965,
+    "tail_range_rmse_m": 10.31405596964391,
+    "tail_bearing_rms_deg": 2.119703883821539,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.317405083453161,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 22,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 20.0,
+    "config_overrides": {
+      "bearing_noise_floor_deg": 20.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.319100994594553,
+    "tail_range_rmse_m": 10.332301579430853,
+    "tail_bearing_rms_deg": 0.36737842759131617,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3169626147973331,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 13,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 1.0,
+    "config_overrides": {
+      "max_range_std": 0.25,
+      "max_bearing_std_deg": 12.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.179060645955522,
+    "tail_range_rmse_m": 10.192430553457363,
+    "tail_bearing_rms_deg": 0.8083767800073238,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.002497918401332223,
+    "max_command_speed": 0.30870708604743435,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 97,
+      "outside_angular_calibration": 14,
+      "low_signal": 3
+    }
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 1.0,
+    "config_overrides": {
+      "max_range_std": 0.25,
+      "max_bearing_std_deg": 12.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.138171971949431,
+    "tail_range_rmse_m": 10.151611383064468,
+    "tail_bearing_rms_deg": 1.2953410743616995,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0033305578684429643,
+    "max_command_speed": 0.29304377297145073,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 6,
+    "rejections": {
+      "outside_range_calibration": 103,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 1.0,
+    "config_overrides": {
+      "max_range_std": 0.25,
+      "max_bearing_std_deg": 12.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.226446724299857,
+    "tail_range_rmse_m": 10.239759833473313,
+    "tail_bearing_rms_deg": 2.2661988060504172,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0016652789342214821,
+    "max_command_speed": 0.3129264693664697,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 98,
+      "outside_angular_calibration": 16,
+      "low_signal": 1
+    }
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 1.0,
+    "config_overrides": {
+      "max_range_std": 0.25,
+      "max_bearing_std_deg": 12.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.134701595872462,
+    "tail_range_rmse_m": 10.148144404994135,
+    "tail_bearing_rms_deg": 4.151012901898856,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.004163197335553705,
+    "max_command_speed": 0.28749452837945505,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 7,
+    "rejections": {
+      "outside_range_calibration": 102,
+      "outside_angular_calibration": 9,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 1.0,
+    "config_overrides": {
+      "max_range_std": 0.25,
+      "max_bearing_std_deg": 12.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.30082948477965,
+    "tail_range_rmse_m": 10.31405596964391,
+    "tail_bearing_rms_deg": 2.119703883821539,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6106668860079514,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.317405083453161,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 5,
+    "rejections": {
+      "outside_range_calibration": 91,
+      "outside_angular_calibration": 22,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 1.0,
+    "config_overrides": {
+      "max_range_std": 0.25,
+      "max_bearing_std_deg": 12.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 10.319100994594553,
+    "tail_range_rmse_m": 10.332301579430853,
+    "tail_bearing_rms_deg": 0.36737842759131617,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6355343439102987,
+    "safe_clearance": true,
+    "tracking_fraction": 0.0008326394671107411,
+    "max_command_speed": 0.3169626147973331,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 4,
+    "rejections": {
+      "outside_range_calibration": 101,
+      "outside_angular_calibration": 13,
+      "low_signal": 2
+    }
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 2.0,
+    "config_overrides": {
+      "max_range_std": 0.5,
+      "max_bearing_std_deg": 24.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.4162421502466975,
+    "tail_range_rmse_m": 0.41625599767349725,
+    "tail_bearing_rms_deg": 0.5556561774388729,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.29274421308034465,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 2.0,
+    "config_overrides": {
+      "max_range_std": 0.5,
+      "max_bearing_std_deg": 24.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.417545908203427,
+    "tail_range_rmse_m": 0.4176436812318261,
+    "tail_bearing_rms_deg": 0.7438518470424774,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.2760274179424765,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 2.0,
+    "config_overrides": {
+      "max_range_std": 0.5,
+      "max_bearing_std_deg": 24.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.42266897932699016,
+    "tail_range_rmse_m": 0.42271586864337823,
+    "tail_bearing_rms_deg": 0.6571143298594945,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.3129264693664697,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 2.0,
+    "config_overrides": {
+      "max_range_std": 0.5,
+      "max_bearing_std_deg": 24.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.42049029919109693,
+    "tail_range_rmse_m": 0.4205168017737087,
+    "tail_bearing_rms_deg": 0.4619690164050042,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.2738036535042985,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 2.0,
+    "config_overrides": {
+      "max_range_std": 0.5,
+      "max_bearing_std_deg": 24.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.42383368212531963,
+    "tail_range_rmse_m": 0.42384547017752594,
+    "tail_bearing_rms_deg": 1.2091870136781289,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6035599208933202,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.317405083453161,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 2.0,
+    "config_overrides": {
+      "max_range_std": 0.5,
+      "max_bearing_std_deg": 24.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.42872525538398315,
+    "tail_range_rmse_m": 0.42872968485237056,
+    "tail_bearing_rms_deg": 0.8923254648573847,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6117933740352741,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.3169626147973331,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 3.0,
+    "config_overrides": {
+      "max_range_std": 0.75,
+      "max_bearing_std_deg": 36.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.4162421502466975,
+    "tail_range_rmse_m": 0.41625599767349725,
+    "tail_bearing_rms_deg": 0.5556561774388729,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.540922275785093,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.29274421308034465,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4000,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 3.0,
+    "config_overrides": {
+      "max_range_std": 0.75,
+      "max_bearing_std_deg": 36.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.417545908203427,
+    "tail_range_rmse_m": 0.4176436812318261,
+    "tail_bearing_rms_deg": 0.7438518470424774,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.463289350595161,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.2760274179424765,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4001,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 3.0,
+    "config_overrides": {
+      "max_range_std": 0.75,
+      "max_bearing_std_deg": 36.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.42266897932699016,
+    "tail_range_rmse_m": 0.42271586864337823,
+    "tail_bearing_rms_deg": 0.6571143298594945,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.5683035438000084,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.3129264693664697,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4002,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 3.0,
+    "config_overrides": {
+      "max_range_std": 0.75,
+      "max_bearing_std_deg": 36.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.42049029919109693,
+    "tail_range_rmse_m": 0.4205168017737087,
+    "tail_bearing_rms_deg": 0.4619690164050042,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.470516091637779,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.2738036535042985,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4003,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 3.0,
+    "config_overrides": {
+      "max_range_std": 0.75,
+      "max_bearing_std_deg": 36.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.42383368212531963,
+    "tail_range_rmse_m": 0.42384547017752594,
+    "tail_bearing_rms_deg": 1.2091870136781289,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6035599208933202,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.317405083453161,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4004,
+    "accepted": 120,
+    "rejections": {}
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 3.0,
+    "config_overrides": {
+      "max_range_std": 0.75,
+      "max_bearing_std_deg": 36.0
+    },
+    "scenario_overrides": {},
+    "steady_range_error_m": 0.42872525538398315,
+    "tail_range_rmse_m": 0.42872968485237056,
+    "tail_bearing_rms_deg": 0.8923254648573847,
+    "settling_2pct_s": null,
+    "overshoot_pct": 0.0,
+    "minimum_range_m": 1.6117933740352741,
+    "safe_clearance": true,
+    "tracking_fraction": 0.9750208159866778,
+    "max_command_speed": 0.3169626147973331,
+    "practical_tracking_pass": false,
+    "original_O3_pass": false,
+    "seed": 4005,
+    "accepted": 120,
+    "rejections": {}
+  }
+]

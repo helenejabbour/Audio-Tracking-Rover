@@ -1,0 +1,9 @@
+{
+  "n": 72,
+  "valid": 0,
+  "bad_crc_or_format": 0,
+  "firmware": [
+    "C2,fs=16000,N=512,tone=4000,reference=3000,settle_ms=40,center=110,sign=1,limits=30:180,phi=-80.0:70.0,phi_c=0.0,dlt=40.0,alternate=1,link=usb,bt_drop=0"
+  ],
+  "hardware_motion": false
+}

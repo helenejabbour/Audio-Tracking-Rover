@@ -279,7 +279,7 @@ directly address those points while retaining the report's strong formulation.
 - [Espressif ADC API](https://docs.espressif.com/projects/arduino-esp32/en/latest/api/adc.html)
 - [Espressif raw continuous ADC driver](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/adc/adc_continuous.html)
 
-Local sources: `Syllabus_EECE660_MECH653_Fall2026.pdf` (CLOs p.1; assistive-AI policy
-p.3), `Progress Report Feedback.pdf` (remarks p.1), and the progress report's model
+Local sources: the course syllabus (CLOs p.1; assistive-AI policy
+p.3), the progress-report feedback (remarks p.1), and the progress report's model
 and assumptions (pp.4–6,9). The engineering derivations above are reproduced explicitly
 so they can be checked without trusting either the old script or this text.

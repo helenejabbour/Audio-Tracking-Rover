@@ -4,7 +4,7 @@ import heapq
 import numpy as np
 from .controller import Tracker
 from .model import wrap
-from .sensing import Pair, amplitude
+from .sensing import Pair, amplitude, ORDER_BIT
 
 
 SCENARIOS = {
@@ -20,7 +20,54 @@ SCENARIOS = {
     'stationary_target': {'target_speed': 0., 'mission':'approach'},
     'no_beacon': {'drop': 1.},
     'unreachable_target': {'target_speed': .5},
+    # Multipath fringes and room bias as measured in Phase B s1 (per-tone BLUE, held out):
+    # ~12 deg bearing scatter over a 7.5 cm shift (B2) and ~23 deg slowly varying room bias (E3).
+    'fringe_room_s1': {'fringe_ln_sd': .144, 'room_bearing_sd_deg': 23.},
 }
+
+FRINGE_DEFAULTS = {'fringe_ln_sd': 0., 'fringe_length_m': .043, 'room_bearing_sd_deg': 0., 'room_length_m': 1.}
+
+
+class RandomField:
+    """Unit-variance stationary random field over R^dim (random Fourier features).
+
+    Used for position-dependent multipath errors: the argument is the 4-vector
+    (follower x, y, target x, y), because the path differences of reflections depend on
+    both ends. Wavenumbers 2*pi/length*U(0.5, 1) in random directions, so the field
+    decorrelates over roughly `length` of combined motion.
+    """
+    def __init__(self, rng, length, n=64, dim=4):
+        d = rng.normal(size=(n, dim)); d /= np.linalg.norm(d, axis=1, keepdims=True)
+        self.k = d*(2*np.pi/length)*rng.uniform(.5, 1., n)[:, None]
+        self.phase = rng.uniform(0, 2*np.pi, n); self.scale = np.sqrt(2./n)
+
+    def __call__(self, p):
+        return float(self.scale*np.cos(self.k @ np.asarray(p, float)+self.phase).sum())
+
+
+class MultipathModel:
+    """Multiplicative capture error exp(e_side), e = fast fringe + antisymmetric room bias.
+
+    fast: independent per horn side (the two captures see decorrelated fringe phase, measured
+          corr ~ 0), sd fringe_ln_sd in ln-amplitude, period ~ fringe_length_m (lambda/2 at 4 kHz).
+          It moves both the ratio (bearing) and the geometric mean (range).
+    room: one slow field, +b/(2h) on A+ and -b/(2h) on A-, so it biases bearing by b deg
+          (sd room_bearing_sd_deg) and leaves the range untouched (s1: range held out within ~8 %
+          while bearing carried ~23 deg of room bias). h = sigma^2/(2 delta) in degrees.
+    A separate random stream keeps every other random draw of the simulation unchanged.
+    """
+    def __init__(self, params, cfg, seed):
+        rng = np.random.default_rng([int(seed), 7919])
+        self.p = params
+        self.fast = {s: RandomField(rng, params['fringe_length_m']) for s in (-1, 1)}
+        self.room = RandomField(rng, params['room_length_m'])
+        self.h_deg = cfg['sigma_deg']**2/(2*cfg['dither_deg'])
+
+    def gain(self, side, follower, target):
+        pos = np.r_[follower[:2], target[:2]]
+        e = self.p['fringe_ln_sd']*self.fast[side](pos)
+        e += side*self.p['room_bearing_sd_deg']*self.room(pos)/(2*self.h_deg)
+        return float(np.exp(e))
 
 
 def geometry(follower, target):
@@ -44,8 +91,12 @@ def run_simulation(cfg, scenario='nominal', seed=0, record=True):
     cfg = dict(cfg,mission=spec.get('mission',cfg.get('mission','follow')))
     rng = np.random.default_rng(seed)
     tracker = Tracker(cfg)
+    # True sensor may differ from the calibrated model: constant boresight error = bearing bias.
+    sensor = dict(cfg, boresight_deg=cfg['boresight_deg']+spec.get('boresight_error_deg', 0.))
+    mp_params = {k: float(spec.get(k, cfg.get(k, v))) for k, v in FRINGE_DEFAULTS.items()}
+    multipath = MultipathModel(mp_params, cfg, seed) if mp_params['fringe_ln_sd'] > 0 or mp_params['room_bearing_sd_deg'] > 0 else None
     dt, duration = cfg['dt'], cfg['duration']
-    initial_r = cfg['desired_range']+.35 + rng.uniform(-.1, .1)
+    initial_r = cfg['desired_range']+spec.get('initial_range_offset', .35) + rng.uniform(-.1, .1)
     initial_beta = np.deg2rad(rng.uniform(-15, 15))
     follower = np.zeros(3)
     target = np.array([initial_r*np.cos(initial_beta), initial_r*np.sin(initial_beta),
@@ -60,12 +111,14 @@ def run_simulation(cfg, scenario='nominal', seed=0, record=True):
     for t in times:
         rho, beta = geometry(follower, target)
         tracker.advance(t)
-        if pending is not None and t >= pending['plus_at']-1e-8:
+        if pending is not None and t >= pending['second_at']-1e-8:
             p = pending
-            plus = amplitude(max(rho, .01), beta, p['pp'], cfg)*p['gain_p'] + p['noise_p']
-            flags = 1 if p['am'] > 0 and plus > 0 else 0
-            packet = Pair(seq, (p['tm']+t)/2, t-p['tm'], p['pm'], p['pp'],
-                          max(.001, p['am']), max(.001, plus), 1., 1., flags)
+            mp = multipath.gain(-1 if p['plus_first'] else 1, follower, target) if multipath else 1.
+            second = amplitude(max(rho, .01), beta, p['phi2'], sensor)*p['gain2']*mp + p['noise2']
+            am, ap = (second, p['a1']) if p['plus_first'] else (p['a1'], second)
+            flags = (1 if am > 0 and ap > 0 else 0) | (ORDER_BIT if p['plus_first'] else 0)
+            packet = Pair(seq, (p['t1']+t)/2, t-p['t1'], p['pm'], p['pp'],
+                          max(.001, am), max(.001, ap), 1., 1., flags)
             if not p['drop']:
                 arrival = t+cfg['transport_delay']+p['extra_delay']
                 heapq.heappush(arrivals, (arrival, seq, packet))
@@ -73,6 +126,11 @@ def run_simulation(cfg, scenario='nominal', seed=0, record=True):
         if t >= next_minus-1e-8 and pending is None:
             phi = np.deg2rad(tracker.horn_command(t))
             delta = np.deg2rad(cfg['dither_deg'])
+            # Firmware clamps each capture angle to the physical horn span and reports the actual angle.
+            pm, pp = np.clip([phi-delta, phi+delta], -np.deg2rad(cfg['horn_limit_deg']),
+                             np.deg2rad(cfg.get('horn_limit_left_deg', cfg['horn_limit_deg'])))
+            plus_first = bool(cfg.get('alternate_capture_order', False) and seq % 2 == 1)
+            phi1, phi2 = (pp, pm) if plus_first else (pm, pp)
             ga = spec.get('gain_scale', 1.)
             reflected = rng.random() < spec.get('reflection', 0.)
             gain_m, gain_p = (np.exp(rng.normal(0, .8, 2)) if reflected else np.ones(2))*ga
@@ -80,9 +138,11 @@ def run_simulation(cfg, scenario='nominal', seed=0, record=True):
             drop = rng.random() < spec.get('drop', 0.)
             outage = spec.get('outage', [-1., -1.])
             drop = drop or outage[0] <= t <= outage[1]
-            pending = {'tm': t, 'plus_at': t+gap, 'pm': phi-delta, 'pp': phi+delta,
-                       'am': amplitude(max(rho, .01), beta, phi-delta, cfg)*gain_m+nm,
-                       'gain_p': gain_p, 'noise_p': np_, 'drop': drop,
+            pending = {'t1': t, 'second_at': t+gap, 'pm': pm, 'pp': pp, 'phi2': phi2,
+                       'plus_first': plus_first,
+                       'a1': amplitude(max(rho, .01), beta, phi1, sensor)*gain_m *
+                             (multipath.gain(1 if plus_first else -1, follower, target) if multipath else 1.)+nm,
+                       'gain2': gain_p, 'noise2': np_, 'drop': drop,
                        'extra_delay': rng.uniform(0, spec.get('extra_delay', 0.))}
             next_minus = t + period*(1+rng.uniform(-1, 1)*spec.get('jitter', 0.))
         while arrivals and arrivals[0][0] <= t+1e-9:

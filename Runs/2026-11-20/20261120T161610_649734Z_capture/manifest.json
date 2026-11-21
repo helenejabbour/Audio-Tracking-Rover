@@ -1,0 +1,40 @@
+{
+  "created_utc": "2026-11-20T16:16:10.649734+00:00",
+  "python": "3.14.3",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "git_head": "ca3b1f6f4f733e43c3fe33da5f7eb0467e64876b",
+  "source_sha256": {
+    "rover/analysis.py": "70f523601fbadcf48ab34a69cc94d205a8bb507bc1a9afa7a968158ffd65ad19",
+    "rover/bearing_cal.py": "4e9a720d5e91172b2ecf86da5a34a39d9f5de04e854bbe53c83d85c210806421",
+    "rover/calibrate.py": "a8294baf78e9f464180a3c07198194af2a4e7b96b59d3051326752acd91a7ac8",
+    "rover/collect.py": "2ae26651cd7b227b34d11e262afde3b85817706cb007acfcd07fc15cbdf05f29",
+    "rover/config.py": "155d029af00a0e79f1bb04e6e72710f62eecade11d729ebd91cb51f9c96f33b0",
+    "rover/controller.py": "d5f72445abda51b9db09f8dc2a64658d098ccb46d73b68289d5293f58120d056",
+    "rover/evaluate_trial.py": "bc6bf863d2acd9a9d473f4ba3f9aa33b21905fcce891005f85a1da7ae0c05129",
+    "rover/hardware.py": "5374d0cf5f3f0c8deb7cc7e2cacb817b4fe34700afa4a1681dde761445f9ed15",
+    "rover/live.py": "83d3a6cb09bf885ded62ef64ba22d9babf9d3059e45ec7b8de2bc28ffbe806e2",
+    "rover/model.py": "b455c6bc912ef70dc78fadd9646bb1222ffc593d1b199ee7bc68bcb1e16f4ed4",
+    "rover/observer.py": "2828129179f04ef238c68d2289a19b49b848d264b4b9654bf54f9a2bfbc303ec",
+    "rover/sensing.py": "9acdf5245991d65698fb3ca4e44016fed41d0424eb6fde0239a2fba027b6bd9a",
+    "rover/sensitivity.py": "7ebafc350ee765b0583a8a886ff4402f72c92976b18fbe20996095ba6619ccfc",
+    "rover/simulation.py": "41ed81df211a3b5060104a62551b487ad0295af535fd2d12cb2be09ea4136119",
+    "rover/target.py": "08a437edcaf643b9003ba75a0991050beaca6fc555ec727e612d823e0af5f8c2",
+    "rover/validate.py": "bb0d759e77684900e91914caaa73fa56406b3d22bce5c04d6ca075851d5f809a",
+    "rover/__init__.py": "1ae06080c69a60268a8b0510ee224ef72664cb27f085b3a89a17b281243ead48",
+    "Tests/test_rover.py": "36818856255fd730e41bd5d1c4e20747856219360ce45f4f2e4740fd85c485e4",
+    "Config/hardware_template.json": "c7c9170a0c319791fc3fb79af269246566254924e15b49b8b2af0a7eca6d59f7",
+    "Config/measured_multitone.json": "38ea924475fd94a9b445a9f1d0852d71f775be31f0f8341d04b6132131f2f1be",
+    "Config/measured_sensor.json": "bc6d4ea361193145e8529f09972c90bdb1401b9e4e9b01f4375b5089835212e8",
+    "Config/simulation.json": "158d2ca42c02e1e6cc0e46bd1806e42f375afe8769fa6aa0abd6dca98ee0efa3",
+    "Firmware/esp32_acoustic_v2/esp32_acoustic_v2.ino": "6fd63b81eea58afb289effa7fdcddaa3265b6890c8022aa4ddd76595310d1b2e",
+    "Matlab/gains.json": "81e2fbb7f93a86e1734b670312c604e72c5cd441056b69b16ef0a866b82aa600",
+    "Matlab/rover_reference_design.m": "e031387256c7c1bc8038535f9a74f359912f2e985e84ef44fc64b896605800b4",
+    "Matlab/archive/acoustic_pursuit_design.m": "45b23fba486152e2ee6c50e24d68c3ef2bcbcac5cf1c6d4df5f4b9f3e6f6769a"
+  },
+  "input_sha256": {
+    "Data/raw/2026-10-22_E0_baseline/E0_silence_20261022_134226.csv": "eec7e921115afc6254359f83a7d6d8428817d1358280acbd6bf71bf2c2f91d29",
+    "Data/raw/2026-10-22_E0_baseline/E0_silence_20261022_134309.csv": "6a26bd7becc69a3cbe2abb5727bc0ca8a0fcfb8100fc64b3d7a7b935eba8c434",
+    "Data/raw/2026-10-22_E0_baseline/E0_silence_20261022_134614.csv": "cd03fd87b000d9a156ecd0baa3449e4871ca572ce9fac847e388b6744e3df546",
+    "Data/raw/2026-10-22_E0_baseline/E0_static_20261022_134646.csv": "d0719a99d345868612a3b43aea91cdbd860cde9207cc84c9aee10c9c0c69e954"
+  }
+}

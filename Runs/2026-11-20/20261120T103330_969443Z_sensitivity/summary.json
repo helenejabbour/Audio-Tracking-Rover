@@ -1,0 +1,302 @@
+[
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 25.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.244725032135834,
+    "worst_tail_bearing_rms_deg": 4.268500565857731,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 40.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.230715273552455,
+    "worst_tail_bearing_rms_deg": 4.162077743811562,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.002081598667776852
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 80.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.229717278897219,
+    "worst_tail_bearing_rms_deg": 4.149777403143302,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0022203719122953092
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 120.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.230782569605687,
+    "worst_tail_bearing_rms_deg": 4.128664077873349,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.002081598667776852
+  },
+  {
+    "parameter": "horn_sigma_deg",
+    "value": 160.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.24123248506674,
+    "worst_tail_bearing_rms_deg": 4.2657017784436695,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0005550929780738274
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.1,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 0.33779252347676053,
+    "worst_tail_bearing_rms_deg": 0.6126326197635257,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.6205939494865391
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.18,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 0.4069845043485893,
+    "worst_tail_bearing_rms_deg": 0.6339420613784477,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.5613377740771579
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.3,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.230248841989406,
+    "worst_tail_bearing_rms_deg": 4.113305206787835,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.002081598667776852
+  },
+  {
+    "parameter": "pair_gap_s",
+    "value": 0.5,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.244725032135834,
+    "worst_tail_bearing_rms_deg": 4.268500565857731,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.2,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.226353555983353,
+    "worst_tail_bearing_rms_deg": 4.159497378372365,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.00263669164585068
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 0.8,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.22971727684601,
+    "worst_tail_bearing_rms_deg": 4.149326324724286,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0022203719122953092
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 2.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.234581446392923,
+    "worst_tail_bearing_rms_deg": 4.192780561539105,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0015265056897030254
+  },
+  {
+    "parameter": "amplitude_noise_counts",
+    "value": 5.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.244725032135834,
+    "worst_tail_bearing_rms_deg": 4.268500565857731,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 0.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.229717287344007,
+    "worst_tail_bearing_rms_deg": 4.151012901898856,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0022203719122953092
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 5.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.228454343434915,
+    "worst_tail_bearing_rms_deg": 4.07638325450303,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.002359145156813766
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 10.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.228453901235268,
+    "worst_tail_bearing_rms_deg": 3.9921353407024287,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.002359145156813766
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": 20.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.233477264302822,
+    "worst_tail_bearing_rms_deg": 4.268500565857731,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0016652789342214817
+  },
+  {
+    "parameter": "bearing_bias_deg",
+    "value": -10.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.229717967449128,
+    "worst_tail_bearing_rms_deg": 4.285400471398551,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0022203719122953092
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 20.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 0.20007926662378717,
+    "worst_tail_bearing_rms_deg": 1.863989330405108,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.8827366083819039
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 30.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 0.3514771506951309,
+    "worst_tail_bearing_rms_deg": 0.933905122904335,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.6228143213988342
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 40.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.16210884797338,
+    "worst_tail_bearing_rms_deg": 3.5116741388222072,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.008881487649181239
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 50.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.229717287344007,
+    "worst_tail_bearing_rms_deg": 4.151012901898856,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0022203719122953092
+  },
+  {
+    "parameter": "dither_deg_E4_timing",
+    "value": 60.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.243063072627958,
+    "worst_tail_bearing_rms_deg": 4.2598779922732986,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0002775464890369137
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 5.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.225516076051475,
+    "worst_tail_bearing_rms_deg": 4.058328168849952,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.00263669164585068
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 10.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.226983920846136,
+    "worst_tail_bearing_rms_deg": 4.151413664730412,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.002497918401332223
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 15.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.226983932777372,
+    "worst_tail_bearing_rms_deg": 4.151358311643475,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.002497918401332223
+  },
+  {
+    "parameter": "bearing_noise_floor_deg",
+    "value": 20.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.229717287344007,
+    "worst_tail_bearing_rms_deg": 4.151012901898856,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0022203719122953092
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 1.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 10.229717287344007,
+    "worst_tail_bearing_rms_deg": 4.151012901898856,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.0022203719122953092
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 2.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 0.4216179173920511,
+    "worst_tail_bearing_rms_deg": 1.2091870136781289,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.9750208159866779
+  },
+  {
+    "parameter": "uncertainty_gate_scale",
+    "value": 3.0,
+    "passes": 0,
+    "n": 6,
+    "mean_tail_range_rmse_m": 0.4216179173920511,
+    "worst_tail_bearing_rms_deg": 1.2091870136781289,
+    "clearance_violations": 0,
+    "mean_tracking_fraction": 0.9750208159866779
+  }
+]

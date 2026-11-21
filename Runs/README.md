@@ -1,21 +1,17 @@
 # Experiment index
 
-All timestamps are UTC. Original hardware data remain in `Data/` and `POC/Results/`.
+All timestamps are UTC. Original hardware data remain in `Data/` and `Data/poc/`.
 
 | Run | Role/status |
 |---|---|
-| [20261115T163143_844160Z_validation](2026-11-15/20261115T163143_844160Z_validation/REPORT.md) | **Authoritative current controller suite**, 432 simulations; seeds 3000–3011; 26 tests; source snapshots included |
-| [20261115T163216_183097Z_sensitivity](2026-11-15/20261115T163216_183097Z_sensitivity/REPORT.md) | **Authoritative current sensitivity suite**, 78 simulations; seeds 4000–4005; source snapshots included |
-| [20261115T162526_373664Z_replay](2026-11-15/20261115T162526_373664Z_replay/summary.json) | Actual legacy static-log replay; zero accepted packets / zero drive commands |
-| 20261115T162705_887469Z_sensitivity | Development sensitivity run before explicit stationary-approach mode; superseded |
-| 20261115T162451_107959Z_validation | Development comparison before explicit stationary-approach mode; superseded |
-| 20261115T162350_760772Z_validation | Interrupted development run; incomplete, do not use for conclusions |
-| 20261115T161034_583263Z_validation | Early complete development comparison; superseded after supervisor fixes |
+| [20261120T103330_893905Z_validation](2026-11-20/20261120T103330_893905Z_validation/REPORT.md) | **Current controller suite with Nour's measured sensor values** (`Config/measured_sensor.json`), 432 simulations, seeds 3000–3011, 33 tests; 0/432 tracking passes (supervisor HOLD) |
+| [20261120T103330_969443Z_sensitivity](2026-11-20/20261120T103330_969443Z_sensitivity/REPORT.md) | **Current sensitivity, measured sensor config**, 186 simulations, seeds 4000–4005; adds bearing-bias, E4 dither-timing, floor and gate sweeps |
+| [20261120T110821_676516Z_calibration](2026-11-20/20261120T110821_676516Z_calibration/calibration_report.json) | **Current** real-data calibration, outdoor E1 + E2 → E3, with E1 servo end-stop corrections; **fails** (bearing RMSE 37.3°, range 33 %, boresight −10.7°) |
+| [20261120T110826_019513Z_calibration](2026-11-20/20261120T110826_019513Z_calibration/calibration_report.json) | **Current** real-data calibration, all E1 + E2 → E3, with end-stop corrections; **fails** (bearing RMSE 37.1°, range 33 %) |
+| `2026-11-20/*_capture` | Hardware captures from the 20 Nov sessions (E0, E4, B0, B2, E3, single-tone and multi-tone); `phase_b_s1_manifest.json` lists the multi-tone session |
 
-Final runs save configuration and source hashes, and current runs also copy the code
-under `source_snapshot/`. To reproduce an old snapshot, use an isolated copy of the
-repository with the matching original input data; restore its snapshot source files
-there and run the recorded command/config. Input data hashes are in the manifest.
+Runs save the configuration and source hashes (`manifest.json`). To reproduce a run,
+check out the commit whose source hashes match and run the recorded command/config. Input data hashes are in the manifest.
 Do not mix a newer runtime with an older run's configuration without checking schema
 and behavioral changes.
 
