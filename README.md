@@ -22,18 +22,18 @@ driving. Hardware motion requires an explicit calibrated configuration and `--dr
 
 | Folder | Purpose |
 |---|---|
-| `rover/` | Shared sensing, observer, controller, simulation, calibration (`calibrate`, in-room `bearing_cal`), vehicle identification (`identify`) and Pi runtime |
+| `rover/` | Shared sensing, observer, controller, simulation, calibration (`calibrate`, in-room `bearing_cal`), vehicle identification (`identify`), trial evaluation (`evaluate_trial`), Phase E design (`phase_e`, `phase_e_course`) and Pi runtime |
 | `Config/` | Explicit parameter provenance, measured sensor values and hardware calibration template |
 | `firmware/esp32_acoustic_v2/` | Current versioned USB protocol (CRC, capture times, bounded servo commands) |
 | `firmware/archive/` | Older sketches: wired and wireless v1, and the POC sketches (`poc/`, `poc_0_test_mic/`) |
-| `Matlab/` | Gain cross-check `rover_reference_design.m` and measured horn parameters |
+| `Matlab/` | Phase E design `acoustic_pursuit_design.m` and Simulink loop `acoustic_pursuit_loop.slx` (both read `Config/phase_e.json`), gain cross-check `rover_reference_design.m`, measured horn parameters |
 | `Hardware/` | Mechanical design files (horn and tube) |
 | `Data/raw/` | Raw hardware logs, one folder per experiment (E0–E4, `small_Exp3`); `2026-10-22_E0_baseline/` is the legacy static log used for replay |
 | `Data/poc/`, `Data/stimuli/`, `Data/corrections.csv` | POC sweep results, beacon specs (regenerate the `.wav` files with `Tools/make_tone.py`), ground-truth corrections for raw logs (raw logs are never edited) |
-| `Tools/` | Logging, plotting and beacon utilities (`esp_logger.py`, `plot_directivity.py`, `make_tone.py`, `beacon_spec.py`), Phase B session and analysis (`phase_b_session.py`, `phase_b_multitone.py`) |
+| `Tools/` | Logging, plotting and beacon utilities (`esp_logger.py`, `plot_directivity.py`, `make_tone.py`, `beacon_spec.py`), Phase B session and analysis (`phase_b_session.py`, `phase_b_multitone.py`), Pi readiness check (`pi_check.py`) |
 | `POC/` | Original proof-of-concept analysis scripts |
 | `Runs/YYYY-MM-DD/<UTC timestamp>_<task>/` | Hardware captures (20 Nov sessions), validation, sensitivity and calibration runs with config snapshots, metrics and source hashes |
-| `Docs/` | Design notes (`CONTROL_DESIGN.md`) and `Progress_Report/` |
+| `Docs/` | Design notes (`CONTROL_DESIGN.md`), `Progress_Report/`, Phase E figures (`phase_e/`, from `python -m rover.phase_e` and the MATLAB script) |
 
 Paths are case-sensitive (Pi).
 
