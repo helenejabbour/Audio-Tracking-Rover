@@ -33,7 +33,8 @@ driving. Hardware motion requires an explicit calibrated configuration and `--dr
 | `Tools/` | Logging, plotting and beacon utilities (`esp_logger.py`, `plot_directivity.py`, `make_tone.py`, `beacon_spec.py`), Phase B session and analysis (`phase_b_session.py`, `phase_b_multitone.py`), Pi readiness check (`pi_check.py`) |
 | `POC/` | Original proof-of-concept analysis scripts |
 | `Runs/YYYY-MM-DD/<UTC timestamp>_<task>/` | Hardware captures (20 Nov sessions), validation, sensitivity and calibration runs with config snapshots, metrics and source hashes |
-| `Docs/` | Design notes (`CONTROL_DESIGN.md`), `Progress_Report/`, Phase E figures (`phase_e/`, from `python -m rover.phase_e` and the MATLAB script) |
+| `Docs/` | Design notes (`CONTROL_DESIGN.md`) and `Progress_Report/` |
+| `Results/control_design/` | Controller design figures with the measured parameters (LQR/LQI/LQE/LQG, structure, bandwidth, governor, demo tiers, Simulink check), from `python -m rover.phase_e` and `Matlab/acoustic_pursuit_design.m` |
 
 Paths are case-sensitive (Pi).
 
