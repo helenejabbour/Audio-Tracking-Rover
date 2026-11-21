@@ -25,6 +25,7 @@ driving. Hardware motion requires an explicit calibrated configuration and `--dr
 | `rover/` | Shared sensing, observer, controller, simulation, calibration (`calibrate`, in-room `bearing_cal`), vehicle identification (`identify`) and Pi runtime |
 | `Config/` | Explicit parameter provenance, measured sensor values and hardware calibration template |
 | `firmware/esp32_acoustic_v2/` | Current versioned USB protocol (CRC, capture times, bounded servo commands) |
+| `firmware/archive/` | Older sketches: wired and wireless v1, and the POC sketches (`poc/`, `poc_0_test_mic/`) |
 | `Matlab/` | Gain cross-check `rover_reference_design.m` and measured horn parameters |
 | `Hardware/` | Mechanical design files (horn and tube) |
 | `Data/raw/` | Raw hardware logs, one folder per experiment (E0–E4, `small_Exp3`); `2026-10-22_E0_baseline/` is the legacy static log used for replay |

@@ -136,7 +136,8 @@ def main():
                     print("\n# WARN no settings confirmation after 10 s, logging anyway")
                     ready = True
                 fl = p[11]
-                row = dict(zip(RAW, [time.time()] + p), valid=int((fl & 7) == 1), clip=(fl >> 1) & 1, late=(fl >> 2) & 1)
+                row = dict(zip(RAW, [time.time()] + p), valid=int((fl & 7) == 1), clip=(fl >> 1) & 1, late=(fl >> 2) & 1,
+                           pfirst=(fl >> 3) & 1)
                 rows.append(row)
                 w.writerow([row[k] for k in RAW] + [row["valid"], row["clip"], row["late"], row["pfirst"],
                                                     a.rho, a.beta, a.label])
