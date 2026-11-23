@@ -10,7 +10,7 @@
   "settle": 40,
   "duration": 30.0,
   "outdir": "data",
-  "notes": "horn+back panel, nour laptop vol 30"
+  "notes": "horn+back panel, laptop vol 30"
  },
  "firmware_config": "C,16000,512,4000,3000,40,40,0.0,1.0",
  "summary": {

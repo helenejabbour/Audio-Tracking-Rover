@@ -21,7 +21,7 @@
  *        8 capture order: 0 = A- captured first, 1 = A+ captured first (alternates every pair).
  * Commands P<deg>, D<deg>, S<ms>, ?; one newline-terminated command per line.
  *
- * Servo constants are Nour's wired-v2 values (esp32_acoustic_wired.ino, Oct 28):
+ * Servo constants are the wired-v2 values (esp32_acoustic_wired.ino, Oct 28):
  * centre 110 deg, +1 = left, 500-2400 us (the ESP32Servo attach range), phi limit 80 deg.
  * SERVO_CENTER IS A PER-MOUNT CALIBRATION: 110 deg is where the horn pointed straight
  * ahead with the horn-to-servo mounting used for the Oct-Nov data (the horn is not
@@ -126,7 +126,7 @@ static_assert(M_TONES>=1 && M_NOISE>=1 && BinCheck::ok(), "tone/noise bins must 
 static_assert(SERVO_CENTER>=SERVO_MIN && SERVO_CENTER<=SERVO_MAX, "invalid center");
 static_assert(SERVO_MIN>=0 && SERVO_MAX<=180, "servo range is 0-180 deg");
 static_assert(PHI_LO<0 && PHI_HI>0, "horn span must straddle boresight");
-float center=0.f, delta=50.f;   // Nour's chosen dither (Matlab/horn_model_parameters.txt)
+float center=0.f, delta=50.f;   // chosen dither (Matlab/horn_model_parameters.txt)
 int settle_ms=40, servo_angle=SERVO_CENTER;
 uint32_t seq=0, ready_ms=0;
 float pair_pm=0.f, pair_pp=0.f, pair_second=0.f;

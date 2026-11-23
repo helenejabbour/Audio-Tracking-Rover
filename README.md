@@ -28,7 +28,7 @@ driving. Hardware motion requires an explicit calibrated configuration and `--dr
 | `firmware/archive/` | Older sketches: wired and wireless v1, and the POC sketches (`poc/`, `poc_0_test_mic/`) |
 | `Matlab/` | Phase E design `acoustic_pursuit_design.m` and Simulink loop `acoustic_pursuit_loop.slx` (both read `Config/phase_e.json`), gain cross-check `rover_reference_design.m`, measured horn parameters |
 | `Hardware/` | Mechanical design files (horn and tube) |
-| `Data/raw/` | Raw hardware logs, one folder per experiment (E0–E4, `small_Exp3`); `2026-10-22_E0_baseline/` is the legacy static log used for replay |
+| `Data/raw/` | Raw hardware logs, one folder per experiment (E0–E4, `small_Exp3`); index in [`Data/raw/README.md`](Data/raw/README.md). `2026-10-22_E0_baseline/` is the legacy static log used for replay |
 | `Data/poc/`, `Data/stimuli/`, `Data/corrections.csv` | POC sweep results, beacon specs (regenerate the `.wav` files with `Tools/make_tone.py`), ground-truth corrections for raw logs (raw logs are never edited) |
 | `Tools/` | Logging, plotting and beacon utilities (`esp_logger.py`, `plot_directivity.py`, `make_tone.py`, `beacon_spec.py`), Phase B session and analysis (`phase_b_session.py`, `phase_b_multitone.py`), Pi readiness check (`pi_check.py`) |
 | `POC/` | Original proof-of-concept analysis scripts |

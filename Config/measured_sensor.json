@@ -1,5 +1,5 @@
 {
-  "provenance": "Sensor and timing values from Nour's measurements (Matlab/horn_model_parameters.txt, 18 Nov 2026; E4 timing in Tools/data/Exp4_*). Vehicle, actuator and controller values are still the synthetic assumptions of Config/simulation.json. NOT a hardware calibration: E3 held-out tests fail (see Docs/NEXT_STEPS.md).",
+  "provenance": "Sensor and timing values from measured hardware data (Matlab/horn_model_parameters.txt, 18 Nov 2026; E4 timing in Data/raw/Exp4_*). Vehicle, actuator and controller values are still the synthetic assumptions of Config/simulation.json. NOT a hardware calibration: E3 held-out tests fail (see Docs/NEXT_STEPS.md).",
   "sources": {
     "sigma_deg": "Gaussian fit, horn_model_parameters.txt (clipped alternative: w=25, sigma=52)",
     "boresight_deg": "horn_model_parameters.txt c=0",
@@ -8,7 +8,7 @@
     "amplitude_noise": "s_n=0.7 counts indoors (7 outdoors)",
     "amplitude_min": "A_thr=3.5 counts indoors (36 outdoors)",
     "dither_deg": "P.dlt=50",
-    "horn_limit_deg": "phi_max=80: firmware upper bound only (Nour); experiments set dither separately, capped at 60",
+    "horn_limit_deg": "phi_max=80: firmware upper bound only; experiments set dither separately, capped at 60",
     "horn_limit_left_deg": "servo end stop 180 deg minus the per-mount centre 110 deg = +70. Recompute if the centre is re-measured after reattaching the horn",
     "bearing_domain_deg": "bearing window +-(80-delta)=+-30",
     "measurement_period": "E4: T_m=0.477 s at delta=50 (T_m = 0.144 + delta/150 s)",

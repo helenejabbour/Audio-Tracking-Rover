@@ -2,7 +2,7 @@ file,field,logged,corrected,action,evidence
 S_right45_20261103_070208.csv,beta_true,-45.0,45.0,override,"notes 'sanity 1 fwd 1 left'; ln(A+/A-)=+0.67 (left side); sibling 070103 has notes '1 fwd 1 right' and ln=-0.43"
 S_right45_20261103_070208.csv,label,S_right45,S_left45,override,same evidence as beta_true
 0p3m_static_30p_20261028_132951.csv,rho_true,1.0,0.3,override,"label 0p3m_static_30p; --rho left at its 1.0 value; A_geo=101 vs 33-83 at 1 m"
-3m_static_30p_20261028_133408.csv,rho_true,1.0,3.0,override,"file name says 3 m, label says 0p3m_static_30p, --rho left at its 1.0 value; Nour confirmed 3 m on 20 Nov 2026"
+3m_static_30p_20261028_133408.csv,rho_true,1.0,3.0,override,"file name says 3 m, label says 0p3m_static_30p, --rho left at its 1.0 value; confirmed 3 m on 20 Nov 2026"
 E1_phi80_r1.0_20261028_141252.csv,phi_c,79.5,70.0,override,"servo centre 110 + 79/80 = 189/190 deg, clamped by ESP32Servo to 180 deg: both captures at +70 (amplitudes match the phi=+70 run in every session)"
 E1_phi80_r1.0_20261028_141252.csv,dlt,0.5,0.0,override,"servo centre 110 + 79/80 = 189/190 deg, clamped by ESP32Servo to 180 deg: both captures at +70 (amplitudes match the phi=+70 run in every session)"
 E1_phi80_r1.0_20261028_151703.csv,phi_c,79.5,70.0,override,"servo centre 110 + 79/80 = 189/190 deg, clamped by ESP32Servo to 180 deg: both captures at +70 (amplitudes match the phi=+70 run in every session)"

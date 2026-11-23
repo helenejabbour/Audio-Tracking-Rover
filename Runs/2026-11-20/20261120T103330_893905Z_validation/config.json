@@ -1,5 +1,5 @@
 {
-  "provenance": "Sensor and timing values from Nour's measurements (Matlab/horn_model_parameters.txt, 18 Nov 2026; E4 timing in Tools/data/Exp4_*). Vehicle, actuator and controller values are still the synthetic assumptions of Config/simulation.json. NOT a hardware calibration: E3 held-out tests fail (see Docs/NEXT_STEPS.md).",
+  "provenance": "Sensor and timing values from measured hardware data (Matlab/horn_model_parameters.txt, 18 Nov 2026; E4 timing in Data/raw/Exp4_*). Vehicle, actuator and controller values are still the synthetic assumptions of Config/simulation.json. NOT a hardware calibration: E3 held-out tests fail (see Docs/NEXT_STEPS.md).",
   "sources": {
     "sigma_deg": "Gaussian fit, horn_model_parameters.txt (clipped alternative: w=25, sigma=52)",
     "boresight_deg": "horn_model_parameters.txt c=0",
