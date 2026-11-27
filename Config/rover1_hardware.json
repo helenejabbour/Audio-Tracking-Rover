@@ -23,6 +23,14 @@
     "max_steer_deg": 45.0,
     "transport_delay": 0.0254
   },
+  "motor_on_E0_notes": {
+    "runs": "Runs/2026-11-27/20261127T174120_078885Z_capture (horn12, delta 50, speaker off) + 20261127T174127_635711Z_identify_spin (pwm 0/25/45/80/0 x 15 s), rover lifted",
+    "silence_gate": "PASS: 0/199 pairs accepted, 0 CRC/format errors, T_m 0.481 s in every segment",
+    "noise_floor_N": "motors off 2.1-2.3 counts; pwm 25/45/80: 9.0/11.0/11.5 (x4-5, about +13 dB)",
+    "inband_tone_bins_median": "motors off 1.9-2.1; pwm 25/45/80: 7.8/7.4/9.2 counts; lowest tones (3.2-3.4 kHz) worst, 13-16 at pwm 80",
+    "raw_pp_counts": "motors off ~450-550; motors on ~2400-3240 of a 4095 ADC span",
+    "tone_run": "not done (operator decision). Open risks with a tone: clipping (motor pp ~3200 + tone pp 1000-1500 > 4095) and per-pair bearing noise ~x4-5 from the raised N. Check with one motor-on tone capture at the calibrated horn12 volume."
+  },
   "vehicle_notes": {
     "transport_delay": "MEASURED 2026-11-27, rover1, ESP32 on /dev/ttyUSB0, 300 s (python3 -m rover.identify latency): min RTT/2 = 11.2 ms + p95 R2 arrival jitter 14.3 ms = 25.4 ms. Replaces the synthetic 0.04 s.",
     "rtt_s": {"min": 0.0223, "median": 0.0278, "p95": 0.0721},

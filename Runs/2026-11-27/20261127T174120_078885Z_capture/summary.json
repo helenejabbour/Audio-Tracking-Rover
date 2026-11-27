@@ -1,0 +1,24 @@
+{
+  "n": 199,
+  "valid": 0,
+  "bins_rows": 199,
+  "tone_hz": [
+    3187.5,
+    3312.5,
+    3437.5,
+    3562.5,
+    3687.5,
+    3812.5,
+    3937.5,
+    4062.5,
+    4187.5,
+    4312.5,
+    4437.5,
+    4562.5
+  ],
+  "bad_crc_or_format": 0,
+  "firmware": [
+    "C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512C2,profile=horn12,fs=16000,N=512,tones=12,tone_k=102:146,noise_bins=12,noise_k=100:148,window=hann,combine=power_nsub,snr_min=2.0,settle_ms=40,center=110,sign=1,limits=30:180,phi=-80.0:70.0,phi_c=0.0,dlt=50.0,alternate=1,link=usb,bt_drop=0"
+  ],
+  "hardware_motion": false
+}

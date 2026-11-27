@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "E0_motor_silence_h12",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 50,
+  "settle_ms": 40,
+  "duration": 110.0,
+  "notes": "rover1, lifted, speaker off, motors 0/25/45/80/0 x 15 s",
+  "config": "Config/measured_horn12.json"
+}
