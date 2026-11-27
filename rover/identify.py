@@ -12,6 +12,9 @@ Run modes (on the Pi; each writes Runs/<date>/<stamp>_identify_<mode>/):
            video; then a speed step (forward at --pwm for --duration, then stop: gives the
            speed lag AND the braking) or a steering step (--servo-from -> --servo-to ->
            back). All command times are logged relative to the flick.
+  spin     Motor-on E0 aid, DRIVE WHEELS LIFTED. Holds off, each --pwm, off for --block-s each
+           (<= 30 s) and logs wall-clock segment bounds (segments.csv) to split a parallel
+           rover.collect capture (samples.csv t_pi) by motor state.
   latency  ESP32 on the Pi's USB: round-trip of '?' -> 'C2' and the R2 arrival jitter.
            transport_delay ~ min(RTT)/2 + p95(arrival jitter). No motors.
 
@@ -41,6 +44,7 @@ from .config import create_run, load_config, write_json
 from .hardware import PICAR_STRAIGHT, PICAR_TURNING_MAX, open_picar, read_picar_database
 
 MAX_RUN_S = 6.0
+MAX_SPIN_BLOCK_S = 30.0  # spin mode only: drive wheels lifted, so longer than MAX_RUN_S
 SYNC_FLICK = 70  # servo command for the video sync flick
 
 
@@ -139,6 +143,31 @@ def run_step(front, back, profile, pwm, duration, servo_from, servo_to, dwell, s
     finally:
         back.speed = 0; back.stop()
     return [{'event': e, 't_rel_s': round(t, 4)} for e, t in events]
+
+
+def spin_plan(pwms, block_s):
+    """Motor schedule for the motor-on E0: off, each command in turn, off (one block each)."""
+    return [0] + [int(p) for p in pwms] + [0], float(block_s)
+
+
+def run_spin(front, back, pwms, block_s, sleep=time.sleep, wall=time.time):
+    """Drive wheels lifted. Holds each motor command for block_s; logs wall-clock segment
+    bounds (same clock as rover.collect's t_pi) so the capture can be split by motor state."""
+    plan, block = spin_plan(pwms, block_s)
+    rows = []
+    front.turn(PICAR_STRAIGHT); back.speed = 0; back.stop()
+    try:
+        for i, pwm in enumerate(plan):
+            if pwm > 0:
+                back.forward(); back.speed = pwm
+            else:
+                back.speed = 0; back.stop()
+            t0 = wall(); print(f'[{i+1}/{len(plan)}] pwm {pwm} for {block:.0f} s', flush=True)
+            sleep(block)
+            rows.append({'segment': i+1, 'pwm': pwm, 't_start_wall': round(t0, 4), 't_end_wall': round(wall(), 4)})
+    finally:
+        back.speed = 0; back.stop()
+    return rows
 
 
 def run_latency(ser, duration, ping_period=.25, clock=time.monotonic):
@@ -351,6 +380,10 @@ def main(argv=None, ask=input):
     s.add_argument('--max-pwm', type=int, default=80)
     s.add_argument('--servo-from', type=int, default=90); s.add_argument('--servo-to', type=int, default=70)
     s.add_argument('--dwell', type=float, default=1.)
+    s = sub.add_parser('spin'); motion(s)
+    s.add_argument('--pwm', type=int, nargs='+', default=[25, 45, 80])
+    s.add_argument('--block-s', type=float, default=15.)
+    s.add_argument('--max-pwm', type=int, default=80)
     s = sub.add_parser('latency'); s.add_argument('--port', required=True); s.add_argument('--duration', type=float, default=300.)
     s.add_argument('--delta', type=float, default=50.); s.add_argument('--notes', required=True)
     s = sub.add_parser('fit-step'); s.add_argument('run'); s.add_argument('--video', required=True)
@@ -396,10 +429,12 @@ def main(argv=None, ask=input):
     read_picar_database(a.picar_db)  # fail before anything moves
     if not a.drive:
         p.error('motion modes need --drive')
-    if a.mode in ('speed', 'step'):
+    if a.mode in ('speed', 'step', 'spin'):
         pwms = a.pwm if isinstance(a.pwm, list) else [a.pwm]
         if not all(0 < x <= min(a.max_pwm, 100) for x in pwms):
             p.error(f'motor commands must lie in (0, --max-pwm={a.max_pwm}]')
+    if a.mode == 'spin' and not 5 <= a.block_s <= MAX_SPIN_BLOCK_S:
+        p.error(f'--block-s must lie in [5, {MAX_SPIN_BLOCK_S}] s')
     if a.mode == 'speed' and (max(a.durations) > MAX_RUN_S or len(set(a.durations)) < 2):
         p.error(f'speed needs >= 2 distinct durations, each <= {MAX_RUN_S} s')
     if a.mode == 'step' and a.duration > MAX_RUN_S:
@@ -409,8 +444,13 @@ def main(argv=None, ask=input):
     if any(not lo <= s <= hi for s in servos):
         p.error(f'servo commands must lie in [{lo}, {hi}] (Front_Wheels.turn clamp)')
     floor = a.mode == 'speed' or (a.mode == 'step' and a.profile == 'speed')
-    confirm(ask, 'The rover will DRIVE on the floor: clear 3 m ahead, hand near the power switch.' if floor
-            else 'Front wheels will steer; motors stay off. Wheels lifted or rover free to steer.')
+    if a.mode == 'spin':
+        plan, block = spin_plan(a.pwm, a.block_s)
+        confirm(ask, f'DRIVE MOTORS WILL RUN for {len(plan)*block:.0f} s (pwm {plan}, {block:.0f} s each). '
+                     'REAR wheels must be OFF the ground, hand near the power switch.')
+    else:
+        confirm(ask, 'The rover will DRIVE on the floor: clear 3 m ahead, hand near the power switch.' if floor
+                else 'Front wheels will steer; motors stay off. Wheels lifted or rover free to steer.')
     out = create_run(f'identify_{a.mode}', cfg)
     session = dict(vars(a)); session['picar_database_values'] = read_picar_database(a.picar_db)
     write_json(out/'session.json', session)
@@ -428,6 +468,9 @@ def main(argv=None, ask=input):
                     print(json.dumps(fit_speed(rows), indent=1))
                 except ValueError as exc:
                     print(f'fit not possible yet: {exc}')
+        elif a.mode == 'spin':
+            rows = run_spin(front, back, a.pwm, a.block_s)
+            write_rows(out/'segments.csv', rows); print(rows)
         else:
             rows = run_step(front, back, a.profile, a.pwm, a.duration, a.servo_from, a.servo_to, a.dwell)
             write_rows(out/'events.csv', rows); print(rows)

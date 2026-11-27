@@ -1,0 +1,14 @@
+{
+  "pings": 1117,
+  "packets": 623,
+  "rtt_min_s": 0.02232974800017473,
+  "rtt_median_s": 0.027821016999951098,
+  "rtt_p95_s": 0.07210367299985591,
+  "jitter_p50_s": 0.008036953999635443,
+  "jitter_p95_s": 0.014277247299560258,
+  "jitter_max_s": 0.01675794299944755,
+  "transport_delay_s": 0.025442121299647624,
+  "note": "one-way ~ min RTT/2 (the firmware only polls commands between captures, so the median RTT includes up to one 32 ms capture); plus the p95 of extra buffering seen on R2 arrivals",
+  "port": "/dev/ttyUSB0",
+  "notes": "rover1, lifted, ESP32 on USB"
+}

@@ -1,0 +1,26 @@
+{
+  "mode": "steer",
+  "picar_db": "/home/pi/SunFounder_PiCar/picar/config",
+  "drive": true,
+  "notes": "rover1, lifted, protractor",
+  "servos": [
+    45,
+    55,
+    65,
+    75,
+    85,
+    95,
+    105,
+    115,
+    125,
+    135
+  ],
+  "repeats": 2,
+  "settle": 0.5,
+  "config": null,
+  "picar_database_values": {
+    "turning_offset": 0,
+    "forward_A": 0,
+    "forward_B": 0
+  }
+}
