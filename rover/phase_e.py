@@ -20,13 +20,18 @@ import numpy as np
 from scipy.linalg import expm, solve_discrete_are
 from .config import create_run, load_config, write_json
 from .model import design, linear_model
-from .simulation import run_simulation, SCENARIOS
+from .simulation import run_simulation, SCENARIOS, S1_RANGE_BIAS_TABLE
 
 # Validated categorical slots 1-3 (all-pairs safe), text and recessive ink.
 BLUE, ORANGE, AQUA = '#2a78d6', '#eb6834', '#1baf7a'
 INK, INK2, GRID, REF = '#0b0b0b', '#52514e', '#e4e3df', '#8a8984'
+# 's1 measured' is the living room as measured: bearing fringe + room bias (20 Nov s1) and, since 28 Nov,
+# the range law too: 8 % pose-to-pose range bias and the systematic deviation (0.75 m low, 2.0 m high).
 LEVELS = {'none': {}, 'horn12 target': dict(fringe_ln_sd=.07, room_bearing_sd_deg=10.),
-          's1 measured': dict(fringe_ln_sd=.144, room_bearing_sd_deg=23.)}
+          's1 measured': dict(fringe_ln_sd=.144, room_bearing_sd_deg=23., room_range_ln_sd=.08,
+                              range_bias_table=S1_RANGE_BIAS_TABLE)}
+# Pre-registered Tier 1 criterion (Local/Docs/NEXT_STEPS_SHORT.md, QW4): stop at 1.0 +- 0.2 m, no contact, within 60 s.
+TIER1_TOLERANCE_M = 0.2
 LEVEL_COLORS = [BLUE, ORANGE, AQUA]
 
 
@@ -113,7 +118,8 @@ def tier_outcome(tier, cfg, m, rows):
     rng_err = float(np.mean(a[tail, 1])-cfg['desired_range']); brms = float(np.rad2deg(np.sqrt(np.mean(a[tail, 2]**2))))
     safe = m['minimum_range_m'] >= cfg['clearance']
     if tier == 1:
-        ok = rows[-1][14] == 'stationary_target_standoff' and safe and abs(a[-1, 1]-cfg['desired_range']) <= .25
+        # rows end at cfg['duration'] (60 s), so a latched stand-off was reached within the time limit.
+        ok = rows[-1][14] == 'stationary_target_standoff' and safe and abs(a[-1, 1]-cfg['desired_range']) <= TIER1_TOLERANCE_M
         return dict(success=bool(ok), final_range=float(a[-1, 1]), safe=bool(safe))
     ok = m['tracking_fraction'] >= .9 and abs(rng_err) <= .15 and brms <= 20 and safe
     return dict(success=bool(ok), range_error=rng_err, bearing_rms=brms, tracking=m['tracking_fraction'], safe=bool(safe))
@@ -205,7 +211,9 @@ def main(argv=None):
     ax.set_xlabel('target speed v_t [m/s]'); ax.set_ylabel('steady true range [m]')
     ax.set_title('4  O1 vs O4: above the knee the safety governor sets the range')
     ax.legend(loc='upper left', fontsize=8); fig.tight_layout(); fig.savefig(out/'fig4_governor.png', dpi=160); plt.close(fig)
-    res['governor'] = {'target_speeds': vts, 'steady_range_by_floor': gov}
+    # NaN = no steady tracking (e.g. target faster than the measured max_speed): null in JSON, a gap in the plot.
+    res['governor'] = {'target_speeds': vts, 'max_speed': cfg['max_speed'],
+                       'steady_range_by_floor': {k: [None if not np.isfinite(x) else x for x in v] for k, v in gov.items()}}
 
     # ---- 5/6. tiers -------------------------------------------------------------------------------------
     tiers = {}
@@ -266,16 +274,18 @@ def main(argv=None):
     res['course'] = course_plots(cfg, out, plt)   # Chapter 6 figures c1..c5 (lecture format)
     res['K'] = K_lqi.tolist(); res['K_place'] = K_pp.tolist(); res['observer_L'] = Lo.tolist()
     write_json(out/'analysis.json', json.loads(json.dumps(res, default=float)))
-    write_report(out, cfg, res, summary, a.seeds)
+    write_report(out, cfg, res, summary, a.seeds, a.config)
     print(out)
     return out
 
 
-def write_report(out, cfg, res, summary, nseeds):
+def write_report(out, cfg, res, summary, nseeds, config_path='Config/phase_e.json'):
     ml, mp, m0 = res['margins_lqi'], res['margins_place'], res['margins_lqi_no_delay']
     t = lambda k: summary.get(k, [np.nan]*3)
+    config_path = str(config_path).replace('\\', '/')
+    vehicle = 'measured speed table, provisional lags/braking' if cfg.get('hardware', {}).get('speed_table') else 'provisional vehicle'
     lines = [f"# Phase E results ({out.name})", "",
-             f"Config `Config/phase_e.json` (measured sensor and timing, provisional vehicle). Operating point d* = {cfg['desired_range']} m, "
+             f"Config `{config_path}` (amplitude_noise {cfg['amplitude_noise']}, {vehicle}). Operating point d* = {cfg['desired_range']} m, "
              f"v0 = {cfg['nominal_speed']} m/s, a = v0/d* = {res['a']:.3f} 1/s, T_m = {cfg['measurement_period']} s, pair gap {cfg['pair_gap']} s, "
              f"information delay T_eff = {res['T_eff_s']:.2f} s.", "",
              "| Figure | Question | Answer |", "|---|---|---|",
@@ -298,7 +308,9 @@ def write_report(out, cfg, res, summary, nseeds):
     for k, v in res['tiers'].items():
         f = lambda x, d=2: '—' if x is None or x != x else f'{x:.{d}f}'
         lines.append(f"| {k.replace('|', ', ')} | {100*v['success_rate']:.0f} % | {f(v['mean_range_error_m'])} | {f(v['mean_bearing_rms_deg'], 1)} | {f(v['mean_tracking'])} |")
-    lines += ["", f"{nseeds} seeds per cell; multipath levels: none; horn12 target (fringe 0.07, room 10°); s1 measured (0.144, 23°).", ""]
+    lines += ["", f"{nseeds} seeds per cell; multipath levels: none; horn12 target (fringe 0.07, room 10°); "
+              "s1 measured (fringe 0.144, room 23°, range: 8 % pose-to-pose and the 28 Nov range-law table). "
+              f"Tier 1 success = stand-off latched within {cfg['duration']:.0f} s at |ρ − 1.0| ≤ {TIER1_TOLERANCE_M} m, no clearance violation.", ""]
     c = res.get('course')
     if c:
         lines += ["## Chapter 6 figures (lecture format)", "",

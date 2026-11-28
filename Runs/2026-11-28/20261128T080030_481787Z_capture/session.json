@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "T1_mute",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 50,
+  "settle_ms": 40,
+  "duration": 20.0,
+  "notes": "speaker muted, clip source test",
+  "config": "Config/measured_multitone.json"
+}

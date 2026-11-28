@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "E0_motor_tone_v80_pwm80",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 50,
+  "settle_ms": 40,
+  "duration": 90.0,
+  "notes": "firmware rail_max=10, trimmer mid, volume 80 %, lifted, 1.0 m, spin 0/80/0 x 20 s",
+  "config": "Config/measured_multitone.json"
+}

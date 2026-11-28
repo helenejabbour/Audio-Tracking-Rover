@@ -58,7 +58,9 @@ A single 4 kHz tone is coherent, so room reflections add with a position-depende
 - **Host config.** `Config/measured_multitone.json` sets `snr_ratio_min = 2`. Its σ, $K$, κ and noise values are still the single-tone placeholders.
 - **Compile.** Verified with esp32 core 3.3.12: 22 % flash USB-only, 82 % with `USE_BT=1` ([log](logs/compile_20261120_multitone.log)).
 
-### Tone profiles: `horn12` is now the default (horn tuning, 20 Nov 2026)
+### Tone profiles (`wide16` is the default again since 28 Nov 2026)
+
+The adopted bearing model (`bin_model`) and range constant $K$ are fitted on `wide16` (s1 and A2); `horn12` has no calibration captures yet, so the source default is `BEACON_PROFILE 1`.
 
 Session s1 with `wide16` showed two problems:
 - The horn has a bearing slope only at about 3.25–4.5 kHz.
@@ -68,8 +70,10 @@ Session s1 with `wide16` showed two problems:
 
 | Profile | Tones (`TONE_K`) | Noise bins | Beacon |
 |---|---|---|---|
-| `2` = `horn12` (default) | 12 tones, 3187.5–4562.5 Hz every 125 Hz (k = 102…146 step 4) | midway, k ± 2, without k = 128 (4 kHz) | `Data/stimuli/horn12.wav` |
-| `1` = `wide16` (session s1) | 16 tones, 2500–6250 Hz every 250 Hz | midway, k + 4 | `Data/stimuli/multitone_2500-6250Hz_16.wav` |
+| `2` = `horn12` (20 Nov horn tuning, uncalibrated) | 12 tones, 3187.5–4562.5 Hz every 125 Hz (k = 102…146 step 4) | midway, k ± 2, without k = 128 (4 kHz) | `Data/stimuli/horn12.wav` |
+| `1` = `wide16` (default; session s1, A2, 28 Nov runs) | 16 tones, 2500–6250 Hz every 250 Hz | midway, k + 4 | `Data/stimuli/multitone_2500-6250Hz_16.wav` |
+
+**Impulse blanking (28 Nov).** Samples at an ADC rail (≤ 50 or ≥ 4045) are replaced by the capture mean before the Goertzel; the capture is flagged clipped only when more than `RAIL_MAX` = NS/50 = 10 samples hit a rail (`C2` reports `rail_max`). Motor PWM spikes are sparse, an over-loud tone is not, so the flag still catches level saturation. Effect on a blanked capture: amplitude scaled by about $1 - b/N_S$ (≤ 2 %), bearing ≤ 1.2°. Measured: clip 22.5 % → 0 % at PWM 45 (`Runs/2026-11-28/20261128T152705_557979Z_capture`).
 
 - **Interference.** With `AVOID_KHZ`, a `static_assert` checks that no tone or noise bin sits within one bin of a 1 kHz multiple. With the Hann window, a bin-centred line leaks into ±1 bin only.
 - **`C2`** now starts with `profile=horn12` (or `wide16`). `rover.live` refuses to run if a configured `bin_model` was fitted on different tones.
@@ -78,7 +82,7 @@ Session s1 with `wide16` showed two problems:
 - **Rebuild the spec** whenever the speaker, playback device or horn changes:
   `python Tools/beacon_spec.py --runs Runs/<date> --profile horn12`, then
   `python Tools/make_tone.py --spec Data/stimuli/horn12_spec.json --amp 0.9`.
-- **Build `wide16`:** `arduino-cli compile --fqbn esp32:esp32:esp32 --build-property "compiler.cpp.extra_flags=-DBEACON_PROFILE=1" firmware/esp32_acoustic_v2`.
+- **Build `horn12`:** `arduino-cli compile --fqbn esp32:esp32:esp32 --build-property "compiler.cpp.extra_flags=-DBEACON_PROFILE=2" firmware/esp32_acoustic_v2` (the plain build is `wide16`).
 - **Compile.** horn12: 22 % flash, no warnings ([log](logs/compile_20261120_horn12.log)). It has not been flashed yet.
 
 ## Wireless: Bluetooth Classic SPP (20 Nov 2026)

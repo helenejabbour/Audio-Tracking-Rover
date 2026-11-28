@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "T4_battery",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 50,
+  "settle_ms": 40,
+  "duration": 20.0,
+  "notes": "Pi on battery, wall adapter and laptop charger unplugged, tone on, battery __",
+  "config": "Config/measured_multitone.json"
+}

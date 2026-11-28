@@ -1,0 +1,20 @@
+{
+  "instructions": "Copy simulation.json to a NEW measured_config.json, replace every measured parameter using the guide, and add the hardware object below. This file alone is intentionally not runnable.",
+  "hardware_ready": false,
+  "hardware": {
+    "speed_table": [],
+    "steering_table": [],
+    "picar_database": "/home/pi/SunFounder_PiCar/picar/config",
+    "turning_offset_at_calibration": null,
+    "sensor_holdout_passed": false,
+    "actuator_calibration_passed": false,
+    "stop_test_passed": false,
+    "wheels_lifted_passed": false,
+    "evidence_files": []
+  },
+  "speed_table_schema": "ascending [measured speed m/s, PWM command 0..100] pairs, >=3 points covering min_speed through max_speed",
+  "steering_table_schema": "ascending [measured road-wheel angle deg, servo command deg] pairs, >=3 points covering +/-max_steer_deg; servo commands within [45, 135] (Front_Wheels.turn clamp), lower = left",
+  "picar_database_schema": "ABSOLUTE path to the calibrated SunFounder config (turning_offset, forward_A, forward_B). Keep a comment line after the last key: picar.filedb never reads the last line",
+  "turning_offset_at_calibration_schema": "turning_offset value in that file when the steering table was measured; motion is refused if it changes",
+  "evidence_files_schema": "paths to captured calibration results and commissioning records, resolved from the repo root"
+}

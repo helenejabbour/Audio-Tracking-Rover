@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "R_mt_r1.00_v80",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 50,
+  "settle_ms": 40,
+  "duration": 20.0,
+  "notes": "firmware rail_max=10, trimmer mid, volume 80 %, motors off, floor",
+  "config": "Config/measured_multitone.json"
+}

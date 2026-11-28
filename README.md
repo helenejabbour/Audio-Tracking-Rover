@@ -1,7 +1,7 @@
 # Audio Tracking Rover
 
-Engineering reference implementation for EECE 660 / MECH 653. Design notes:
-[`Docs/CONTROL_DESIGN.md`](Docs/CONTROL_DESIGN.md).
+Engineering reference implementation for EECE 660 / MECH 653. Findings across all data:
+[`Docs/DATA_FINDINGS.md`](Docs/DATA_FINDINGS.md); room calibration runbook: [`Docs/ROOM_CALIBRATION.md`](Docs/ROOM_CALIBRATION.md).
 
 Run index: [`Runs/README.md`](Runs/README.md).
 
@@ -32,8 +32,9 @@ driving. Hardware motion requires an explicit calibrated configuration and `--dr
 | `Data/poc/`, `Data/stimuli/`, `Data/corrections.csv` | POC sweep results, beacon specs (regenerate the `.wav` files with `Tools/make_tone.py`), ground-truth corrections for raw logs (raw logs are never edited) |
 | `Tools/` | Logging, plotting and beacon utilities (`esp_logger.py`, `plot_directivity.py`, `make_tone.py`, `beacon_spec.py`), Phase B session and analysis (`phase_b_session.py`, `phase_b_multitone.py`), Pi readiness check (`pi_check.py`) |
 | `POC/` | Original proof-of-concept analysis scripts |
-| `Runs/YYYY-MM-DD/<UTC timestamp>_<task>/` | Hardware captures (20 Nov sessions), validation, sensitivity and calibration runs with config snapshots, metrics and source hashes |
-| `Docs/` | Design notes (`CONTROL_DESIGN.md`) and `Progress_Report/` |
+| `Runs/YYYY-MM-DD/<UTC timestamp>_<task>/` | Hardware captures (20–28 Nov), validation, sensitivity, calibration, identification and Phase E runs with config snapshots, metrics and source hashes; one `README.md` index per date |
+| `Docs/` | [`DATA_FINDINGS.md`](Docs/DATA_FINDINGS.md) (findings across all kept data), `ROOM_CALIBRATION.md` and `Progress_Report/` |
+| `Unused_Data/` | Empty, aborted, invalidated, superseded and duplicate data moved out of the tree on 28 Nov; reasons in `MANIFEST.csv` |
 | `Results/control_design/` | Controller design figures with the measured parameters (LQR/LQI/LQE/LQG, structure, bandwidth, governor, demo tiers, Simulink check), from `python -m rover.phase_e` and `Matlab/acoustic_pursuit_design.m` |
 
 Paths are case-sensitive (Pi).

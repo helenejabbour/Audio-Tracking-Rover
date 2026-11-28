@@ -8,6 +8,7 @@ import time
 from .config import create_run,load_config,write_json
 from .controller import Tracker
 from .hardware import MotorProcess
+from .link import open_link
 from .sensing import DeviceClock,parse_v2,parse_bins,apply_bins,apply_bin_model,tone_frequencies,legacy_row
 from .model import polar_output
 import numpy as np
@@ -41,8 +42,15 @@ def replay(path,cfg,out):
     return summary
 
 
+def check_firmware_tones(text,model):
+    """The per-tone bin_model is only valid for the beacon profile it was fitted on."""
+    if model is None or not text.startswith('C2,'):return
+    freqs=tone_frequencies(text)
+    if freqs is None or len(freqs)!=len(model['tone_hz']) or not np.allclose(freqs,model['tone_hz']):
+        raise RuntimeError(f"bin_model tones {model['tone_hz']} do not match firmware {freqs}")
+
+
 def run_serial(cfg,port,duration,out,drive=False,baud=115200):
-    import serial
     tracker=Tracker(cfg);clock=DeviceClock(cfg['transport_delay']);motors=MotorProcess(cfg,drive)
     stop=False
     def request_stop(*_):
@@ -51,16 +59,19 @@ def run_serial(cfg,port,duration,out,drive=False,baud=115200):
     signal.signal(signal.SIGINT,request_stop);signal.signal(signal.SIGTERM,request_stop)
     ser=None;count=0;invalid=0
     try:
-        ser=serial.Serial(port,baud,timeout=0,write_timeout=.05)
-        # Boot settling is performed while motors remain stopped.
-        time.sleep(2);ser.reset_input_buffer()
-        ser.write(f"P0\nD{cfg['dither_deg']}\n?\n".encode())
+        # Boot settling and the link handshake happen while the motors remain stopped.
+        ser,early=open_link(port,f"P0\nD{cfg['dither_deg']}",baud)
+        ser.timeout=0;ser.write_timeout=.05
         start=time.monotonic();tracker.scan_start=start;next_tick=start;buffer=b'';last_horn=None
         # Optional host-side bin weighting (cfg bin_weights): B2 precedes its R2 with the same seq.
         weights=cfg.get('bin_weights');model=cfg.get('bin_model');last_bins=None
         with (out/'raw_serial.jsonl').open('w',encoding='utf-8') as raw, \
              (out/'commands.csv').open('w',newline='') as commands, \
              (out/'measurement_decisions.csv').open('w',newline='') as decisions:
+            # Handshake lines precede the control clock: log them, check the beacon profile, drop their pairs.
+            for received,text in early:
+                raw.write(json.dumps({'received_monotonic':received,'line':text,'handshake':True})+'\n')
+                check_firmware_tones(text,model)
             writer=csv.writer(commands);writer.writerow(['elapsed_s','monotonic_s','mode','reason','speed_mps','steering_rad','accepted','rejected',
                 'estimated_range_m','estimated_bearing_rad','range_std_m','bearing_std_rad','measurement_age_s','estimated_speed_mps','estimated_steering_rad','horn_center_deg'])
             decision_writer=csv.writer(decisions);decision_writer.writerow(['seq','received_monotonic','capture_monotonic','age_s','accepted','reason'])
@@ -80,10 +91,7 @@ def run_serial(cfg,port,duration,out,drive=False,baud=115200):
                     line,buffer=buffer.split(b'\n',1)
                     text=line.decode('ascii',errors='replace').strip()
                     raw.write(json.dumps({'received_monotonic':now,'line':text})+'\n')
-                    if text.startswith('C2,') and model is not None:
-                        freqs=tone_frequencies(text)
-                        if freqs is None or len(freqs)!=len(model['tone_hz']) or                                 not np.allclose(freqs,model['tone_hz']):
-                            raise RuntimeError(f"bin_model tones {model['tone_hz']} do not match firmware {freqs}")
+                    check_firmware_tones(text,model)
                     if text.startswith('B2,'):
                         last_bins=parse_bins(text)
                         if last_bins is None:invalid+=1

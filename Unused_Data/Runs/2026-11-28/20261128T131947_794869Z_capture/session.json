@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "E0_gain_test_pwm45",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 50,
+  "settle_ms": 40,
+  "duration": 90.0,
+  "notes": "gain halved, lifted, 1.0 m, spin 0/45/0 x 20 s",
+  "config": "Config/measured_multitone.json"
+}

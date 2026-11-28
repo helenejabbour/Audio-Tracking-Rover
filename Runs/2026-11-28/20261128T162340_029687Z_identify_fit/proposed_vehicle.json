@@ -1,0 +1,188 @@
+{
+  "hardware": {
+    "speed_table": [
+      [
+        0.04126486987875122,
+        25
+      ],
+      [
+        0.10018032458425172,
+        45
+      ],
+      [
+        0.20288070806272374,
+        80
+      ]
+    ],
+    "steering_table": [
+      [
+        -45.0,
+        135
+      ],
+      [
+        -35.0,
+        125
+      ],
+      [
+        -25.0,
+        115
+      ],
+      [
+        -15.0,
+        105
+      ],
+      [
+        -5.0,
+        95
+      ],
+      [
+        5.0,
+        85
+      ],
+      [
+        15.0,
+        75
+      ],
+      [
+        25.0,
+        65
+      ],
+      [
+        35.0,
+        55
+      ],
+      [
+        45.0,
+        45
+      ]
+    ]
+  },
+  "vehicle": {
+    "min_speed": 0.04126486987875122,
+    "max_speed": 0.20288070806272374,
+    "max_steer_deg": 45.0,
+    "transport_delay": 0.025442121299647624
+  },
+  "speed_fit": [
+    {
+      "pwm": 25,
+      "speed_mps": 0.04126486987875122,
+      "speed_se_mps": 0.003809418194028705,
+      "intercept_m": 0.00340140948562406,
+      "runs": 4,
+      "residual_sd_m": 0.007616360652060268
+    },
+    {
+      "pwm": 45,
+      "speed_mps": 0.10018032458425172,
+      "speed_se_mps": 0.008675870604933276,
+      "intercept_m": -0.0016930474854740406,
+      "runs": 3,
+      "residual_sd_m": 0.014142135623730944
+    },
+    {
+      "pwm": 80,
+      "speed_mps": 0.20288070806272374,
+      "speed_se_mps": 0.0017532138068621767,
+      "intercept_m": 0.0090095316160028,
+      "runs": 4,
+      "residual_sd_m": 0.00349985311683947
+    }
+  ],
+  "steer_fit": [
+    {
+      "servo": 45,
+      "wheel_deg": 45.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    },
+    {
+      "servo": 55,
+      "wheel_deg": 35.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    },
+    {
+      "servo": 65,
+      "wheel_deg": 25.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    },
+    {
+      "servo": 75,
+      "wheel_deg": 15.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    },
+    {
+      "servo": 85,
+      "wheel_deg": 5.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    },
+    {
+      "servo": 95,
+      "wheel_deg": -5.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    },
+    {
+      "servo": 105,
+      "wheel_deg": -15.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    },
+    {
+      "servo": 115,
+      "wheel_deg": -25.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    },
+    {
+      "servo": 125,
+      "wheel_deg": -35.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    },
+    {
+      "servo": 135,
+      "wheel_deg": -45.0,
+      "sd_deg": 0.0,
+      "backlash_deg": 0.0,
+      "n": 4
+    }
+  ],
+  "step_fits": [],
+  "latency": [
+    {
+      "pings": 1117,
+      "packets": 623,
+      "rtt_min_s": 0.02232974800017473,
+      "rtt_median_s": 0.027821016999951098,
+      "rtt_p95_s": 0.07210367299985591,
+      "jitter_p50_s": 0.008036953999635443,
+      "jitter_p95_s": 0.014277247299560258,
+      "jitter_max_s": 0.01675794299944755,
+      "transport_delay_s": 0.025442121299647624,
+      "note": "one-way ~ min RTT/2 (the firmware only polls commands between captures, so the median RTT includes up to one 32 ms capture); plus the p95 of extra buffering seen on R2 arrivals",
+      "port": "/dev/ttyUSB0",
+      "notes": "rover1, lifted, ESP32 on USB"
+    }
+  ],
+  "problems": [],
+  "sources": [
+    "Runs\\2026-11-28\\20261128T155805_660561Z_identify_speed",
+    "Runs\\2026-11-27\\20261127T164817_249191Z_identify_steer",
+    "Runs\\2026-11-27\\20261127T165058_166535Z_identify_latency"
+  ],
+  "note": "Proposed values only. Copy into Config/measured_config.json after review; wheelbase, clearance and turning_offset_at_calibration are entered by hand."
+}

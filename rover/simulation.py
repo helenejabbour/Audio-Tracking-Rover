@@ -25,7 +25,13 @@ SCENARIOS = {
     'fringe_room_s1': {'fringe_ln_sd': .144, 'room_bearing_sd_deg': 23.},
 }
 
-FRINGE_DEFAULTS = {'fringe_ln_sd': 0., 'fringe_length_m': .043, 'room_bearing_sd_deg': 0., 'room_length_m': 1.}
+FRINGE_DEFAULTS = {'fringe_ln_sd': 0., 'fringe_length_m': .043, 'room_bearing_sd_deg': 0., 'room_length_m': 1.,
+                   'room_range_ln_sd': 0., 'room_range_length_m': 1.}
+
+# Living-room range law as measured on 28 Nov (29 battery captures, beta = 0, residuals against the
+# pooled n = 1 fit): ln(A_measured/A_model) at the true range. 0.75 m reads ~20 % low (near reflection),
+# 2.0 m ~32 % high (reverberant floor: rho_hat ~ 1.5 m). np.interp holds the end values outside the span.
+S1_RANGE_BIAS_TABLE = [[.75, -.221], [1.0, .026], [1.3, -.020], [1.5, -.031], [2.0, .281]]
 
 
 class RandomField:
@@ -54,19 +60,29 @@ class MultipathModel:
     room: one slow field, +b/(2h) on A+ and -b/(2h) on A-, so it biases bearing by b deg
           (sd room_bearing_sd_deg) and leaves the range untouched (s1: range held out within ~8 %
           while bearing carried ~23 deg of room bias). h = sigma^2/(2 delta) in degrees.
+    range: optional terms that act on both sides alike, so they bias range and not bearing:
+          a slow pose-to-pose field (sd room_range_ln_sd; s1 E3 + 28 Nov: ~8 %) and the measured
+          systematic range-law deviation range_bias_table [[rho, ln factor], ...] at the true range.
     A separate random stream keeps every other random draw of the simulation unchanged.
     """
-    def __init__(self, params, cfg, seed):
+    def __init__(self, params, cfg, seed, range_table=None):
         rng = np.random.default_rng([int(seed), 7919])
         self.p = params
         self.fast = {s: RandomField(rng, params['fringe_length_m']) for s in (-1, 1)}
         self.room = RandomField(rng, params['room_length_m'])
+        # Drawn after the original fields, so runs without range terms are unchanged.
+        self.room_range = RandomField(rng, params['room_range_length_m']) if params['room_range_ln_sd'] > 0 else None
+        self.table = np.asarray(range_table, float) if range_table is not None else None
         self.h_deg = cfg['sigma_deg']**2/(2*cfg['dither_deg'])
 
     def gain(self, side, follower, target):
         pos = np.r_[follower[:2], target[:2]]
         e = self.p['fringe_ln_sd']*self.fast[side](pos)
         e += side*self.p['room_bearing_sd_deg']*self.room(pos)/(2*self.h_deg)
+        if self.room_range is not None:
+            e += self.p['room_range_ln_sd']*self.room_range(pos)
+        if self.table is not None:
+            e += float(np.interp(np.linalg.norm(target[:2]-follower[:2]), self.table[:, 0], self.table[:, 1]))
         return float(np.exp(e))
 
 
@@ -94,7 +110,13 @@ def run_simulation(cfg, scenario='nominal', seed=0, record=True):
     # True sensor may differ from the calibrated model: constant boresight error = bearing bias.
     sensor = dict(cfg, boresight_deg=cfg['boresight_deg']+spec.get('boresight_error_deg', 0.))
     mp_params = {k: float(spec.get(k, cfg.get(k, v))) for k, v in FRINGE_DEFAULTS.items()}
-    multipath = MultipathModel(mp_params, cfg, seed) if mp_params['fringe_ln_sd'] > 0 or mp_params['room_bearing_sd_deg'] > 0 else None
+    range_table = spec.get('range_bias_table', cfg.get('range_bias_table'))
+    multipath = MultipathModel(mp_params, cfg, seed, range_table) \
+        if mp_params['fringe_ln_sd'] > 0 or mp_params['room_bearing_sd_deg'] > 0 or \
+        mp_params['room_range_ln_sd'] > 0 or range_table is not None else None
+    # N the firmware would report in each capture (the live R reads it): 1 count = quiet bench;
+    # set it to the motor-on in-band N to reproduce the live estimator with the drive running.
+    reported_noise = float(cfg.get('sim_reported_noise', 1.))
     dt, duration = cfg['dt'], cfg['duration']
     initial_r = cfg['desired_range']+spec.get('initial_range_offset', .35) + rng.uniform(-.1, .1)
     initial_beta = np.deg2rad(rng.uniform(-15, 15))
@@ -118,7 +140,7 @@ def run_simulation(cfg, scenario='nominal', seed=0, record=True):
             am, ap = (second, p['a1']) if p['plus_first'] else (p['a1'], second)
             flags = (1 if am > 0 and ap > 0 else 0) | (ORDER_BIT if p['plus_first'] else 0)
             packet = Pair(seq, (p['t1']+t)/2, t-p['t1'], p['pm'], p['pp'],
-                          max(.001, am), max(.001, ap), 1., 1., flags)
+                          max(.001, am), max(.001, ap), reported_noise, reported_noise, flags)
             if not p['drop']:
                 arrival = t+cfg['transport_delay']+p['extra_delay']
                 heapq.heappush(arrivals, (arrival, seq, packet))

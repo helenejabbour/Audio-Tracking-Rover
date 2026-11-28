@@ -28,14 +28,30 @@ def summary(run):
         f"{Path(run).name}  {rows[0]['label']}",
         f"  pairs {len(rows)}  valid {100*col('valid').mean():.1f} %  clip {100*col('clip').mean():.1f} %  "
         f"late {100*col('late').mean():.1f} %",
-        f"  pp median {np.median(pp):.0f}  p95 {np.percentile(pp, 95):.0f}  max {pp.max():.0f}  (ADC 0-4095; clip at <=50 / >=4045)",
+        f"  pp median {np.median(pp):.0f}  p95 {np.percentile(pp, 95):.0f}  max {pp.max():.0f}  "
+        "(ADC 0-4095; clip = firmware flag: rail samples <=50/>=4045, more than rail_max with blanking firmware)",
         f"  {tm}",
         f"  N median {np.median(N):.2f}  A median {np.median(A):.2f} counts"])
 
 
 def main():
-    runs = sys.argv[1:] or [str(max(ROOT.glob('Runs/*/*_capture'), key=lambda p: p.name))]
+    if sys.argv[1:]:
+        runs = sys.argv[1:]
+    else:
+        found = list(ROOT.glob('Runs/*/*_capture'))
+        if not found:
+            raise SystemExit('no capture under Runs/')
+        runs = [str(max(found, key=lambda p: p.name))]
     for r in runs:
+        if not (Path(r)/'samples.csv').is_file():
+            err = ''
+            try:
+                import json
+                err = json.loads((Path(r)/'summary.json').read_text()).get('error') or ''
+            except (OSError, ValueError):
+                pass
+            print(f'{Path(r).name}: no samples.csv' + (f' ({err})' if err else ''))
+            continue
         print(summary(r))
 
 

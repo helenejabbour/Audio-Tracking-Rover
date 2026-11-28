@@ -91,7 +91,8 @@ def check_esp32(port, seconds=4.):
     try:
         import serial
         with serial.Serial(port, 115200, timeout=.2) as ser:
-            time.sleep(2); ser.reset_input_buffer(); ser.write(b'?\n')
+            # Leading newline: the port-open reset leaves garbage in the firmware's line buffer.
+            time.sleep(2); ser.reset_input_buffer(); ser.write(b'\n?\n')
             lines, end = [], time.monotonic()+seconds
             while time.monotonic() < end:
                 text = ser.readline().decode('ascii', errors='replace').strip()

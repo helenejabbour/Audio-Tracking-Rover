@@ -1,0 +1,17 @@
+{
+  "mode": "spin",
+  "picar_db": "/home/pi/SunFounder_PiCar/picar/config",
+  "drive": true,
+  "notes": "motor test volume 80 %, lifted, 1.0 m",
+  "pwm": [
+    45
+  ],
+  "block_s": 20.0,
+  "max_pwm": 80,
+  "config": null,
+  "picar_database_values": {
+    "turning_offset": 0,
+    "forward_A": 0,
+    "forward_B": 0
+  }
+}

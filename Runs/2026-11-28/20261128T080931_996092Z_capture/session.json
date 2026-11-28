@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "T3b_servo_signal_off",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 1.0,
+  "settle_ms": 40,
+  "duration": 20.0,
+  "notes": "servo signal wire only unplugged, power kept, horn at 0, tone on",
+  "config": "Config/measured_multitone.json"
+}

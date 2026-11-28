@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "R_mt_r1.00_g2",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 50,
+  "settle_ms": 40,
+  "duration": 20.0,
+  "notes": "gain min, speaker 40 %, laptop 20 %, motors off, floor, mic wire re-routed",
+  "config": "Config/measured_multitone.json"
+}

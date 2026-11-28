@@ -275,7 +275,11 @@ def estimate(pair, cfg):
         return None, 'outside_range_calibration'
     g = error*h/(sigma*sigma)  # = error/(2*delta) when kappa = 1
     J = np.array([[rho/n*(-.5-g), rho/n*(-.5+g)], [-h, h]])
-    log_variance = (np.maximum(cfg['amplitude_noise'], noise)/amps)**2
+    # noise = firmware in-band N (rms amplitude of one noise bin). For a band-combined amplitude over M
+    # tones the scatter it causes is sd(A) ~ N/sqrt(2M); 28 Nov motor runs: N 1.2 -> 7.9 at PWM 45 while
+    # sd(A) stays 1.2-1.5 counts. noise_to_amplitude_sd = 1/sqrt(2M) encodes that (default 1 = raw N).
+    sd_from_noise = cfg.get('noise_to_amplitude_sd', 1.)*noise
+    log_variance = (np.maximum(cfg['amplitude_noise'], sd_from_noise)/amps)**2
     R = (J*log_variance) @ J.T
     # Bounded within-pair change is uncertainty, not a claim of simultaneity.
     # Optional relative range floor (measured: 0.20*rho in horn_model_parameters.txt).

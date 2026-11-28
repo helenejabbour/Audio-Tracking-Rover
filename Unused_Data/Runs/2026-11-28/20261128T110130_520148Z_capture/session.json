@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "E0_motor_tone_mt",
+  "rho": 1.0,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 50,
+  "settle_ms": 40,
+  "duration": 150.0,
+  "notes": "rover1 lifted, wide16 tone 1.0 m, spin 0/25/45/80/0 x 15 s, battery __, redo 150 s",
+  "config": "Config/measured_multitone.json"
+}

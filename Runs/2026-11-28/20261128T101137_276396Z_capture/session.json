@@ -1,0 +1,12 @@
+{
+  "port": "/dev/ttyUSB0",
+  "label": "R_mt_r1.50",
+  "rho": 1.5,
+  "beta": 0.0,
+  "phi": 0,
+  "delta": 50,
+  "settle_ms": 40,
+  "duration": 20.0,
+  "notes": "range ref wide16, motors off",
+  "config": "Config/measured_multitone.json"
+}

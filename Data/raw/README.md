@@ -14,6 +14,8 @@ These logs were previously under `Tools/data/`.
 | `Exp3_2/` | E3 tile grid | 6 | Tile pitch 0.615 m |
 | `small_Exp3/` | E3 tile repeat, right then left | 7 | |
 | `Exp4_1/`, `Exp4_2/` | E4 timing | 5 each | Feeds the measured timing in `Config/measured_sensor.json` |
-| `S_right45_*` | Single 45° right capture | 2 | |
+| `S_right45/` | Single ±45° sanity captures, 3 Nov | 2 | `…070208` was really at β = +45° (left); fixed in `../corrections.csv` (keyed by file name) |
+
+`Exp3_1/E3_r1.00_b0_20261103_062008.csv` has no `.json` sidecar (50 pairs; the arguments are in the CSV columns).
 
 Related: firmware in `../../firmware/archive/esp32_acoustic_wired/`, horn parameters in `../../Matlab/horn_model_parameters.txt`.

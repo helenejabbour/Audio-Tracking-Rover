@@ -417,7 +417,8 @@ def main(argv=None, ask=input):
         import serial
         out = create_run('identify_latency', cfg)
         with serial.Serial(a.port, 115200, timeout=.05) as ser:
-            time.sleep(2); ser.reset_input_buffer(); ser.write(f'P0\nD{a.delta}\n'.encode())
+            # Leading newline: the port-open reset leaves garbage in the firmware's line buffer.
+            time.sleep(2); ser.reset_input_buffer(); ser.write(f'\nP0\nD{a.delta}\n'.encode())
             rtts, arrivals = run_latency(ser, a.duration)
         summary = latency_summary(rtts, arrivals); summary.update(port=a.port, notes=a.notes)
         write_rows(out/'rtt.csv', [{'rtt_s': r} for r in rtts])

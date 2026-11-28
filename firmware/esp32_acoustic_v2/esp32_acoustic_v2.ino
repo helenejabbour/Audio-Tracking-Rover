@@ -17,7 +17,7 @@
  * USE_HANN=0. A is then noise-subtracted, which the old sketch did not do.
  * CRC16-CCITT-FALSE: ASCII before '*', init FFFF, polynomial 1021.
  *   tm_us/tp_us = midpoints of the A- / A+ captures; either may come first (bit 3).
- * flags: 1 valid, 2 ADC clipping, 4 sample timing failure; valid excludes 2/4.
+ * flags: 1 valid, 2 ADC clipping (> RAIL_MAX = NS/50 samples at a rail; fewer are blanked), 4 sample timing failure; valid excludes 2/4.
  *        8 capture order: 0 = A- captured first, 1 = A+ captured first (alternates every pair).
  * Commands P<deg>, D<deg>, S<ms>, ?; one newline-terminated command per line.
  *
@@ -73,11 +73,12 @@ struct LineReader { char buf[32]; uint8_t n=0; bool overflow=false; };
 constexpr int MIC_PIN=34, SERVO_PIN=32;
 constexpr int FS=16000, NS=512;
 // Bin k is k*FS/NS = k*31.25 Hz. The beacon WAV must contain exactly the TONE_K tones.
+// Default 1 (wide16) since 28 Nov: the adopted s1 bin_model and K are fitted on wide16; horn12 is uncalibrated.
 #ifndef BEACON_PROFILE
-#define BEACON_PROFILE 2
+#define BEACON_PROFILE 1
 #endif
 #if BEACON_PROFILE==2
-// "horn12" (default, 20 Nov s1 findings): the horn has bearing slope only at ~3.25-4.5 kHz,
+// "horn12" (BEACON_PROFILE=2, from the 20 Nov s1 findings): the horn has bearing slope only at ~3.25-4.5 kHz,
 // and USB-frame interference sits on every 1 kHz multiple. 12 tones, 3187.5..4562.5 Hz every
 // 125 Hz (k = 102..146 step 4), none within one bin of a 1 kHz multiple (k % 32 in {31,0,1}).
 // Noise bins midway (k+-2), except k = 128 (4000 Hz, interference line).
@@ -170,8 +171,19 @@ float binAmplitude(const float *x,int k) {
   return 2*sqrtf(fmaxf(0,s1*s1+s2*s2-coeff*s1*s2))/window_sum;
 }
 
+// Impulse blanking (28 Nov): motor PWM edges couple sparse one-sided spikes to the ADC rail while
+// the tone is intact (A motors-on = A motors-off). A rail sample is not acoustic data: it is set to
+// the mean of the in-range samples (zero after mean removal) before the Goertzel, and the capture is
+// flagged as clipped only when more than RAIL_MAX samples hit a rail. An over-loud tone hits the
+// rails every cycle (hundreds of samples), so it is still flagged. Blanking b samples scales that
+// capture's tone amplitude by about 1 - b/NS (<= 2 % at RAIL_MAX). The two horn sides may differ, so
+// the worst case is |d ln(A+/A-)| <= 0.02, i.e. <= 1.2 deg bearing (h = 59 deg) and <= 2 % range.
+// With no rail samples the output is bit-identical to the previous firmware (no blanking, full mean),
+// so every earlier valid pair, and every fit made from valid pairs, is unchanged.
+constexpr int RAIL_LO=50, RAIL_HI=4045, RAIL_MAX=NS/50;
+
 Capture capture() {
-  static int16_t x[NS]; static float xf[NS]; long sum=0; int mn=4095,mx=0,late=0;
+  static int16_t x[NS]; static float xf[NS]; long sum=0; int mn=4095,mx=0,late=0,rail=0;
   uint32_t start=micros(),first=0,last=0;
   for(int i=0;i<NS;i++) {
     uint32_t due=start+(uint32_t)((uint64_t)i*1000000/FS);
@@ -180,19 +192,20 @@ Capture capture() {
     if((int32_t)(sample-due)>20)late++;
     int value=analogRead(MIC_PIN);
     if(i==0)first=sample; last=sample;
-    x[i]=value;sum+=value;mn=min(mn,value);mx=max(mx,value);
+    x[i]=value;mn=min(mn,value);mx=max(mx,value);
+    if(value<=RAIL_LO||value>=RAIL_HI){rail++;x[i]=-1;} else sum+=value;   // -1 marks a blanked sample
   }
   float actual_fs=(NS-1)*1e6f/(uint32_t)(last-first);
   Capture c;
-  const float mean=(float)sum/NS;
-  for(int i=0;i<NS;i++)xf[i]=(x[i]-mean)*window_w[i];
+  const float mean=rail<NS?(float)sum/(NS-rail):2048.f;
+  for(int i=0;i<NS;i++)xf[i]=(x[i]<0?0.f:x[i]-mean)*window_w[i];
   float pt=0,pn=0;
   for(int m=0;m<M_TONES;m++){c.tone[m]=binAmplitude(xf,TONE_K[m]);pt+=c.tone[m]*c.tone[m];}
   for(int j=0;j<M_NOISE;j++){float a=binAmplitude(xf,NOISE_K[j]);pn+=a*a;}
   pt/=M_TONES;pn/=M_NOISE;
   c.A=sqrtf(fmaxf(0,pt-pn));c.N=sqrtf(pn);
   c.pp=mx-mn;c.midpoint=first+(uint32_t)(last-first)/2;
-  c.clip=mn<=50||mx>=4045;
+  c.clip=rail>RAIL_MAX;   // pp keeps the raw extremes, so a spike still shows in pp_m/pp_p
   c.late=late>NS/20||fabsf(actual_fs/FS-1)>0.02f;
   return c;
 }
@@ -220,9 +233,9 @@ void config() {
   const char *link="usb";unsigned long drops=0;
 #endif
   emitf("C2,profile=%s,fs=%d,N=%d,tones=%d,tone_k=%d:%d,noise_bins=%d,noise_k=%d:%d,window=%s,combine=power_nsub,snr_min=%.1f,"
-        "settle_ms=%d,center=%d,sign=%d,limits=%d:%d,phi=%.1f:%.1f,phi_c=%.1f,dlt=%.1f,alternate=1,link=%s,bt_drop=%lu\n",
+        "settle_ms=%d,center=%d,sign=%d,limits=%d:%d,phi=%.1f:%.1f,phi_c=%.1f,dlt=%.1f,alternate=1,link=%s,bt_drop=%lu,rail_max=%d\n",
     PROFILE_NAME,FS,NS,M_TONES,TONE_K[0],TONE_K[M_TONES-1],M_NOISE,NOISE_K[0],NOISE_K[M_NOISE-1],USE_HANN?"hann":"rect",SNR_MIN,
-    settle_ms,SERVO_CENTER,SERVO_SIGN,SERVO_MIN,SERVO_MAX,PHI_LO,PHI_HI,center,delta,link,drops);
+    settle_ms,SERVO_CENTER,SERVO_SIGN,SERVO_MIN,SERVO_MAX,PHI_LO,PHI_HI,center,delta,link,drops,RAIL_MAX);
 }
 
 void command(const char *s) {

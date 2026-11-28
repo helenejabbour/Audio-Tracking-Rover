@@ -1,0 +1,9 @@
+{
+  "n": 0,
+  "valid": 0,
+  "bins_rows": 0,
+  "tone_hz": null,
+  "bad_crc_or_format": 0,
+  "firmware": [],
+  "hardware_motion": false
+}

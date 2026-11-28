@@ -1,0 +1,24 @@
+{
+  "mode": "speed",
+  "picar_db": "/home/pi/SunFounder_PiCar/picar/config",
+  "drive": true,
+  "notes": "rover1, living room floor, battery __",
+  "pwm": [
+    25,
+    45,
+    80
+  ],
+  "durations": [
+    2.0,
+    4.0
+  ],
+  "repeats": 2,
+  "max_pwm": 80,
+  "seed": 0,
+  "config": null,
+  "picar_database_values": {
+    "turning_offset": 0,
+    "forward_A": 0,
+    "forward_B": 0
+  }
+}

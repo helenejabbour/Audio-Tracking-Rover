@@ -64,6 +64,16 @@ def load_config(path=None):
             raise ValueError('bin_model already contains the in-room correction: set bearing_gain_correction=1, boresight_deg=0')
     if cfg.get('range_noise_floor_rel', 0.) < 0:
         raise ValueError('range_noise_floor_rel must be non-negative')
+    if not 0 < cfg.get('noise_to_amplitude_sd', 1.) <= 1:
+        raise ValueError('noise_to_amplitude_sd must be in (0, 1]: it scales the firmware in-band N to an amplitude sd')
+    if cfg.get('sim_reported_noise', 1.) <= 0:
+        raise ValueError('sim_reported_noise must be positive')
+    table = cfg.get('range_bias_table')
+    if table is not None:
+        t = [tuple(map(float, row)) for row in table]
+        if len(t) < 2 or any(len(row) != 2 or not all(math.isfinite(v) for v in row) for row in t) or \
+                any(b[0] <= a[0] for a, b in zip(t, t[1:])) or t[0][0] <= 0:
+            raise ValueError('range_bias_table must be [[rho_m, ln(A_measured/A_model)], ...] with rho increasing')
     if cfg.get('mission','follow') not in ('follow','approach'):
         raise ValueError('mission must be follow or approach')
     if cfg.get('approach_range_gain',0)<=0 or cfg.get('approach_bearing_gain',0)<=0:
@@ -84,7 +94,8 @@ def create_run(label, config, root=None):
     path.mkdir(parents=True, exist_ok=False)
     (path / 'config.json').write_text(json.dumps(config, indent=2), encoding='utf-8')
     hashes = {}
-    for directory in ('rover', 'Tests', 'Config', 'firmware/esp32_acoustic_v2', 'Matlab'):
+    # The test suite lives in Local/Tests (gitignored); hash it from there when Tests/ is absent.
+    for directory in ('rover', 'Tests', 'Local/Tests', 'Config', 'firmware/esp32_acoustic_v2', 'Matlab'):
         for p in (ROOT / directory).rglob('*'):
             if p.is_file() and p.suffix in ('.py', '.json', '.ino', '.m') and '__pycache__' not in str(p):
                 relative=p.relative_to(ROOT)

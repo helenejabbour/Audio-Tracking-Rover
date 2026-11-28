@@ -85,6 +85,7 @@ def main():
     ser = serial.serial_for_url(a.port, a.baud, timeout=0.2)
     time.sleep(2.0)                                   # most boards reset when the port opens
     ser.reset_input_buffer()
+    ser.write(b"\n")                                  # ends any garbage line left by the reset
     cmds = [f"P{a.phi}"] + ([f"D{a.delta}"] if a.delta is not None else []) + \
            ([f"S{a.settle}"] if a.settle is not None else []) + ["?"]
     for c in cmds:

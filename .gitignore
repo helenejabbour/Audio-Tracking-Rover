@@ -5,3 +5,5 @@ build/
 tmp/
 _local/
 Local/
+# beacon WAVs are 52 MB each; regenerate with Tools/make_tone.py
+Data/stimuli/*.wav
