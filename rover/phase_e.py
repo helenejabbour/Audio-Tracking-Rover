@@ -32,6 +32,7 @@ LEVELS = {'none': {}, 'horn12 target': dict(fringe_ln_sd=.07, room_bearing_sd_de
                               range_bias_table=S1_RANGE_BIAS_TABLE)}
 # Pre-registered Tier 1 criterion (Local/Docs/NEXT_STEPS_SHORT.md, QW4): stop at 1.0 +- 0.2 m, no contact, within 60 s.
 TIER1_TOLERANCE_M = 0.2
+TIER1_START_M = 1.75   # main start of the hardware trials (NEXT_STEPS_SHORT.md D2, changed from 2.0 m on 28 Nov)
 LEVEL_COLORS = [BLUE, ORANGE, AQUA]
 
 
@@ -107,7 +108,9 @@ def design_observer(cfg, Tm):
 def tier_spec(tier, level):
     mp = LEVELS[level]
     if tier == 1:
-        return dict(SCENARIOS['stationary_target'], initial_range_offset=1.0, **mp), dict(desired_range=1.0)
+        # Start 1.75 m (= 1.0 + 0.75, +-0.1 m), decided 28 Nov: inside the indoor range domain, where the
+        # reverberant floor cannot read as the stand-off (2.0 m start: 54 %, 1.75 m: 83 %, 24 seeds).
+        return dict(SCENARIOS['stationary_target'], initial_range_offset=TIER1_START_M-1.0, **mp), dict(desired_range=1.0)
     if tier == 2:
         return dict(target_speed=.10, **mp), dict(desired_range=1.2)
     return dict(SCENARIOS['gentle_turn'], **mp), {}
@@ -246,7 +249,7 @@ def main(argv=None):
     fig.tight_layout(); fig.savefig(out/'fig5_traces.png', dpi=160); plt.close(fig)
 
     fig, axs = plt.subplots(1, 3, figsize=(10, 3.3), sharey=True)
-    names = {1: 'Tier 1  approach to a stationary beacon\n(stand-off 1.0 m, start ≈ 2 m)', 2: 'Tier 2  straight following\n(0.10 m/s, d* = 1.2 m)',
+    names = {1: f'Tier 1  approach to a stationary beacon\n(stand-off 1.0 m, start ≈ {TIER1_START_M:g} m)', 2: 'Tier 2  straight following\n(0.10 m/s, d* = 1.2 m)',
              3: 'Tier 3  following with a turn\n(0.18 m/s, d* = 1.4 m)'}
     summary = {}
     for ax, tier in zip(axs, (1, 2, 3)):
@@ -310,7 +313,8 @@ def write_report(out, cfg, res, summary, nseeds, config_path='Config/phase_e.jso
         lines.append(f"| {k.replace('|', ', ')} | {100*v['success_rate']:.0f} % | {f(v['mean_range_error_m'])} | {f(v['mean_bearing_rms_deg'], 1)} | {f(v['mean_tracking'])} |")
     lines += ["", f"{nseeds} seeds per cell; multipath levels: none; horn12 target (fringe 0.07, room 10°); "
               "s1 measured (fringe 0.144, room 23°, range: 8 % pose-to-pose and the 28 Nov range-law table). "
-              f"Tier 1 success = stand-off latched within {cfg['duration']:.0f} s at |ρ − 1.0| ≤ {TIER1_TOLERANCE_M} m, no clearance violation.", ""]
+              f"Tier 1: start {TIER1_START_M:g} ± 0.1 m, β0 within ±15°; success = stand-off latched within {cfg['duration']:.0f} s "
+              f"at |ρ − 1.0| ≤ {TIER1_TOLERANCE_M} m, no clearance violation.", ""]
     c = res.get('course')
     if c:
         lines += ["## Chapter 6 figures (lecture format)", "",

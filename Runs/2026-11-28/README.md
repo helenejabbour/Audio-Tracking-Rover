@@ -103,6 +103,10 @@ Both 16:26 runs are superseded by §10 (ideal range law, ±0.25 m band, wrong mo
 |---|---|---|
 | `173205_452622Z_phase_e` | `measured_config.json` (noise scale 0.30), s1 level with the measured range law, ±0.2 m | 100 / 100 / **50 %** |
 | `173402_499488Z_phase_e` | `measured_config_motor.json` (true noise 1.9, reported $N$ 7.9) | 100 / 100 / **62 %** |
+| `174052_884801Z_phase_e` | as `173205`, **Tier 1 start 1.75 m** (decided protocol), 16 seeds | 100 / 100 / **75 %** |
+| `174246_752536Z_phase_e` | as `173402`, **Tier 1 start 1.75 m**, 16 seeds | 100 / 100 / **88 %** |
+
+`1732`/`1734` used the old 2.0 m start; the **current prediction is `1740`/`1742`**.
 
 ## Copying from the Pi
 

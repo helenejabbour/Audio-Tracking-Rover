@@ -1,0 +1,57 @@
+{
+  "instructions": "rover1 Phase D results, filled in as measured. Partial: merge the hardware object into Config/measured_config.json (see hardware_template.json) once speed_table and the remaining checks exist. Not runnable on its own.",
+  "rover": "rover1",
+  "hardware_ready": false,
+  "hardware": {
+    "speed_table": [],
+    "steering_table": [
+      [-45.0, 135], [-35.0, 125], [-25.0, 115], [-15.0, 105], [-5.0, 95],
+      [5.0, 85], [15.0, 75], [25.0, 65], [35.0, 55], [45.0, 45]
+    ],
+    "picar_database": "/home/pi/SunFounder_PiCar/picar/config",
+    "turning_offset_at_calibration": 0,
+    "sensor_holdout_passed": false,
+    "actuator_calibration_passed": false,
+    "stop_test_passed": false,
+    "wheels_lifted_passed": false,
+    "evidence_files": [
+      "Runs/2026-11-27/20261127T164817_249191Z_identify_steer",
+      "Runs/2026-11-27/20261127T165058_166535Z_identify_latency"
+    ]
+  },
+  "vehicle": {
+    "max_steer_deg": 45.0,
+    "transport_delay": 0.0254
+  },
+  "motor_on_E0_notes": {
+    "runs": "Runs/2026-11-27/20261127T174120_078885Z_capture (horn12, delta 50, speaker off) + 20261127T174127_635711Z_identify_spin (pwm 0/25/45/80/0 x 15 s), rover lifted",
+    "silence_gate": "PASS: 0/199 pairs accepted, 0 CRC/format errors, T_m 0.481 s in every segment",
+    "noise_floor_N": "motors off 2.1-2.3 counts; pwm 25/45/80: 9.0/11.0/11.5 (x4-5, about +13 dB)",
+    "inband_tone_bins_median": "motors off 1.9-2.1; pwm 25/45/80: 7.8/7.4/9.2 counts; lowest tones (3.2-3.4 kHz) worst, 13-16 at pwm 80",
+    "raw_pp_counts": "motors off ~450-550; motors on ~2400-3240 of a 4095 ADC span",
+    "tone_run": "not done (operator decision). Open risks with a tone: clipping (motor pp ~3200 + tone pp 1000-1500 > 4095) and per-pair bearing noise ~x4-5 from the raised N. Check with one motor-on tone capture at the calibrated horn12 volume."
+  },
+  "vehicle_notes": {
+    "transport_delay": "MEASURED 2026-11-27, rover1, ESP32 on /dev/ttyUSB0, 300 s (python3 -m rover.identify latency): min RTT/2 = 11.2 ms + p95 R2 arrival jitter 14.3 ms = 25.4 ms. Replaces the synthetic 0.04 s.",
+    "rtt_s": {"min": 0.0223, "median": 0.0278, "p95": 0.0721},
+    "r2_arrival_jitter_s": {"p50": 0.0080, "p95": 0.0143, "max": 0.0168},
+    "measurement_period_check": "623 R2 packets in 300 s -> T_m = 0.48 s at delta = 50, agrees with the E4 model 0.144 + delta/150 = 0.477 s",
+    "command_path": "P/D commands are polled between 32 ms captures: they take effect within ~72 ms (p95 RTT), small against T_m"
+  },
+  "steering_table_notes": {
+    "measured": "2026-11-27, rover lifted on box, motors off, left front road wheel vs protractor, deflection = 90 - protractor reading, left positive",
+    "run": "Runs/2026-11-27/20261127T164817_249191Z_identify_steer (python3 -m rover.identify steer --repeats 4)",
+    "fit": "delta_deg = 90 - servo at all 40 points (2 up + 2 down sweeps), sd 0, backlash 0",
+    "resolution_deg": 5,
+    "uncertainty_deg": 2.5,
+    "backlash_bound_deg": "< 5 (below reading resolution)",
+    "max_steer_deg": 45.0,
+    "superseded_runs": {
+      "20261127T163810_929110Z_identify_steer": "invalid: raw protractor readings (0-180) entered instead of deflection",
+      "20261127T164322_692790Z_identify_steer": "discarded: showed 5-10 deg lag on leftward sweeps; operator re-measured and reports those values were wrong",
+      "20261127T164746_475083Z_identify_steer": "aborted before any point was entered (no steer_points.csv)"
+    },
+    "offline_fit": "python -m rover.identify fit <steer run> <latency run> on the laptop reproduces this table, max_steer_deg 45 and transport_delay 0.02544 s, problems: []",
+    "turning_offset_source": "SunFounder config on rover1 at calibration (turning_offset = 0); confirm against picar_database_values in the run's session.json"
+  }
+}
